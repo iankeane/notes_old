@@ -1,0 +1,114 @@
+Ian Keane
+
+---------------
+Virtual Reality
+---------------
+
+
+Tue Jan 12 09:24:10 EST 2016
+----------------------------
+
+Required tools:
+    google cardboard
+    joystick
+    unity3d
+    oculus rift dk1 or dk2?
+
+research: native plugins
+
+
+Thu Jan 21 12:32:04 EST 2016
+----------------------------
+
+Unity Basics
+    unity projects are just folders
+    four folders in total
+        Assets
+            jpgs and other objects for the game
+        Library
+            converts assets for platform
+        ProjectSettings
+            information about how the project is organized
+        Temp
+            can be deleted
+    projects are arranged into scenes
+        scenes are files
+        first action should be to save the default scene as something
+        scenes can be used as levels, or as layers of a level
+            ex: can have an enemies scene, empty level scene, etc
+    views
+        perspective view
+            useful for seeing things the way the eye will see
+        orthographic view
+            useful for lining things up
+    layers
+        can be adjusted to have different properties
+    local and global space
+        programmatically, we are always working with local space
+        local/global space for transformation can be toggled in the editor
+    inspector window
+        can be locked to one object (useful for moving other things in the
+            scene while editing the first)
+        contains all the components of the object
+            everything in the game is an object
+            an object is just a container for components
+        objects can be tagged in the inspector window
+            sometimes tagging can lead to sloppy code
+        layers are edited in the inspector window as well
+    components
+        transform
+            cannot be deleted, every object has a transform
+            contains position, rotation, and scale
+            best to edit to round values
+                hold command to snap to grid and snap rotation
+        mesh filter
+            creates the mesh itself
+        mesh renderer
+            controls the material for the mesh
+            every mesh renderer has a shader
+                albedo modifies color
+                unity only allows editing in 8-bit color
+        camera
+            controls whether the skybox is drawn or not
+            clipping plane is set here (draw distance)
+                affects the depth buffer
+                also controls how close you can see something
+            viewport rectangle can be used to draw multiple cameras or limit one
+                camera to part of the screen
+                can be used, for example, to make a rearview camera
+            target texture
+                this is how you make render textures
+    lighting
+        no lighting by default
+        light seen in the scene is "ambient lighting"
+            edited under window > lighting
+            affects how well lit objects look
+            skybox has ambient lighting as well
+    unity game loop
+        see diagram
+        update
+        coroutines
+        animation
+        lateupdate
+        rendering
+        coroutines
+            yield WaitForEndOfFrame
+        also see basic unity monobehavior diagram
+            disregard ongui
+    console window
+        prints debugging information
+
+Scripts
+    a script is a component on an object
+        it is a good idea to have a script that has the same name as the object
+    it is a good idea NOT to try to change the name of a script after creation
+
+UnityScript Functions
+    Start()
+    Update()
+    time.deltatime
+    debug.log
+        prints to the console
+
+
+    **Note: in lighting window, turn off "auto" under other settings

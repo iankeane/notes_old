@@ -1,0 +1,67 @@
+lookup:
+    linspace
+    dot operator
+    multiplication explaination
+    (3x!)
+
+
+
+Mon Jan 25 15:31:59 EST 2016
+----------------------------
+
+What is MatLab?
+    matlab is a high level language with tools to facilitate math computation
+        weakly typed
+    matrix indices begin at 1 in matlab
+
+Matrix Functions
+    zeros(M,N)
+        generate a MxN matrix of zeros
+        M is rows, N is columns
+    ones(M,N)
+        NxM matrix of ones
+    rand(M,N)
+        MxN matrix of uniformly distributed random numbers between 0 and 1
+    Arr(n,:)
+        returns the entire nth row of Arr
+    Arr(:,n)
+        returns the entire nth column of Arr
+    Arr(x:y,n)
+        returns row n from index x to y
+    Arr = [xy] 
+        concatenates x and y and assigns the result to Arr
+    Arr = [x;y]
+        makes a matrix with a new column for each row of x and y
+
+Matrix Operations
+    Declaration
+        [1, 2; 1, 2] makes a 2x2 matrix
+    Addition
+        adds all the elements of both arrays
+    Subtraction
+        same but reversed
+    Multiplication
+        element-wise multiplicaton (???)
+    Transposition (apostraphe operator)
+        each row is made into a column, and vice versa
+            row 1 is now col 1, row 2 is now col 2
+    Dot Operator
+
+Plotting Functions
+    plot()
+    stem()
+
+Display Functions
+    title()
+    xlabel()
+    ylabel()
+    legend()
+
+Operators
+    ==, ~=, <, >, <=, >=
+    automatically return 1 or 0
+
+3D Plotting
+    meshgrid()
+    surf()
+
