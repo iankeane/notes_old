@@ -1,151 +1,202 @@
 Python and Socket Programming Vocab words
 -----------------------------------------
 
-String concatenation  =
-None keyword          =
-Datagram socket       =
-Timeout exception     =
-dictionary            =
-Range()               =
-Stream socket         =
-Lambda functions      =
-Immutable             =
-For/else              =
-Active open           =
-Self keyword          =
-Multiple assignment   =
-Docstring             =
-Passive open          =
-None keyword          =
+String concatenation  =     
+None keyword          =     
+Datagram socket       =     
+Timeout exception     =     
+dictionary            =     
+Range()               =     
+Stream socket         =     
+Lambda functions      =     
+Immutable             =     
+For/else              =     
+Active open           =     
+Self keyword          =     
+Multiple assignment   =     
+Docstring             =     
+Passive open          =     
+None keyword          =     
 
 
 Chapter 1 Vocab words
 ---------------------
 
-Packet switch              =
-RFC                        =
-Shared medium              =
-Circuit switching          =
-Regional ISP               =
-Transmission delay         =
-Average throughput         =
-Network layer              =
-Segment                    =
-Transmission rate          =
-Protocol                   =
-bandwidth                  =
-Packet switching           =
-Queueing delay             =
-Propagation delay          =
-Service model              =
-Link layer                 =
-Encapsulation              =
-ISP                        =
-Distributed app.           =
-Content provider network   =
-End‐to‐end connection      =
-Protocol layering principl =
-Queueing delay             =
-Application layer          =
-OSI model                  =
-Denial of service attack   =
-TCP/IP                     =
-Physical medium            =
-Packet loss                =
-Tier‐1 ISP                 =
-Processing delay           =
-Traffic intensity          =
-Transport layer            =
-Payload                    =
-Packet sniffer             =
+Packet switch              =    Takes a packet and forwards it to an outgoing
+                                    communication link. Examples include
+                                    routers and link-layer switches.
+RFC                        =    "Request For Comments", a formalized term for
+                                    a networking protocol. RFC's are standard
+                                    documents created by the IETF. Examples are
+                                    TCP,IP,HTTP,SMTP,etc.
+IETF                       =    The Internet Engineering Task Force, the group
+                                    that sets the RFCs and other internet
+                                    standards
+Distributed Applications   =    Applications that involve multiple end systems
+                                    exchanging data with each other
+End Systems                =    Also known as hosts, these are devices that are
+                                    connected through a network. Notably, all
+                                    internet applications run on end systems,
+                                    not through packet switches or in the
+                                    network core.
+Shared medium              =    
+Circuit switching          =    Traditional method of reserving resources for
+                                    the duration of a communication session
+                                    between hosts (not used for the internet)
+Packet switching           =    Alternative to circuit switching where
+                                    resources are not reserved, and messages
+                                    are therefore queued if resources are not
+                                    sufficient
+Regional ISP               =    
+Transmission delay         =    time required to load bits onto a medium
+Average throughput         =    
+Segment                    =    
+Transmission rate          =    
+Protocol                   =    A well-defined set of rules governing
+                                    communication
+bandwidth                  =    bits per second on a specific link
+Queueing delay             =    
+Propagation delay          =    time required for a single bit to traverse from
+                                    one side of a medium to the other
+Service model              =    
+Encapsulation              =    
+ISP                        =    Internet Service Providers, including cable
+                                    companies, university ISPs, and even wifi
+                                    networks. Each ISP is a network of packet
+                                    switches. Each ISP is managed
+                                    independently, runs IP, and conforms an RFC
+Content provider network   =    
+End‐to‐end connection      =    
+Protocol layering principle=    Principle defining use of the layered protocol
+                                    model, which includes the application,
+                                    transport, network, and data link layers
+Application layer          =    Services specific to the application being
+                                    used, implemented in the app. code,
+                                    including HTTP, FTP, SSH, SMTP, etc.
+                                    Application-specific message.
+Transport layer            =    delivers to a process on a host,implemented in
+                                    the OS code.  Examples are TCP and
+                                    UDP. Messages here are called segments or
+                                    datagrams.
+Network layer              =    Delivers to a remote host, implemented in the
+                                    OS. Examples are IP, ICMP, IGMP, etc.
+Data Link layer            =    Delivers to a directly connected host,
+                                    implemented in hardware. Examples are
+                                    ethernet, X.25, ARP, NDP, etc.
+Queueing delay             =    
+OSI model                  =    Only used for its numbering system in the scope
+                                    of this class. Relevant numbers are !!!
+Denial of service attack   =    
+IP                         =    The Internet protocol, which specifies the
+between hosts (not used for the internet)
+                                    format of the packets sent and received
+                                    among routers and end systems
+TCP/IP                     =    The internets principal protocols are
+                                    colllectively referred to as TCP/IP
+Physical medium            =    
+Packet loss                =    
+Tier‐1 ISP                 =    An ISP consisting of routers connected with
+                                    high-speed fiber-optic links 
+Processing delay           =    
+Traffic intensity          =    
+Payload                    =    
+Packet sniffer             =    
 
 Chapter 2 Vocab words
 ---------------------
 
-Process                  =
-Client                   =
-Server                   =
-API                      =
-IP Address               =
-Elastic application      =
-Secure Sockets Layer UDP =
-HTTP                     =
-Peer‐to‐peer             =
-Non‐persistent connection=
-Stateless protocol       =
-Round‐trip time          =
-Cookie                   =
-Response                 =
-Flooding                 =
-Data connection          =
-In‐band                  =
-User agent               =
+Process                  =      
+Client                   =      A program running on one host that requests 
+                                    and receives a service from a server 
+                                    program running on another host
+Server                   =      A program that waits for a request from a host
+                                    and serves informaiton based on those
+                                    requests
+API                      =      Application Programming Interface, specifies
+                                    how a software piece running on one end
+                                    system asks the Internet infrastructure to
+                                    deliver data to a specific destination on
+                                    another end system
+IP Address               =      
+Elastic application      =      
+Secure Sockets Layer UDP =      
+HTTP                     =      
+Peer‐to‐peer             =      
+Non‐persistent connection=      
+Stateless protocol       =      
+Round‐trip time          =      
+Cookie                   =      
+Response                 =      
+Flooding                 =      
+Data connection          =      
+In‐band                  =      
+User agent               =      
 SMTP                     =      Simple Mail Transfer Protocol 
-Hostname                 =
-IP address               =
-Domain Name System       =
-Root DNS server          =
-Authoritative DNS server =
-Recursive DNS query      =
-P2P distribution time    =
-Distributed hash table   =
-Hash function            =
-Port number              =
-TCP                      =
-Persistent connection    =
-Request                  =
-Control connection       =
-Overlay network          =
-Iterative DNS query      =
-BitTorrent               =
-Unchoking                =
-Optimistic unchoking     =
-Peer churn               =
-Well‐known  port         =
+Hostname                 =      
+IP address               =      
+Domain Name System       =      
+Root DNS server          =      
+Authoritative DNS server =      
+Recursive DNS query      =      
+P2P distribution time    =      
+Distributed hash table   =      
+Hash function            =      
+Port number              =      
+TCP                      =      Transmission Control Protocol
+Persistent connection    =      
+Request                  =      
+Control connection       =      
+Overlay network          =      
+Iterative DNS query      =      
+BitTorrent               =      
+Unchoking                =      
+Optimistic unchoking     =      
+Peer churn               =      
+Well‐known  port         =      
 
 Chapter 3 Vocab words (Sections 3.1 – 3.5)
 ------------------------------------------
 
-Logical communication     =
-Demultiplexing            =
-Connection‐oriented       =
-Full‐duplex               =
-Stop‐and‐wait protocol    =
-Go‐Back‐N                 =
-UDP Pseudo‐header         =
-Maximum Segment           =
-Size                      =
-FIN                       =
-piggybacking              =
-duplicate ACK             =
-Congestion control        =
-Best‐effort delivery      =
-Flow control              =
-ACK                       =
-Sequence number           =
-Selective repeat          =
-TCP                       =
-TCP Segment               =
-Finite state machine      =
-Multiplexing              =
-Connectionless            =
-Port number               =
-End‐end principle         =
-UDP Checksum              =
-NAK                       =
-ARQ protocol              =
-Pipelining                =
-Utilization               =
-Sliding window protocol   =
-Cumulative ACK            =
-Three‐way handshake       =
-send buffer               =
-Maximum Transmission Unit =
-SYN                       =
-round‐trip time           =
-fast retransmit`          =
-TCP flags                 =
-cumulative ACK            =
-exponentially weighted avg=
-flow control              =
-congestion control        =
+Logical communication     =     
+Demultiplexing            =     
+Connection‐oriented       =     
+Full‐duplex               =     
+Stop‐and‐wait protocol    =     
+Go‐Back‐N                 =     
+UDP Pseudo‐header         =     
+Maximum Segment           =     
+Size                      =     
+FIN                       =     
+piggybacking              =     
+duplicate ACK             =     
+Congestion control        =     
+Best‐effort delivery      =     
+Flow control              =     
+ACK                       =     
+Sequence number           =     
+Selective repeat          =     
+TCP                       =     
+TCP Segment               =     
+Finite state machine      =     
+Multiplexing              =     
+Connectionless            =     
+Port number               =     
+End‐end principle         =     
+UDP Checksum              =     
+NAK                       =     
+ARQ protocol              =     
+Pipelining                =     
+Utilization               =     
+Sliding window protocol   =     
+Cumulative ACK            =     
+Three‐way handshake       =     
+send buffer               =     
+Maximum Transmission Unit =     
+SYN                       =     
+round‐trip time           =     
+fast retransmit`          =     
+TCP flags                 =     
+cumulative ACK            =     
+exponentially weighted avg=     
+flow control              =     
+congestion control        =     
