@@ -1,3 +1,61 @@
+------
+Matlab
+------
+
+Commands
+    who
+        list variables
+    whos
+        list variables w/ attributes
+    clc
+        clear screen
+    clear
+        delete variables
+    format short/long
+        change resolution of command window
+
+Functions
+    disp('string')
+        display the enclosed string
+    size()
+    length()
+
+Syntax
+    semicolon:
+        omit semicolon to display new value
+    instantiation:
+        x=10;
+        str='string'
+        arr=[0 1 2]
+        arr'= !!!!
+    
+    concatenation:
+        catstring=[string1,' ',string2]
+    casting:
+        intstring=num2str(int)
+    math:
+        log(n)
+        log10(n)
+        abs(n)
+        sqrt(n)
+        exp(n)
+            e^n
+        sign(n)
+        round(n)
+        floor(n)
+        ceil(n)
+        fix(n)
+            rounds x towards 0 (integer rounding)
+
+Making a matlab file
+    click new script (opens editor)
+    enter code
+    save as file.m
+    
+    to run script:
+        right click, run
+
+
 lookup:
     linspace
     dot operator
@@ -65,3 +123,26 @@ Operators
     meshgrid()
     surf()
 
+
+
+Wed Jan 27 15:32:17 EST 2016
+----------------------------
+
+User Defined Functions
+    functions are m-files that can take inputs
+    function[out1,out2]=functionName(in1,in2)
+        this is written at the beginning of the m-file
+        comments are written with %
+        functions end with the keyword 'end'
+
+
+Mon Feb  1 15:34:23 EST 2016
+----------------------------
+
+Loops
+    if
+        if, elseif, else, end
+    for
+        for i=1:100 end
+    while, end
+    

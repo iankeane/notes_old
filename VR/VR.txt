@@ -112,3 +112,413 @@ UnityScript Functions
 
 
     **Note: in lighting window, turn off "auto" under other settings
+
+
+Tue Jan 26 12:26:19 EST 2016
+----------------------------
+
+Scene Organization in Unity
+    heirerarchy management
+        pivots can be altered by moving an object under a parent object
+        order in a heirarchy affects the draw order
+            this can affect transparency
+    snowman example:
+        Snowman
+            Base
+            Graphics
+                Torso
+                Graphics
+                    head
+                    Graphics
+    this allows for the most scaling control
+    animation
+        it may be batter to animate outside of unity
+        mechanim is the default unity system
+            create>animatoionController
+                uses a state machine
+            add animator to snowman
+            attatch animationController to animator
+        different parts are animated separately
+            grouping by object can help control animations
+        create animations
+            jump/idle
+        set idle to default state
+        make a transition to trigger jump, transition back to idle
+            add trigger in parameters window
+            add as a condition in inspector window
+        note: make transition duration 0 or .01
+            for idle: set to loop
+            for jump: exit time = 1
+        open animation window
+            remove the default thing
+        change rotation, scale, and transformation over time to create animation
+        colliders and raycasts move with animations
+
+GUIs
+    create canvas
+        add things like button
+        objects can be anchored to edges of the canvas
+    create GUIHandler script
+        attatch to the objects on the canvas
+        public void handlejumpbuttonpress(){}
+        snowmanbehavior public void dojump()
+            {this.getcomponent.etc }
+        in inspector button>add component>onmouseclick>handlejumpbuttonpress
+
+Rendering
+    The proceess of drawing objects based on their geometry and surface
+        charactaristics
+        objects are usually drawn to a 2D screen window
+        considered as a rectangular array of pixels
+    This differes from geometry, which is about the vertices and faces
+    Two steps:
+        Vertex Operations to find space polygons
+        Surface Operations to determine how those polygons appear on the screen
+            this is done using triangles
+            triangles in 3D space are the same as in 2D space
+        both steps are caculated in parallel
+    there is no concept of camera space in a graphics engine
+        all that is stored is the camera location
+        viewpoints are controlled by moving around cameras
+        camera view is calculated separately from everything else
+    scene is drawn to a portion of the screen called the viewport
+        this drawing is then clipped if wen they lie outside the bounds of the
+            camera
+    another step in the rendering pipeline is the vertex color
+        even though a vertex has no geometry it can have a color
+        each vertex has to consider its color in respect to the lighting
+    viewports are separated into two parts:
+        Near Plane:
+            everything too close will be clipped out
+        Far Plane:
+            everything too far will be clipped out
+        things loaded between these two are loaded in the "depth buffer" (Z
+            buffer)
+        each depth buffer has a resolution
+            typically 32, sometimes 24 or 16
+            32 is four billion positions that something could be in the buffer
+            depth fighting can happen when it is unclear what is in front or
+                behind another object in space
+                sometimes you get depth fighting with posters on walls, etc
+            using a depth buffer can help this
+            typically, if you need something 3D that's very far away, another
+                camera is used that is drawn first in the scene
+            you can set your own clipping planes in the camera inspector
+    Projection can be done in two ways:
+        Perspective
+            points projected towards the viewpoint, for realism
+            things look smaller the farther they are from the camera
+        Parallel "orthographic"
+            points are projected perpendicularly to the screen
+            their size is not affected by distance
+            good for 2D games
+        this can also be set in the camera settings
+    shaders affect both vertex and surface operations
+
+Surface Operations
+    gpus consider each triangle separately, and builds them one at a time
+    backward rendering is how movies render things
+        starts with an object and uses rays to feel out projection
+        this is extremely slow
+
+Lighting
+    Any light in a scene has a position, volume,direction, intensity, and color
+        surface colors (color texture)
+        surface directions (normal texture)
+        generally cheaper to render than more triangles
+
+
+Thu Jan 28 12:31:53 EST 2016
+----------------------------
+
+Local Lighting
+    Everything you can do with lighting and object without knowing about 
+        the polygons around the object
+        this is cheaper than dynamic lighting
+        often involves a shadow map or environment map
+    local lighting includes:
+        surface colors
+        surface reflectivity (specular texture)
+        surface directions (normal texture)
+    global lighting includes:
+        reflection
+        shadows
+        indirect lighting
+        refraction/translucency
+    all unity rendering is forward rendering
+    backward rendering is sometimes called ray tracing
+
+Lighting Options in Unity
+    edit>lighting settings>quality
+        important settings for optimizing a game
+        can set vertex/pixel lighting
+            pixel count=0 is vertex lighting
+        disabling antialiasing can remove a lot of overhead
+            usually antialiasing is important for VR
+        shadows are extremely expensive
+        vsync is set here
+    light objects
+        can be individually set to cast or not cast shadows
+        a culling map can prevent certain objects from being lit
+    directional light
+        the "sun"
+        all light rays come from one direction
+        cheapest light to render
+        position is irrelevant
+            only rotation affects the directional light
+        normally there is not more than one directional light in an outdoor
+            scene
+        multiple directional lights look like a sports arena
+            creates a circle of shadows
+    point light
+        opposite of directional light
+            orientation does not matter, only position
+    spotlight
+        used to create light in a radius
+    baked light
+        setting an object to static and baked removes a lot of work
+        affects the global lighting settings
+            the floor should also be set this way
+        !!!
+    specular highlights
+        view dependent
+        !!!
+
+shadows
+    shadow distance:
+        lower shadow distance makes the sharpest shadows
+    bias:
+        determines where a shadow starts drawing
+        used for thin objects
+        !!!
+    hard shadows:
+        !!!
+    soft shadows:
+        !!!
+
+shading
+    shading is different from shadowing
+        just darkens or lightens based on which side the light is facing
+    unity has a default unifying shader
+    rendering modes:
+        opaque:
+            !!!
+        cutout:
+            !!!
+        fade:
+            !!!
+        transparent:
+            avoid shadowing and transparency simultaneously
+            !!!
+    main maps
+        albedo:
+            main color of object
+                secondary albedos can be added somehow !!!
+        metallic:
+            affects the specularity
+        normal maps:
+            !!!
+        height maps:
+            !!!
+        occlusion maps:
+        emission:
+            causes object to emit light
+            can be baked
+            can affect other objects or not
+        detail maps:
+    shading can cause the faces of the object to become more obvious
+        this is bad for round objects
+        this can be sort of improved using normal mapping (too intensive)
+    changing shaders to vertex lit can improve performance
+
+
+Primitives
+    quad
+        made from two triangles
+        flat surface, rectangular
+        back is invisible
+    plane
+        made from many triangles
+        flat surface, rectangular
+        back is invisible
+
+Visible Surface Determiniation
+    problem that surfaces are drawn in some order, usually in parallel
+        VSD is the problem of ensuring the right surfaces are on top
+    solutions:
+        painter's algorithm:
+            drawing from back to front
+            very expensive algorithm
+            nearly perfect, solves many issues
+        z-buffering (depth-buffering):
+            pixel is drawn only if it is closer to the viewpoint than the current
+                pixel
+            produces problems with translucency
+                this is because you can only check one value at a time
+                it would require a separate buffer for every translucent object
+        backface culling:
+            only draws surfaces that "face" the camera
+            does this by determining which direction each triangle is faceing
+
+Double Buffering and VSync
+    double buffering separates the act of drawing a screen to a physical display
+        from rendering the screen pyxels
+    VSync makes drawing only happen every time your monitor is refreshed
+        VSync turning off can cause visual tearing
+
+
+Tue Feb  2 12:24:21 EST 2016
+----------------------------
+
+Cannon Game
+    variables
+        make public transform turntable
+            assign in inspector
+        rotation speed = 90.0f
+    input
+        bool ccwinput = Input.GetKey(KeyCode.A)
+        bool cwInput, pitchUpIntput, pitchDownInput
+    turn behavior
+        float turntablevel = 0.0f
+        if(ccwinput)
+            turntablevel += rotationspeed
+        if(cwinput)
+            turntablevel -= rotationspeed
+        float turnincrement = turntablevel * Time.deltaTime
+        turntable.Rotate(new Vector3(0,turnincrement,0), Space.self)
+    camera
+        attatched to the player
+            player is attatched to cannon
+        change clipping behavior if needed
+    shooting
+        create nozzle object on cylinder
+            rotate -90 degrees (z axis is straight out)
+            shoot toward z axis
+                this makes vector3.right,forward,left work intuitively
+        create fire function
+            public GameObject projectilefab
+                projectilefab will be a prefab attatched from editor
+            fire instantiates projectile
+                GameObject projectile =
+                GameObject.Instantiate<GameObject>(projectilefab)
+                projectile.transform.position = nozzle.position;
+                projectile.transform.rotation = nozzle.rotation;
+                projectile.transform.localScale = new Vector3.one;
+                    it's good practice to set scale at instantiation
+        put rigidbody where cannon script can access it
+            projectile.GetComponent<Rigidbody> ().velocity = speed *
+                nozzle.foreward
+            to control speed, take as fire parameter from input
+        calling fire
+            called in player input system
+                create reference to cannon script attached to cannon and drag in inspector
+                public cannon cannon
+            if(input.getkeydown(keycode.space))
+                cannon.fire()
+
+
+Physics
+    physics are added by adding a rigidbody component
+        rigidbodies have mass, which determines momentum
+        conservation of momentum means that the more the mass, the more the
+            reaction on collision
+
+
+Thu Feb  4 12:25:32 EST 2016
+----------------------------
+
+Collision
+    During collision:
+        forces are applied to rigidbodies
+        scripts attached to objects with rigidbodies are checked
+    OnCollisionEnter gives us acces to:
+        the collider that was hit
+        the rigidbody that was hit
+    Kinematic collision property
+        this exempts the object from physics except for:
+            affecting other objects
+            scripts updating the physics
+
+State
+    includes:
+        position/orientation of the mesh
+        position of every vertex in the mesh
+        scene heirarchy
+        velocity/acceleration of objects
+        variables
+    state includes everything that needs to be updated
+    each state variable has an update method that changes part of the current
+        state given current inputs and time to simulate for
+
+
+Tue Feb  9 12:28:19 EST 2016
+----------------------------
+
+What an Enigne Does
+    most important thing a game engine does is run the game loop
+    within the game loop, the engine handles everything else
+    input management
+        local devices and networking
+    asset management
+        load meshes, textures, sounds, etc
+    state management
+        collision/physics
+    rendering management
+        turns data into images/sound
+
+Collision Detection and Physics
+    object data is represented in a file
+        size, shape, mass, etc
+    this data must interact with data outside of the object
+        e.g. gravity, wind, etc
+    physics checks per second can be edited in time settings in unity
+
+Dynamics
+    determine how the objects change with subject to forces
+        use separating axis theorem to check if touching
+        if a plane can fit between them, they are not touching
+    this is simple for "rigid bodies"
+        acceleration = force/mass
+        angular acceleration = torque/inertia
+        joints and springs can be added to rigidbodies
+            joints constrain motion, springs add motion
+    it is more difficult for "soft bodies" like cloth, ropes, hair
+        usually simulated with springs between vertices
+        self-collision is extremely complex and rarely implemented
+        unity3D calls these "cloth" colliders
+
+Collision Detection
+    works by moving everything and checking intersection
+        collision dection is really "intersection detection"
+    the graphics in unity are completely separate from the physics
+    the simplest collider is a sphere collider
+        this should be used whenever collider shape is arbitrary
+    colliders in order of computational complexity:
+        sphere, box, capsule, compound, mesh
+    compound meshes
+        made by adding colliders to sub-objects of a parent
+        this is usually preferred
+    most collision detecton is done frame by frame or similar
+        this is called discrete collision detection
+        this can cause extremely fast moving objects to skip through others
+    continuous collision detection is the alternative
+        if an object has not been checked, checks every time an object moves
+            its width
+        this can be enabled in the rigidbody menu
+        do not use unless it is necessary
+            may be necessary for small or fast objects
+
+Collision Response
+    this is what happens after collision
+    basic algorithm:
+        back up object to the point in time of the collision
+        compute new forces for each object based on geometry and materials
+        simulate motion for the remaining time
+    unity mostly just uses the velocities of the object
+
+
+idea for project:
+    take disaster tweets
+    propogate around player in real time
+    allow player to grab
+    high apartment with skybox

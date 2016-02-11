@@ -266,8 +266,22 @@ Assignment 1
         3. peer to peer
 
 
-Mon Jan 25 14:20:36 EST 2016
+Thu Jan 28 14:05:08 EST 2016
 ----------------------------
 
+Formulas
+    transmission time = time to put all bits on the medium
+    propogation time = time for a single bit to traverse the medium to the
+        other side of the medium
+        the "medium" is the wire
+        not affected by file size
+    transfer time = transmission time + propogation time
+    transmission speed = how many bits are being put in the medium per second
+        usually mb/sec
+    ex: 10 KB file at 2mb/sec across 20km of wire at 200k km/sec
+        Ptime = 20km * 1s/2*10^5km = 10^-4 s
+              = .1 ms = 100 picoseconds
+              answer should be between .1 and 1000
 
-
+Taxonomy assignment
+    

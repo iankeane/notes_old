@@ -1,0 +1,151 @@
+Python and Socket Programming Vocab words
+-----------------------------------------
+
+String concatenation  =
+None keyword          =
+Datagram socket       =
+Timeout exception     =
+dictionary            =
+Range()               =
+Stream socket         =
+Lambda functions      =
+Immutable             =
+For/else              =
+Active open           =
+Self keyword          =
+Multiple assignment   =
+Docstring             =
+Passive open          =
+None keyword          =
+
+
+Chapter 1 Vocab words
+---------------------
+
+Packet switch              =
+RFC                        =
+Shared medium              =
+Circuit switching          =
+Regional ISP               =
+Transmission delay         =
+Average throughput         =
+Network layer              =
+Segment                    =
+Transmission rate          =
+Protocol                   =
+bandwidth                  =
+Packet switching           =
+Queueing delay             =
+Propagation delay          =
+Service model              =
+Link layer                 =
+Encapsulation              =
+ISP                        =
+Distributed app.           =
+Content provider network   =
+End‐to‐end connection      =
+Protocol layering principl =
+Queueing delay             =
+Application layer          =
+OSI model                  =
+Denial of service attack   =
+TCP/IP                     =
+Physical medium            =
+Packet loss                =
+Tier‐1 ISP                 =
+Processing delay           =
+Traffic intensity          =
+Transport layer            =
+Payload                    =
+Packet sniffer             =
+
+Chapter 2 Vocab words
+---------------------
+
+Process                  =
+Client                   =
+Server                   =
+API                      =
+IP Address               =
+Elastic application      =
+Secure Sockets Layer UDP =
+HTTP                     =
+Peer‐to‐peer             =
+Non‐persistent connection=
+Stateless protocol       =
+Round‐trip time          =
+Cookie                   =
+Response                 =
+Flooding                 =
+Data connection          =
+In‐band                  =
+User agent               =
+SMTP                     =      Simple Mail Transfer Protocol 
+Hostname                 =
+IP address               =
+Domain Name System       =
+Root DNS server          =
+Authoritative DNS server =
+Recursive DNS query      =
+P2P distribution time    =
+Distributed hash table   =
+Hash function            =
+Port number              =
+TCP                      =
+Persistent connection    =
+Request                  =
+Control connection       =
+Overlay network          =
+Iterative DNS query      =
+BitTorrent               =
+Unchoking                =
+Optimistic unchoking     =
+Peer churn               =
+Well‐known  port         =
+
+Chapter 3 Vocab words (Sections 3.1 – 3.5)
+------------------------------------------
+
+Logical communication     =
+Demultiplexing            =
+Connection‐oriented       =
+Full‐duplex               =
+Stop‐and‐wait protocol    =
+Go‐Back‐N                 =
+UDP Pseudo‐header         =
+Maximum Segment           =
+Size                      =
+FIN                       =
+piggybacking              =
+duplicate ACK             =
+Congestion control        =
+Best‐effort delivery      =
+Flow control              =
+ACK                       =
+Sequence number           =
+Selective repeat          =
+TCP                       =
+TCP Segment               =
+Finite state machine      =
+Multiplexing              =
+Connectionless            =
+Port number               =
+End‐end principle         =
+UDP Checksum              =
+NAK                       =
+ARQ protocol              =
+Pipelining                =
+Utilization               =
+Sliding window protocol   =
+Cumulative ACK            =
+Three‐way handshake       =
+send buffer               =
+Maximum Transmission Unit =
+SYN                       =
+round‐trip time           =
+fast retransmit`          =
+TCP flags                 =
+cumulative ACK            =
+exponentially weighted avg=
+flow control              =
+congestion control        =
