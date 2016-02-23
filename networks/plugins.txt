@@ -1,0 +1,8 @@
+https://github.com/terryma/vim-multiple-cursors
+https://github.com/itchyny/calendar.vim
+https://github.com/kien/rainbow_parentheses.vim
+https://github.com/bronson/vim-trailing-whitespace
+https://github.com/matze/vim-move
+https://github.com/OmniSharp/omnisharp-vim
+https://github.com/tpope/vim-surround
+

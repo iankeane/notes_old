@@ -441,11 +441,11 @@ Rotation in Higher Dimensions
         Rotation around z:
             [x][cos  -sin    0 ]
             [y][sin   cos    0 ]
-            [z][ 0     0     1 ] 
+            [z][ 0     0     1 ]
         Rotation around y:
             [x][cos    0   -sin]
             [y][ 0     1     0 ]
-            [z][sin    0    cos] 
+            [z][sin    0    cos]
         Rotation around x:
             [x][ 1     0     0 ]
             [y][ 0    cos  -sin]
@@ -457,11 +457,75 @@ Rotation in Higher Dimensions
 look into asymptote vector graphics language
 
 
-
 Thu Feb 11 09:30:37 EST 2016
 ----------------------------
 
 Exam goes through rotational matrices
     bring a scientific calculator
+    study gaussian elimination
+
+Checking the Angle of Rotation
+    check that the cosines are equal
+    check that sines are inverted
+    check that the values inserted are equal to the cos of the rotation
+    to find the angle of rotation, check arccosine to find theta
+    
+Gaussian Elimination
+    simulates substitution on larger matrices
+    ex: [ 4  3  1 | 5]
+        [ 3  2 -2 | 4]
+        [ 2 -1  2 | 3]
+        row 1 will be the easiest to eliminate first
+        4x + 3y + z    
+      - 4x - 2y - 4z    =  5y+3z = 5 - 6 = -1
+      !!!
+
+
+Tue Feb 23 09:32:49 EST 2016
+----------------------------
+
+Approximation
+    approximation is one of the goals of scientific computing
+    one example is weather approximation
+        weather can neither be examined nor recorded in a continuous way
+        one way to simulate continuity in discrete functions is calculus
+
+Derivatives
+    rate of change of a function
+    derivatives only makes sense for continuous functions
+        we will eventually learn to fill in discrete functions to form
+            continuous ones
+    derivatives in this class are used for approximation
+        calculus uses concepts that machines cannot understand, like infinity
+
+**unit circle supplement**
+
+Tangent/Secant Lines
+    tangent line has the exact slope of the function at a point
+        we only use this intersection when examining a tangent
+        the slope of the tangent line of a function gives us the exact derivative
+    secant line touches the function in at least two places
+        we only use these two intersections when examining the secant
+        the slope of a secant line approximates the derivative
+            as the secant points get closer and closer, we approach the tangent
+                line and improve accuracy
+
+Machine Epsilon
+    represents the smallest possible nonzero number on a machine
+        used to represent the concept of infinite smallness, or lim x as x-> 0
+        this prevents 'underflow error', where a number is too small to be
+            calculated and truncates to zero
+
+Derivative Approximation
+    in perl:
+        my $h = 0.5
+        while(f($x+$dx/2)-f($x) > 0) // rate of change is changing
+        {
+            $h = $h/2;
+        }
+        this works because the computer can not get closer to zero once the
+            rate stops changing
+        !!! Is machine epsilon only used for calculus applications, or every
+            time we use zero on a computer?
 
 

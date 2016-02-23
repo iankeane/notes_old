@@ -145,4 +145,12 @@ Loops
     for
         for i=1:100 end
     while, end
+
+
+Wed Feb 10 15:34:27 EST 2016
+----------------------------
+
+Rotations in Matlab
+    create rotation matrix to rotate by
+    multiply matrix by rotation matrix
     

@@ -522,3 +522,100 @@ idea for project:
     propogate around player in real time
     allow player to grab
     high apartment with skybox
+
+
+
+Thu Feb 11 12:32:22 EST 2016
+----------------------------
+
+Google Cardboard
+    mostly use the cardboardMain prefab
+    in external tools, need the most recent jdk
+    adjust accelerometer hz to improve tracking
+
+Gamepad
+    edit player input system script (cannon)
+        comment out mouse movement
+        float turntableRotationInput = Input.GetAxis("Horizontal");
+        float turntableIncrement = rotationSpeed * turntableRotationInput * Time.deltaTime;
+
+Data Access in Unity
+    C# file IO
+    Create StreamingAssets folder
+        put csv in folder
+        creat DataManager script
+        using System.IO;
+        ReadAllLines;
+
+Raycasting
+    part of the physics engine that allows simple intersection testing
+    a ray consists of a starting base position and a direction (unit vector)
+        unity provides methods for detecting:
+            first thing the ray hits
+            a list of things the ray hits
+
+
+Tue Feb 16 12:26:17 EST 2016
+----------------------------
+
+Prefabs
+    to edit in scripts
+        make a public GameObject variable for the prefab
+        assign prefab to that variable in editor
+        call GameObject.Instantiate<GameObject>(prefab);
+        set prefab.transform.position
+        set prefab.transform.rotation
+
+VR Tracking
+    typically pose is tracked
+        pose is the position and orientation of an object
+    tracking provides feedback from the real world
+    problems include:
+        latency
+        refresh rate
+        calibration
+        resolution
+        depth of field
+        encumberance
+
+Sensor Model
+    gain and bias are common in measurement
+        gain is scale, and bias is shift
+        they both affect each other, and it is difficult to distinguish which
+            is affecting positoin
+    noise is a margin of error in tracking
+        noise is created by both gain and bias
+
+Process Model
+    simulation updates
+    includes calculations and assumptions to aid representation
+        this includes predicting motion to smooth animation
+
+Filtering
+    filtering is incorporation of information from both models
+        window filter
+            stabilize object by averaging the last N readings
+        exponential filter
+            perform a weighted average between the current estimation and the
+            new value
+    filtering can cause latency
+        the calculations are not believed immediately
+        interperetation of data causes things to slow down
+        the more accurate the readings, the less filtering and latency
+    
+Basic VR Trackers
+    Mechanical (oldest)
+        based on sensing mechanical changes
+        gloves, arm linkages
+        effectively no latency
+    Optical
+        Use light sources to sense properties from a distance
+        data intensive, low encumberance
+    Acoustic
+        similar to optical trackers, but use microphones and speakers
+        less interference than optical, but requires more power
+    Magnetic
+        use pulsed magnetic field sources and sensors to determine relationship
+            between source and sensor
+        magnetic fields pass through non-metallic substances
+    Inertial

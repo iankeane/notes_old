@@ -1,0 +1,147 @@
+﻿Layers
+------
+Application layer          =    Services specific to the application being
+                                   used, implemented in the app. code,
+                                   including HTTP, FTP, SSH, SMTP, etc.
+                                   Application-specific message.
+Transport layer            =    Delivers to a process on a host,implemented in
+                                   the OS code.  Examples are TCP and
+                                   UDP. Messages here are called segments or
+                                   datagrams.
+Network layer              =    Delivers to a remote host, implemented in the
+                                   OS. Examples are IP, ICMP, IGMP, etc.
+Data Link layer            =    Delivers to a directly connected host,
+                                   implemented in hardware. Examples are
+                                   ethernet, X.25, ARP, NDP, etc.
+App Layer Protocol         =    Hereafter referred to as ALP, a protocol that
+                                   defines how an application's processes send
+                                   messages. This includes: the types of
+                                   messages exchanged, the syntax of message
+                                   types, semantics of the fields, and rules
+                                   for determining when and how a process
+                                   sends/receives a process, includes HTTP,
+                                   SMTP, etc
+Datagram socket           =     Discrete packets of data that may arrive out of
+                                   order or be lost while in transit. datagram
+                                   sockets are message-based, able to communicate
+                                   with multiple peers at the same time
+TCP Segment               =     A chunk of data (similar to a packet) in the
+                                   transport layer
+
+Formula Stuff
+-------------
+
+Processing delay           =    Is the time it takes routers to process the
+                                    packet header. Processing delay is a key
+                                    component in network delay.
+Transmission delay         =    Time required to load bits onto a medium
+Transmission rate          =    How fast data can be transmitted bits/second
+bandwidth                  =    Bits per second on a specific link
+Queueing delay             =    How long a packet waits on a queue to be
+                                    transmitted onto a link
+Propagation delay          =    Time required for a single bit to traverse from
+                                    one side of a medium to the other
+Average throughput         =    Throughput is the rate at which the sending
+                                    process can deliver bits to the receiving
+                                    process. The formula for average throughput
+                                    is !!!
+Traffic intensity          =    A measure of the average occupancy of a server
+                                    or resource during a specified period of
+                                    time, normally a busy hour.
+Utilization                =    The ratio of current network traffic to the
+                                    maximum traffic that the port can handle.
+Maximum Transmission Unit  =    Largest complete IP packet that can be put in a
+                                    data link frame
+Round trip time            =    Time that elapses from when a client requests
+                                    the base HTML file until the entire file is
+                                    received by the client. Includes
+                                    propagation, queueing, and processing
+                                    delays. The formula for RTT is !!!
+P2P distribution time      =    The time it takes to get a copy of the file to
+                                    all peers attempting to download the file.
+                                    The formula for distribution time is !!!
+Physical medium            =    The transmission path over which a signal
+                                    propagates. Ex: optical fiber, which has
+                                    emerged as the most commonly used
+                                    transmission medium for long-distance
+                                    communications.
+Maximum Segment Size       =    Amount of data that can be put into a Transport
+                                    segment
+Payload                    =    The "actual data" in a packet or file minus all
+                                    headers attached for transport and minus
+                                    all descriptive meta-data.
+
+
+Packet Switching
+----------------
+
+Packet switch              =    Takes a packet and forwards it to an outgoing
+                                   communication link. Examples include
+                                   routers and link-layer switches. can
+                                   deliver bits to the receiving process. The
+                                   formula for average throughput is !!!
+Circuit switching          =    Traditional method of reserving resources for
+                                   the duration of a communication session
+                                   between hosts (not used for the internet)
+Packet switching           =    Alternative to circuit switching where
+                                   resources are not reserved, and messages
+                                   are therefore queued if resources are not
+                                   sufficient
+
+
+Wrong/Not on Quizlet
+--------------------
+
+Elastic application       =      Applications which can make use of as much or
+                                        as little throughput as is available. This
+                                        is an alternative to bandwidth-sensitive
+                                        applications.
+Non persistent connection =      A connection where each request/response pair
+                                        is sent to over a separate TCP connection
+Persistent connection     =      A connection where all request/response pairs
+                                        are sent over the same TCP connection
+User agent                =      acts as a client in a network protocol used in
+                                        communications within a client–server
+                                        distributed computing system.
+Multiplexing              =      The job of gathering data chunks at the source
+                                        host from different sockets, encapsulating
+                                        them with header info (used for
+                                        demultiplexing) to create segments, and
+                                        passing the segments to the network layer
+Demultiplexing            =      The job of examining the transport layer's
+                                        fields and using that information to direct
+                                        data segments to the correct socket
+piggybacking              =      Sending control information along with data
+End to end principle      =      This states that in a network, app-specific
+                                        functions ought to reside in the end hosts
+                                        rather than intermediary nodes, if this can
+                                        be accomplished correctly.
+Connectionless            =      Describes communication between two network end
+                                        points in which a message can be sent from
+                                        one end point to another without prior
+                                        arrangement. The device at one end of the
+                                        communication transmits data to the other,
+                                        without first ensuring that the recipient
+                                        is available and ready to receive the data.
+Pipelining                =      Alternative to stop-and-wait, where packets can
+                                        be transmitted without acknowledgements.
+                                        This means the range of sequence numbers
+                                        must be increased, the sender and receiver
+                                        may need to buffer more packets, and
+                                        adjustments may have to be made for error
+                                        handling.
+Go Back N                 =      Method of pipeline error handling where a
+                                        sender is only allowed to send N
+                                        unacknowledged packets in the pipeline.
+                                        Packets are acknowledged cumulatively. If a
+                                        packet is determined to be out of order,
+                                        it and all subsequent packages are
+                                        discarded.
+TCP flags                 =      Control bits which contains 9 1-bit flags such
+                                        as NS, CWR, ECE, URG, ACK, PSH, RST, SYN, FIN
+flow control              =      A single TCP sender from overwhelming its receiver
+congestion control        =      Used in TCP, prevents any one host from
+                                        creating excessive traffic by regulating
+                                        the rate at which the sending sides can
+                                        send traffic.
+

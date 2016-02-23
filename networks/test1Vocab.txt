@@ -24,9 +24,11 @@ Chapter 1 Vocab words
 
 Packet switch              =    Takes a packet and forwards it to an outgoing
                                     communication link. Examples include
-                                    routers and link-layer switches.
+                                    routers and link-layer switches. can
+                                    deliver bits to the receiving process. The
+                                    formula for average throughput is !!!
 RFC                        =    "Request For Comments", a formalized term for
-                                    a networking protocol. RFC's are standard
+                                    a networking protocol. RFCs are standard
                                     documents created by the IETF. Examples are
                                     TCP,IP,HTTP,SMTP,etc.
 IETF                       =    The Internet Engineering Task Force, the group
@@ -49,7 +51,10 @@ Packet switching           =    Alternative to circuit switching where
                                     sufficient
 Regional ISP               =    
 Transmission delay         =    time required to load bits onto a medium
-Average throughput         =    
+Average throughput         =    Throughput is the rate at which the sending
+                                    process can deliver bits to the receiving
+                                    process. The formula for average throughput
+                                    is !!!
 Segment                    =    
 Transmission rate          =    
 Protocol                   =    A well-defined set of rules governing
@@ -88,13 +93,14 @@ OSI model                  =    Only used for its numbering system in the scop
                                     of this class. Relevant numbers are !!!
 Denial of service attack   =    
 IP                         =    The Internet protocol, which specifies the
-between hosts (not used for the internet)
                                     format of the packets sent and received
                                     among routers and end systems
-TCP/IP                     =    The internets principal protocols are
-                                    colllectively referred to as TCP/IP
+TCP/IP                     =    The internet's principal protocols are
+                                    collectively referred to as TCP/IP
 Physical medium            =    
-Packet loss                =    
+Packet loss                =    Loss of a packet of data caused by unreliable
+                                    data transfer on either the sending or
+                                    receiving end 
 Tier‐1 ISP                 =    An ISP consisting of routers connected with
                                     high-speed fiber-optic links 
 Processing delay           =    
@@ -105,98 +111,259 @@ Packet sniffer             =
 Chapter 2 Vocab words
 ---------------------
 
-Process                  =      
+Process                  =      A program running on an end system
 Client                   =      A program running on one host that requests 
                                     and receives a service from a server 
                                     program running on another host
 Server                   =      A program that waits for a request from a host
-                                    and serves informaiton based on those
+                                    and serves information based on those
                                     requests
 API                      =      Application Programming Interface, specifies
                                     how a software piece running on one end
                                     system asks the Internet infrastructure to
                                     deliver data to a specific destination on
-                                    another end system
+                                    another end system (facilitates
+                                    communication between application and
+                                    network)
 IP Address               =      
-Elastic application      =      
-Secure Sockets Layer UDP =      
-HTTP                     =      
-Peer‐to‐peer             =      
-Non‐persistent connection=      
-Stateless protocol       =      
-Round‐trip time          =      
-Cookie                   =      
+Elastic application      =      Applications which can make use of as much or
+                                    as little throughput as is available. This
+                                    is an alternative to bandwidth-sensitive
+                                    applications.
+App-Layer Protocol       =      Hereafter referred to as ALP, a protocol that
+                                    defines how an application's processes send
+                                    messages. This includes: the types of
+                                    messages exchanged, the syntax of message
+                                    types, semantics of the fields, and rules
+                                    for determining when and how a process
+                                    sends/receives a process
+HTTP                     =      HyperText Transfer Protocol, ALP used for
+                                    the web. Stateless. In-band.
+SMTP                     =      Simple Mail Transfer Protocol, the main ALP
+                                    used for email.
+Peer‐to‐peer             =      Architecture with minimal or no reliance on
+                                    always-on infrastructure servers, which
+                                    instead uses direct communication between
+                                    intermittently connected hosts
+Non‐persistent connection=      A connection where each request/response pair
+                                    is sent to over a separate TCP connection
+Persistent connection    =      A connection where all request/response pairs
+                                    are sent over the same TCP connection
+Stateless protocol       =      A protocol that maintains no information about
+                                    its clients
+Round‐trip time          =      Time that elapses from when a client requests
+                                    the base HTML file until the entire file is
+                                    received by the client. Includes
+                                    propagation, queueing, and processing
+                                    delays. The formula for RTT is !!!
+Cookie                   =      A file stored in a host's database holding
+                                    information used to identify the client.
+                                    This has to be done because HTTP is
+                                    stateless.
 Response                 =      
 Flooding                 =      
 Data connection          =      
-In‐band                  =      
+In‐band                  =      Sending request and response header lines into
+                                    the same TCP connection that contains the
+                                    file itself
 User agent               =      
-SMTP                     =      Simple Mail Transfer Protocol 
-Hostname                 =      
-IP address               =      
-Domain Name System       =      
-Root DNS server          =      
-Authoritative DNS server =      
-Recursive DNS query      =      
-P2P distribution time    =      
-Distributed hash table   =      
+IP address               =      An address used to identify a host. Stored in 4
+                                    bytes separated by periods in decimal.
+Hostname                 =      A mnemonic identifier for  an IP address,
+                                    accessed through the DNS
+Domain Name System       =      DNS, service that translates hostnames to IP
+                                    addresses. DNS is a distributed database
+                                    hierarchy of DNS servers, and also is an
+                                    ALP that allows hosts to query the
+                                    database. Runs over UDP and uses port 53.
+Root DNS servers         =      The 13 servers in the Internet that are at the
+                                    root of the DNS heirarchy
+Authoritative DNS server =      Server that hosts an organization's DNS records
+                                    that are used to map the names of their
+                                    hosts to an IP address. Organizations may
+                                    host their own or pay to have these records
+                                    stored by a service provider.
+Recursive DNS query      =      !!! Can anyone provide a good explaination of
+                                    how this works?
+Iterative DNS query      =      !!!
+P2P distribution time    =      The time it takes to get a copy of the file to
+                                    all peers attempting to download the file.
+                                    The formula for distribution time is !!!
 Hash function            =      
-Port number              =      
-TCP                      =      Transmission Control Protocol
-Persistent connection    =      
+Distributed hash table   =      
+TCP                      =      Transmission Control Protocol, more reliable of
+                                    the two protocols used by the Internet.
+                                    Uses a "handshake", !!! secures a TCP
+                                    connection as first step. Connections
+                                    require a teardown. Throttles connections
+                                    using congestion control techniques.
+                                    Unencrypted.
+UDP                      =      User Datagram Protocol, more lightweight of the
+                                    two protocols used by the Internet.
+                                    Connectionless, does not use handshaking or
+                                    require teardown. Does not guarantee that
+                                    packets will reach their destination, and
+                                    packets may arrive out of order. Does not
+                                    control congestion. Many firewalls block
+                                    UDP traffic. Unencrypted.
+Secure Sockets Layer UDP =      !!! ask professor
+Secure Sockets Layer TCP =      Enhanced version of TCP that provides
+                                    process-to-process security services like
+                                    encryption, data integrity, and end-point
+                                    authentification. Is not a separate
+                                    protocol from TCP, but has its own API.
 Request                  =      
 Control connection       =      
 Overlay network          =      
-Iterative DNS query      =      
-BitTorrent               =      
-Unchoking                =      
-Optimistic unchoking     =      
-Peer churn               =      
-Well‐known  port         =      
+BitTorrent               =      An application that uses a P2P connection
+                                    network as a means for filesharing 
+Unchoking                =      In a P2P system, when a group of peers
+                                    sends files to a peer based on how fast 
+                                    they are receiving files from that peer,
+                                    adjusting the calculation sporadically
+Optimistic unchoking     =      Randomly choosing a new peer during
+                                    recalculation
+Peer churn               =      The phenomenon of peers connecting and
+                                    disconnecting from a P2P network
+Port number              =      Number used to identify a host
+Well‐known  port         =      A number that is usually assciated with a
+                                    specific type of port. Examples include: 80
+                                    for webservers, 25 for SMTP,
+                                    !!!
+                                    The well-known port numbers range from
+                                    0-1023.
 
 Chapter 3 Vocab words (Sections 3.1 – 3.5)
 ------------------------------------------
 
-Logical communication     =     
-Demultiplexing            =     
+Logical communication     =     Communication that emulates a direct connection
+                                    between hosts, even if they are not
+                                    physically connected. This type of
+                                    communication abstracts away some
+                                    networking details related to
+                                    infrastructure
+Multiplexing              =     The job of gathering data chuncks at the source
+                                    host from different sockets, encapsulating
+                                    them with header info (used for
+                                    demultiplexing) to create segments, and
+                                    passing the segments to the network layer
+Demultiplexing            =     The job of examining the transport layer's
+                                    fields and using that information to direct
+                                    data segments to the correct socket
 Connection‐oriented       =     
 Full‐duplex               =     
-Stop‐and‐wait protocol    =     
-Go‐Back‐N                 =     
 UDP Pseudo‐header         =     
 Maximum Segment           =     
 Size                      =     
 FIN                       =     
 piggybacking              =     
-duplicate ACK             =     
 Congestion control        =     
-Best‐effort delivery      =     
+Best‐effort delivery      =     A protocol that makes its best effort to
+                                    deliver segments between communicating
+                                    hosts but does not guarantee orderly
+                                    delivery.
 Flow control              =     
-ACK                       =     
-Sequence number           =     
-Selective repeat          =     
-TCP                       =     
-TCP Segment               =     
-Finite state machine      =     
-Multiplexing              =     
-Connectionless            =     
-Port number               =     
-End‐end principle         =     
-UDP Checksum              =     
-NAK                       =     
-ARQ protocol              =     
-Pipelining                =     
+Sequence number           =     A field in a packet used to check if it has
+                                    been received in the correct order. This
+                                    field can be one bit, because it only needs
+                                    to know if it is correct in relation to the
+                                    surrounding packets.
+TCP Segment               =     A chunk of data (similar to a packet) in the
+                                    transport layer
+Finite state machine      =     An automaton with a limited number of states
+                                    connected by transition arrows, whose
+                                    transitions are determined by conditions
+UDP Checksum              =     A summation of all four pieces of a UDP segment
+                                    header with the bits reversed, which when
+                                    added to the non reversed summation should
+                                    result in all ones. This calculation is
+                                    used to detect alteration of data segments
+                                    or errors.
+End‐end principle         =     This states that in a network, app-specific
+                                    functions ought to reside in the end hosts
+                                    rather than intermediary nodes, if this can
+                                    be accomplished correctly.
+Connectionless            =     
+ARQ protocol              =     Automatic Repeat Request protocols, these are
+                                    protocols that use positive and negative
+                                    acknowledgements to confirm message
+                                    exchanges
+ACK                       =     A positive acknowledgement in an ARQ protocol
+NAK                       =     A negative acknowledgement in an ARQ protocol
+Stop‐and‐wait protocol    =     Protocols where the sender cannot receive more
+                                    data from the upper layer until it receives
+                                    an ACK or NAK
+Duplicate ACK             =     An ACK that has already been received by a
+                                    client. Duplicate ACKs are used to locate
+                                    and correct transmission errors
+cumulative ACK            =     
+Pipelining                =     Alternative to stop-and-wait, where packets can
+                                    be transmitted without acknowledgements.
+                                    This means the range of sequence numbers
+                                    must be increased, the sender and receiver
+                                    may need to buffer more packets, and
+                                    adjustments may have to be made for error
+                                    handling.
+Go‐Back‐N                 =     Method of pipeline error handling where a
+                                    sender is only allowed to send N
+                                    unacknowledged packets in the pipeline.
+                                    Packets are acknowledged cumulitively. If a
+                                    packet is determined to be out of order,
+                                    it and all subsequent packages are
+                                    discarded.
+Selective repeat          =     Method of pipeline error handling
+Cumulative ACK            =     ACKs that are handled one-by-one from a queue
+                                    of ACKs
+Sliding window protocol   =     Protocol that uses a dynamically adjusting
+                                    window of acceptible unacknowledged packets
 Utilization               =     
-Sliding window protocol   =     
-Cumulative ACK            =     
-Three‐way handshake       =     
+Three‐way handshake       =     Process of authenticating a TCP connection
+                                    before any transfer takes place
 send buffer               =     
 Maximum Transmission Unit =     
 SYN                       =     
-round‐trip time           =     
-fast retransmit`          =     
+fast retransmit           =     
 TCP flags                 =     
-cumulative ACK            =     
 exponentially weighted avg=     
 flow control              =     
-congestion control        =     
+congestion control        =     Used in TCP, prevents any one host from
+                                    creating excessive traffic by regulating
+                                    the rate at which the sending sides can
+                                    send traffic.
+
+Not On Test
+-----------
+
+request
+Request Line
+Header Line
+Other ALPs
+Web Cache
+FTP
+control connection
+data connection
+out-of-band
+pull protocol
+push protocol
+TLD server
+Iterative DNS Queries
+DNS Caching
+
+Annotate Specifically
+---------------------
+
+Chap 2
+------
+
+HTTP
+Cookie Components
+Web Caching
+FTP
+Mail Message Formats
+How DNS works
+DNS Vulnerability
+BitTorrent
+Distributed Hash Table
+Socket Programming with TCP/UDP
+Packet/Segment/Datagram
+Telnet
