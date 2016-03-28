@@ -525,7 +525,32 @@ Derivative Approximation
         }
         this works because the computer can not get closer to zero once the
             rate stops changing
-        !!! Is machine epsilon only used for calculus applications, or every
-            time we use zero on a computer?
 
 
+Thu Feb 25 09:29:53 EST 2016
+----------------------------
+
+More Derivative Approximation
+    def. of derivative:
+        lim(h->0) (f(x+h)-f(x))/h
+
+
+Tue Mar  1 09:30:25 EST 2016
+----------------------------
+
+f(x) = 1/(1-x)
+    we want to be able to calculate at any point without risking div by 0
+
+
+Thu Mar  3 09:25:22 EST 2016
+----------------------------
+
+
+Tue Mar 22 09:21:56 EDT 2016
+----------------------------
+
+Root Finding
+    can solve for the roots using the quadratic formula if the function is
+        quadratic
+        most functions are not quadratic
+        we can still approximate these roots

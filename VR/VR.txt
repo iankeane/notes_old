@@ -582,7 +582,7 @@ Sensor Model
     gain and bias are common in measurement
         gain is scale, and bias is shift
         they both affect each other, and it is difficult to distinguish which
-            is affecting positoin
+            is affecting position
     noise is a margin of error in tracking
         noise is created by both gain and bias
 
@@ -619,3 +619,357 @@ Basic VR Trackers
             between source and sensor
         magnetic fields pass through non-metallic substances
     Inertial
+
+
+Thu Feb 25 12:31:24 EST 2016
+----------------------------
+
+VR Peripheral Network
+    designed for common tracking systems over IP networks
+    uses the client-server model
+        trackers serve data to clients
+    tracking devices are a set of
+        buttons
+        position/orientation trackers
+        analog values
+    to work with VRPN devices, you need
+        a server with VRPN interface
+        IP address and port of the server
+        name of the VRPN device
+        type of the VRPN device
+    the name, IP, and port are included together
+        eg name@192.168.2.1:3883
+            3883 is the standard VRPN port
+        the name is case sensitive
+
+
+Thu Mar  3 12:30:02 EST 2016
+----------------------------
+
+Vuphoria Platform
+    does not work with latest unity
+        5.3.1f1 works
+
+Immersive Audio
+    sound is a pressure wave moving through a system
+        can't hear sound in space
+        human range is 20Hz to 20KHz
+    humans can sense spatial properties of sounds
+        this is because we have two ears
+            this cannot be accomplished using two microphones
+    unity can generate a stereo sound signal
+        this requires a spatial transform
+        simple stereo sound controls volume based on which side the object is
+            on (left, right)
+        the relative velocity of a sound also changes its frequency (doppler
+            effect)
+
+3D Aural Displays for VR
+    in order of preference
+        high quality in-ear microphones in a quiet environment offer the best
+            experience with an HRTF rendering process
+        high quality surround sound studio headphones that cover the ear and
+            block ambient sound
+        surround sound speakers
+        over-the-ear stereo headphones
+        on-ear headphones
+        simple stereo speakers
+
+
+Tue Mar 15 12:24:15 EDT 2016
+----------------------------
+
+look into: mirrorop desktop remote receiver
+
+Immersive Rendering
+    head pose determines eye position
+        can't track eyes because of complexity
+    eye position determines perspective point
+    
+Volumetric Displays
+    sometimes called 2.5D
+        2D images that seem 3D
+        sometimes 3D projection can be emulated with a rotating mirror
+        2.5D is the best we can do currently with headmounted displays
+
+Depth Effects
+    we can include 'cues'that give our brain 3D information
+        creates perspective that relies on our experience viewing 3D objects
+         +---+
+        /   /|
+       +---+ +
+       |   |/
+       +---+
+    there are about ten cues that give us depth:
+        Monoscopic Depth Cues (single 2D image) [6]
+            Interposition                     +---+
+                an occluding object is closer |   |
+            Shading                           | +---+
+                shape and shadows             +-|   |             +---+
+            Size                                +---+            +---+|
+                the larger object is closer                 +-+  |   |/
+            Linear Perspective                             +-+ | +---+ 
+                parallel lines converge at a single point  +-+/    
+                higher the object is vertically, the further it is ````----____
+            Surface Texture Gradient                                -----------
+                more detail for closer objects                      ___----````
+            Atmospheric Effects
+                further away objects are blurrier and dimmer   ````****####%%%%
+        Stereoscopic Depth Cues (two 2D images) [1]            ````****####%%%%
+            Steropsis                                          ````****####%%%%
+                same as google cardboard technique
+                not necessarily as important as doing other cues well
+                components required for stereopsis:
+                    eyepoint
+                    look-at point
+                    field-of-view
+                    view up direction
+        Motion Depth Cues (series of 2D images) [1]            
+            Parrallax
+                able to use motion to make depth apear to change
+        Physiological Depth Cues [2]
+            Accommodation
+                focusing adjustment to change the shape of the lens
+            Convergence
+                movement of the eyes to bring something into focus !!!
+        often monoscopic cues are more important than people assume
+
+Problems with Stereoscopic Images
+    Convergence
+        !!!
+    Camera Frustrum
+        most people have a ~60mm pupillary distance
+        outliers have problems with stereoscopic VR that is not calibrated to
+            them
+    Position Dependence
+        this necessitates head tracking
+        fixed display VR requires more advanced methods
+    Interocular Dependence
+        depth can become incorrect if eyes are modeled closer than they are in
+            real life
+            causes discrepancy between perceived point and modeled point
+            too close = compressed world
+            too far   = elongated world
+    
+Time Multiplexing
+    time parallel steroscopic displays display two images separately
+        each eye sees a different screen
+    time multiplexed stereoscopic displays display alternating images with
+        slightly different perspectives
+        requires powered glasses with alternating shutters
+
+Polarization
+    linear polarization
+        tilts light in different directions
+            glasses can mask light coming from certain directions
+        ghosting increases when you tilt head
+        reduces image brightness by about 1/2
+        potential problems with multiple screens
+        not used much anymore
+    circular polarization
+        more confusing, uses spinning light in a direction
+            each lense can only see clockwise or counterclockwise spinning
+                light
+        reduces ghosting
+        reduces brightness
+        reduces crispness
+        most common form of polarization today
+        always used for multiple display walls
+    time multiplexing usually produces a better image
+        clearer, brighter
+        less ghosting
+            ghosting is caused when some of the wrong image bleeds through to
+                the other eye
+            can also be caused by pixel persistence in lower quality LCD's
+
+Anaglyph Stereo
+    red cyan glasses
+    render scene twice
+        first pass - left - convert to grayscale then red
+        second pass - right - convert to grayscale then cyan
+        easiest to deploy
+
+Other Stereo-limiting Factors
+    right and left eye images do not match in color, size, vertical alignment
+    distortion caused by the optical system
+    resolution
+    HMD's interocular settings
+    computational model does not match viewing geometry
+    some people can't see stereoscopic images (their brain does not recognize
+        stereoscopic information
+
+
+Thu Mar 17 12:32:37 EDT 2016
+----------------------------
+
+Asymmetric Frustrum
+    the "correct" perspective through a window is an asymmetric frustrum
+        left and right field of view are not the same relatively
+
+Computing the Prejection Function (matrix)
+    Assumptions
+        a rectangular display
+        a pinhole camera model (i.e. no distortion)
+        known transform for the eye and display relative to the world origin
+        known width and height of display
+    determine the eye position in the display
+        T[display, world] * T[world, eye] * P[eye]
+    assign a near and far plane distance
+
+Unity Projection Matrix
+    camera.projectionmatrix
+        unity docs provide sample asymmetric frustrum code
+    provides 3 rendering displays simultaneously
+        near plane: things closer than the physical display (3d "pop" effect)
+        display: the window to the virtual world
+        far plane: things past the window
+    in unity, by default the near plane must be adjusted in code to
+        differentiate it from the display
+
+Stereoscopic HMD Setup
+    2 displays coupled with a (generally) fixed transform
+        not necessarily planar
+    2 eyes, represented by cameras
+    pop-out effect only if near plane is closer than the display
+
+Lens Distortion
+    lenses (especially cheap ones) can distort the image significantly from the
+        baseline of a pinhole camera
+    to compensate, you use better lenses or try to pre-distort the image to
+        compensate
+    using barrel distortion shrinks the images, leaving black bars around image
+        to get around this, we must render a larger image
+        this is part of why oculus is having resolution issues
+    refraction depends on the frequency of light, called chromatic aberration
+        typical glass lenses refract higher frequency blue light more than
+            lower frequency red light
+        higher distortion for higher frequency must be used to avoid red
+            borders at the edges
+
+
+Thu Mar 24 12:40:19 EDT 2016
+----------------------------
+
+look into: TVGG website, spacepoint fusion tracker
+
+Definitions
+    Presence
+        the extent of feeling "there" in the virtual world (as opposed to the
+            physical world)
+    Co-presence
+        the extent of feeling "with" another person in the virtual world
+    Immersion
+        ON SLIDES
+    Place Illusion (PI)
+        user perceives body as located in the virtual environment
+        bounded by immersion
+        your actions affet what you observe as you would expect
+        your ability to function in the virtual world
+        if it seems like you should be able to do something, you can do it
+            for example: raising your hand and seeing it raise at the same time
+            in the game
+            if it seems like you should be able to do something, you can do it
+                for example: raising your hand and seeing it raise at the same
+                    time in the game
+    Plausibility Illusion (PSI)
+        believing that the game world is real
+            for example: if someone swings at you and you duck in real life
+        ascribing real traits to virtual things
+
+Measuring Presence
+    all measures of presence (PI or PSI) are indirect
+    three general classes of presence tests:
+        self-reported
+            ex: surveys
+            generally on some sort of scale of one to n
+        physiological
+            ex: sweating, pulse, blood pressure, pupil dilation, skin temp
+        performance/behavior
+            generally have to be built into application, tend to be
+                app-specific
+            ex: measures of reactions
+            task performance
+                finishing a puzzle faster
+                solving a math problem correctly
+            suspension of belief
+                instinctual response
+                    ducking at boxer's punch
+                    snese of virtigo
+                socially conditioned reactions
+                    politeness
+                    proxemics
+                        study of distances
+                            don't get closer than normal to other people or
+                            dangerous things
+                        proxemics can be affected by, for example, compression
+                            issues in a HMD
+    things that increase presence:
+        low latency
+        head tracking
+        field of view
+        rendering
+            poly count
+            shadows
+            lighting
+        multiple senses
+            audio
+            haptics
+                includes "passive haptics" which are just phyisical props
+        travel technique
+            ex: real walking vs control stick
+        avatar
+            how the persons body is represented in the virtual world
+    things that decrease presence:
+        high latency
+        disjoint senses
+            expectation vs experience
+        disembodied voice
+        cables
+        running into walls
+        outside audio
+        these are called 'breaks in presence' (BIPs)
+
+Cued Gestalt
+    we enter the virtual environment carrying the baggage of our experience,
+        beliefs, fears, and expectation
+    what we bring to the VE is as important as what we find there
+    UVA (Pausch) star wars example
+        poor VR w/ no backstory is much worse than poor VR with back story
+        if shown the world of the environment before entering the environment,
+            presence is increased
+            we can attach previous exposure experience to our interpretation of
+                the virtualized world
+
+Pit Experiment
+    most commonly replicated presence test experiment
+    designed to test sense of presence
+    begins in a staging room
+        normal virtual room with a door
+        told that there is a pit in the next room
+        objective is to drop a ball and hit a target in the pit from both sides
+    despite knowing there is no pit, people will creep around the edge and put
+        out arms to avoid falling
+
+Open Questions About Presence
+    does it matter?
+        does increased presence improve performance?
+    can you have presence in a desktop VR?
+    what about mixed reality and augmented reality?
+    what seems to be true?
+        we know virtual reality to be consequence-poor
+            virtual environment does not accurately or completely represent the
+                real world situation because of this
+        illusion of reality can be increased through cued gestalt, better tech,
+            and more realistic behavior of VEs
+        a person's berceptions of real-world situations and behavior in the
+            real world may be modified based on experiences in a virtual world
+            ex: immersion therapy for phobias
+        not only can we cause reactions, but we can change them in the future
+
+More on VRPN
+    must be on the same network
+    must use the same name, ip address and port
+    turn off all firewalls
+    don't use PAWS-secure (maybe phone tethered network)
+    make sure each side of the server can ping the other
+
