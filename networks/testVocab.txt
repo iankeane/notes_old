@@ -3,52 +3,52 @@
 
 
 String concatenation  =    Combines two (or more) strings into a new string
-                                object.
+                                object.\
 None keyword          =    Equivalent to the null keyword in java/c
 Datagram socket       =    Discrete packets of data that may arrive out of
                                 order or be lost while in transit. datagram
                                 sockets are message-based, able to communicate
-                                with multiple peers at the same time
-Timeout exception     =     Raised when a system function timed out at the
-                                system level.
-dictionary            =    Each key is separated from its value by a colon (:).
+                                with multiple peers at the same time\
+Timeout exception     =    Raised when a system function timed out at the
+                                system level.\
+Dictionary            =    Each key is separated from its value by a colon (:).
                                 items are separated by commas, entire
                                 dictionary enclosed in { }. Keys need to be
                                 unique strings, numbers, or tuples.  Values can
-                                be anything.
-dict                  =    {'Name': 'Zara', 'Age': 7, 'Class': 'First' }
+                                be anything.\
+Dict                  =    {'Name': 'Zara', 'Age': 7, 'Class': 'First' }\
 Range()               =    It generates a list of numbers, which is generally
                                 used to iterate over with for loops. Use this
                                 when you want to perform an action X number of
                                 times, where you may or may not care about the
                                 index. Other times you may want to iterate over
                                 a list (or another iterable object), while
-                                being able to have the index available
+                                being able to have the index available\
 Docstring             =    A string literal specified in source code that is
                                 used, like a comment, to document a specific
-                                segment of code. Uses (‘’’comment’’’)
+                                segment of code. Uses (‘’’comment’’’)\
 Stream socket         =    Dedicated & point-to-point channel between server and
                                 client. Use TCP protocol for data transmission.
                                 Reliable and Lossless. Data sent/received in
                                 the similar order. Long time for recovering
-                                lost/mistaken data
-Lambda functions      =    
+                                lost/mistaken data\
+Lambda functions      =    \
 Immutable             =    An object that can’t be modified after its creation.
-                                To modify, a new instance must be created
-For/else              =
+                                To modify, a new instance must be created\
+For/else              =    \
 Active open           =    Call a device (client process) using TCP takes the
                                 active role and initiates the connection by
                                 sending a TCP SYN message to start the
-                                connection.
+                                connection.\
 Passive open          =    Can specify that the device (server process) is
                                 waiting for an active OPEN from a specific
                                 client. It does not generate any TCP message
                                 segment. The server processes listening for the
-                                clients are in Passive
-Open mode             =    
-Self keyword          =    This keyword in Java. Refers to the calling object
-Multiple assignment   =        Allows you to assign multiple objects at the same time
-          instead of just 1.
+                                clients are in Passive\
+Open mode             =    \
+Self keyword          =    This keyword in Java. Refers to the calling object\
+Multiple assignment   =    Allows you to assign multiple objects at the same
+                                time instead of just 1.\
 
 
 Chapter 1 Vocab words
@@ -59,79 +59,79 @@ Packet switch              =    Takes a packet and forwards it to an outgoing
                                    communication link. Examples include
                                    routers and link-layer switches. can
                                    deliver bits to the receiving process. The
-                                   formula for average throughput is !!!
+                                   formula for average throughput is !!!\
 RFC                        =    "Request For Comments", a formalized term for
                                    a networking protocol. RFCs are standard
                                    documents created by the IETF. Examples are
-                                   TCP,IP,HTTP,SMTP,etc.
+                                   TCP,IP,HTTP,SMTP,etc.\
 IETF                       =    The Internet Engineering Task Force, the group
                                    that sets the RFCs and other internet
-                                   standards
+                                   standards\
 Distributed Applications   =    Applications that involve multiple end systems
-                                   exchanging data with each other
+                                   exchanging data with each other\
 End Systems                =    Also known as hosts, these are devices that are
                                    connected through a network. Notably, all
                                    internet applications run on end systems,
                                    not through packet switches or in the
-                                   network core.
+                                   network core.\
 Shared medium              =    A medium or channel of information transfer
                                    that serves more than one  user at the same
-                                   time
+                                   time\
 Circuit switching          =    Traditional method of reserving resources for
                                    the duration of a communication session
-                                   between hosts (not used for the internet)
+                                   between hosts (not used for the internet)\
 Packet switching           =    Alternative to circuit switching where
                                    resources are not reserved, and messages
                                    are therefore queued if resources are not
-                                   sufficient
+                                   sufficient\
 Regional ISP               =    Usually provides Internet access to a specific
-                                    geographic area.
-Transmission delay         =    Time required to load bits onto a medium
+                                    geographic area.\
+Transmission delay         =    Time required to load bits onto a medium\
 Average throughput         =    Throughput is the rate at which the sending
                                    process can deliver bits to the receiving
                                    process. The formula for average throughput
-                                   is !!!
-Segment                    =    Wrapped in a header bytes and sent
-Transmission rate          =    How fast data can be transmitted bits/second
+                                   is !!!\
+Segment                    =    Wrapped in a header bytes and sent\
+Transmission rate          =    How fast data can be transmitted bits/second\
 Protocol                   =    A well-defined set of rules governing
-                                   communication
-bandwidth                  =    Bits per second on a specific link
+                                   communication\
+Bandwidth                  =    Bits per second on a specific link\
 Queueing delay             =    How long a packet waits on a queue to be
-                                    transmitted onto a link
+                                    transmitted onto a link\
 Propagation delay          =    Time required for a single bit to traverse from
-                                   one side of a medium to the other
+                                   one side of a medium to the other\
 Service model              =    Refers both to the interface and to the
-                                    performance that the network gives us.
+                                    performance that the network gives us.\
 Encapsulation              =    The process of taking data from one layer and
                                     translating it into another layer, so the
-                                    data can continue across a network.
+                                    data can continue across a network.\
 ISP                        =    Internet Service Providers, including cable
                                    companies, university ISPs, and even wifi
                                    networks. Each ISP is a network of packet
                                    switches. Each ISP is managed
-                                   independently, runs IP, and conforms an RFC
-Content provider network   =
+                                   independently, runs IP, and conforms an RFC\
+Content provider network   =    \
 End to end connection      =    Application specific functions ought to reside
                                     in the end hosts of a network rather than
                                     in intermediary nodes, provided that they
                                     can be implemented "completely and
-                                    correctly" in the end hosts.
+                                    correctly" in the end hosts.\
 Protocol layering principle=    Principle defining use of the layered protocol
                                    model, which includes the application,
-                                   transport, network, and data link layers
+                                   transport, network, and data link layers\
 Application layer          =    Services specific to the application being
                                    used, implemented in the app. code,
                                    including HTTP, FTP, SSH, SMTP, etc.
-                                   Application-specific message.
+                                   Application-specific message.\
 Transport layer            =    Delivers to a process on a host,implemented in
                                    the OS code.  Examples are TCP and
                                    UDP. Messages here are called segments or
-                                   datagrams.
+                                   datagrams.\
 Network layer              =    Delivers to a remote host, implemented in the
-                                   OS. Examples are IP, ICMP, IGMP, etc.
+                                   OS. Examples are IP, ICMP, IGMP, etc.\
 Data Link layer            =    Delivers to a directly connected host,
                                    implemented in hardware. Examples are
-                                   ethernet, X.25, ARP, NDP, etc.
+                                   ethernet, X.25, ARP, NDP, etc.\
 OSI model                  =    Only used for its numbering system in the scope
                                     of this class. Relevant numbers are
                                     !!!(Open Systems Interconnection model) 7
@@ -145,143 +145,144 @@ OSI model                  =    Only used for its numbering system in the scope
                                     structure and technology.  Denial of
                                     service attack Spamming a service to use up
                                     most of the resources so that the service
-                                    is slow or unresponsive to others
+                                    is slow or unresponsive to others\
 IP                         =    The Internet protocol, which specifies the
                                    format of the packets sent and received
-                                   among routers and end systems
+                                   among routers and end systems\
 TCP/IP                     =    The internet's principal protocols are
-                                   collectively referred to as TCP/IP
+                                   collectively referred to as TCP/IP\
 Physical medium            =    The transmission path over which a signal
                                     propagates. Ex: optical fiber, which has
                                     emerged as the most commonly used
                                     transmission medium for long-distance
-                                    communications.
+                                    communications.\
 Packet loss                =    Loss of a packet of data caused by unreliable
                                    data transfer on either the sending or
-                                   receiving end
+                                   receiving end\
 Tier 1 ISP                 =    An ISP consisting of routers connected with
-                                   high-speed fiber-optic links
+                                   high-speed fiber-optic links\
 Processing delay           =    Is the time it takes routers to process the
                                     packet header. Processing delay is a key
-                                    component in network delay.
+                                    component in network delay.\
 Traffic intensity          =    A measure of the average occupancy of a server
                                     or resource during a specified period of
-                                    time, normally a busy hour.
+                                    time, normally a busy hour.\
 Payload                    =    The "actual data" in a packet or file minus all
                                     headers attached for transport and minus
-                                    all descriptive meta-data.
+                                    all descriptive meta-data.\
 Packet sniffer             =    A passive receiver that records a copy of every
-                                    packet that flies by
+                                    packet that flies by\
 
 
 Chapter 2 Vocab words
 ---------------------
 
 
-Process                  =      A program running on an end system
+Process                  =      A program running on an end system\
 Client                   =      A program running on one host that requests
                                    and receives a service from a server
-                                   program running on another host
+                                   program running on another host\
 Server                   =      A program that waits for a request from a host
                                    and serves information based on those
-                                   requests
+                                   requests\
 API                      =      Application Programming Interface, specifies
                                    how a software piece running on one end
                                    system asks the Internet infrastructure to
                                    deliver data to a specific destination on
                                    another end system (facilitates
                                    communication between application and
-                                   network)
+                                   network)\
 Elastic application      =      Applications which can make use of as much or
                                    as little throughput as is available. This
                                    is an alternative to bandwidth-sensitive
-                                   applications.
+                                   applications.\
 App Layer Protocol       =      Hereafter referred to as ALP, a protocol that
                                    defines how an application's processes send
                                    messages. This includes: the types of
                                    messages exchanged, the syntax of message
                                    types, semantics of the fields, and rules
                                    for determining when and how a process
-                                   sends/receives a process
+                                   sends/receives a process\
 HTTP                     =      HyperText Transfer Protocol, ALP used for
                                    the web. Stateless. In-band.
 SMTP                     =      Simple Mail Transfer Protocol, the main ALP
-                                   used for email.
+                                   used for email.\
 Peer to peer             =      Architecture with minimal or no reliance on
                                    always-on infrastructure servers, which
                                    instead uses direct communication between
-                                   intermittently connected hosts
+                                   intermittently connected hosts\
 Non persistent connection=      A connection where each request/response pair
-                                   is sent to over a separate TCP connection
+                                   is sent to over a separate TCP connection\
 Persistent connection    =      A connection where all request/response pairs
-                                   are sent over the same TCP connection
+                                   are sent over the same TCP connection\
 Stateless protocol       =      A protocol that maintains no information about
-                                   its clients
+                                   its clients\
 Round trip time          =      Time that elapses from when a client requests
                                    the base HTML file until the entire file is
                                    received by the client. Includes
                                    propagation, queueing, and processing
-                                   delays. The formula for RTT is !!!
+                                   delays. The formula for RTT is !!!\
 Cookie                   =      A file stored in a host's database holding
                                    information used to identify the client.
                                    This has to be done because HTTP is
-                                   stateless.
-Response                 =
-Flooding                 =      forwarding by a router of a packet from any
+                                   stateless.\
+Response                 =      \
+Flooding                 =      Forwarding by a router of a packet from any
                                    node to every other node attached to the
                                    router except the node from which the packet
                                    arrived. Flooding is a way to distribute
                                    routing information updates quickly to every
-                                   node in a large network.
-Data connection          =
+                                   node in a large network.\
+Data connection          =      \
 In band                  =      Sending request and response header lines into
                                    the same TCP connection that contains the
-                                   file itself
-User agent               =      acts as a client in a network protocol used in
+                                   file itself\
+User agent               =      Acts as a client in a network protocol used in
                                    communications within a client–server
-                                   distributed computing system.
+                                   distributed computing system.\
 IP address               =      An address used to identify a host. Stored in 4
-                                   bytes separated by periods in decimal.
+                                   bytes separated by periods in decimal.\
 Hostname                 =      A mnemonic identifier for  an IP address,
-                                   accessed through the DNS
+                                   accessed through the DNS\
 Domain Name System       =      DNS, service that translates hostnames to IP
                                    addresses. DNS is a distributed database
                                    hierarchy of DNS servers, and also is an
                                    ALP that allows hosts to query the
-                                   database. Runs over UDP and uses port 53.
+                                   database. Runs over UDP and uses port 53.\
 Root DNS servers         =      The 13 servers in the Internet that are at the
-                                   root of the DNS hierarchy
+                                   root of the DNS hierarchy\
 Authoritative DNS server =      Server that hosts an organization's DNS records
                                    that are used to map the names of their
                                    hosts to an IP address. Organizations may
                                    host their own or pay to have these records
-                                   stored by a service provider.
-Recursive DNS query      =     The client makes a DNS request and the server
+                                   stored by a service provider.\
+Recursive DNS query      =      The client makes a DNS request and the server
                                    must query other DNS servers until it finds
                                    the record or until it determines the record
-                                   does not exist
-Iterative DNS query      =     The client makes a DNS request and the server
+                                   does not exist\
+Iterative DNS query      =      The client makes a DNS request and the server
                                    can either return the record or refer the
                                    client to a different server (both explained
-                                   here)
+                                   here)\
 P2P distribution time    =      The time it takes to get a copy of the file to
                                    all peers attempting to download the file.
-                                   The formula for distribution time is !!!
-Hash function            =      any function that can be used to map data of
-                                   arbitrary size to data of fixed size into a hash table
-Distributed hash table   =      is a class of a decentralized distributed
+                                   The formula for distribution time is !!!\
+Hash function            =      Any function that can be used to map data of
+                                   arbitrary size to data of fixed size into a
+                                   hash table\
+Distributed hash table   =      Is a class of a decentralized distributed
                                    system that provides a lookup service
                                    similar to a hash table: (key, value) pairs
                                    are stored in a DHT, and any participating
                                    node can efficiently retrieve the value
-                                   associated with a given key.
+                                   associated with a given key.\
 TCP                      =      Transmission Control Protocol, more reliable of
                                   the two protocols used by the Internet.
                                   Uses a "handshake", !!! secures a TCP
                                   connection as first step. Connections
                                   require a teardown. Throttles connections
                                   using congestion control techniques.
-                                  Unencrypted.
+                                  Unencrypted.\
 UDP                      =      User Datagram Protocol, more lightweight of the
                                   two protocols used by the Internet.
                                   Connectionless, does not use handshaking or
@@ -289,36 +290,34 @@ UDP                      =      User Datagram Protocol, more lightweight of the
                                   packets will reach their destination, and
                                   packets may arrive out of order. Does not
                                   control congestion. Many firewalls block
-                                  UDP traffic. Unencrypted.
-Secure Sockets Layer UDP =      !!! ask professor
+                                  UDP traffic. Unencrypted.\
+Secure Sockets Layer UDP =      !!! ask professor\
 Secure Sockets Layer TCP =      Enhanced version of TCP that provides
                                   process-to-process security services like
                                   encryption, data integrity, and end-point
                                   authentification. Is not a separate
-                                  protocol from TCP, but has its own API.
-Request                  =
-Control connection       =
-Overlay network          =      a computer network that is built on top of
-                                   another network.
-
-
+                                  protocol from TCP, but has its own API.\
+Request                  =      \
+Control connection       =      \
+Overlay network          =      A computer network that is built on top of
+                                   another network.\
 BitTorrent               =      An application that uses a P2P connection
-                                   network as a means for filesharing
+                                   network as a means for filesharing\
 Unchoking                =      In a P2P system, when a group of peers
                                    sends files to a peer based on how fast
                                    they are receiving files from that peer,
-                                   adjusting the calculation sporadically
+                                   adjusting the calculation sporadically\
 Optimistic unchoking     =      Randomly choosing a new peer during
-                                   recalculation
+                                   recalculation\
 Peer churn               =      The phenomenon of peers connecting and
-                                   disconnecting from a P2P network
-Port number              =      Number used to identify a host
+                                   disconnecting from a P2P network\
+Port number              =      Number used to identify a host\
 Well known  port         =      A number that is usually associated with a
                                    specific type of port. Examples include: 80
                                    for webservers, 25 for SMTP, 22 SSH
                                    !!!
                                    The well-known port numbers range from
-                                   0-1023.
+                                   0-1023.\
 
 
 Chapter 3 Vocab words (Sections 3.1 – 3.5)
@@ -330,100 +329,102 @@ Logical communication     =     Communication that emulates a direct connection
                                    physically connected. This type of
                                    communication abstracts away some
                                    networking details related to
-                                   infrastructure
+                                   infrastructure\
 Multiplexing              =     The job of gathering data chunks at the source
                                    host from different sockets, encapsulating
                                    them with header info (used for
                                    demultiplexing) to create segments, and
-                                   passing the segments to the network layer
+                                   passing the segments to the network layer\
 Demultiplexing            =     The job of examining the transport layer's
                                    fields and using that information to direct
-                                   data segments to the correct socket
+                                   data segments to the correct socket\
 Connection oriented       =     A communication session or a semi-permanent
                                    connection is established before any useful
                                    data can be transferred, and where
                                    a stream of data is delivered in the same
-                                   order as it was sent.
+                                   order as it was sent.\
 Full duplex               =     Data can be transmitted in both directions on a
-                                   signal carrier at the same time.
-UDP Pseudo header         =
+                                   signal carrier at the same time.\
+UDP Pseudo header         =     \
 Maximum Segment Size      =     Amount of data that can be put into a Transport
-                                    segment
+                                    segment\
 FIN                       =     An orderly close of an existing connection in
                                    one direction, after all pending data is
                                    sent.(1 bit TCP flag - No more data from
-                                   sender)
-piggybacking              =     Sending control information along with data
-Congestion control        =
+                                   sender)\
+Piggybacking              =     Sending control information along with data
+Congestion control        =     \
 Best effort delivery      =     A protocol that makes its best effort to
                                    deliver segments between communicating
                                    hosts but does not guarantee orderly
-                                   delivery.
-Flow control              =
+                                   delivery.\
+Flow control              =     \
 Sequence number           =     A field in a packet used to check if it has
                                    been received in the correct order. This
                                    field can be one bit, because it only needs
                                    to know if it is correct in relation to the
-                                   surrounding packets.
+                                   surrounding packets.\
 TCP Segment               =     A chunk of data (similar to a packet) in the
-                                   transport layer
+                                   transport layer\
 Finite state machine      =     An automaton with a limited number of states
                                    connected by transition arrows, whose
-                                   transitions are determined by conditions
+                                   transitions are determined by conditions\
 UDP Checksum              =     A summation of all four pieces of a UDP segment
                                    header with the bits reversed, which when
                                    added to the non reversed summation should
                                    result in all ones. This calculation is
                                    used to detect alteration of data segments
-                                   or errors.
+                                   or errors.\
 End to end principle      =     This states that in a network, app-specific
                                    functions ought to reside in the end hosts
                                    rather than intermediary nodes, if this can
-                                   be accomplished correctly.
+                                   be accomplished correctly.\
 Connectionless            =     Describes communication between two network end
                                     points in which a message can be sent from
                                     one end point to another without prior
                                     arrangement. The device at one end of the
                                     communication transmits data to the other,
                                     without first ensuring that the recipient
-                                    is available and ready to receive the data.
+                                    is available and ready to receive the
+                                    data.\
 ARQ protocol              =     Automatic Repeat Request protocols, these are
                                    protocols that use positive and negative
                                    acknowledgements to confirm message
-                                   exchanges
-ACK                       =     A positive acknowledgement in an ARQ protocol
-NAK                       =     A negative acknowledgement in an ARQ protocol
+                                   exchanges\
+ACK                       =     A positive acknowledgement in an ARQ protocol\
+NAK                       =     A negative acknowledgement in an ARQ protocol\
 Stop and wait protocol    =     Protocols where the sender cannot receive more
                                    data from the upper layer until it receives
-                                   an ACK or NAK
+                                   an ACK or NAK\
 Duplicate ACK             =     An ACK that has already been received by a
                                    client. Duplicate ACKs are used to locate
-                                   and correct transmission errors
-cumulative ACK            =     ACKs that are handled one-by-one from a queue of ACKs
+                                   and correct transmission errors\
+cumulative ACK            =     ACKs that are handled one-by-one from a queue
+                                    of ACKs\
 Pipelining                =     Alternative to stop-and-wait, where packets can
                                    be transmitted without acknowledgements.
                                    This means the range of sequence numbers
                                    must be increased, the sender and receiver
                                    may need to buffer more packets, and
                                    adjustments may have to be made for error
-                                   handling.
+                                   handling.\
 Go Back N                 =     Method of pipeline error handling where a
                                    sender is only allowed to send N
                                    unacknowledged packets in the pipeline.
                                    Packets are acknowledged cumulatively. If a
                                    packet is determined to be out of order,
                                    it and all subsequent packages are
-                                   discarded.
-Selective repeat          =     Method of pipeline error handling
+                                   discarded.\
+Selective repeat          =     Method of pipeline error handling\
 Sliding window protocol   =     Protocol that uses a dynamically adjusting
-                                   window of acceptable unacknowledged packets
+                                   window of acceptable unacknowledged packets\
 Utilization               =     The ratio of current network traffic to the
-                                    maximum traffic that the port can handle.
+                                    maximum traffic that the port can handle.\
 Three way handshake       =     Process of authenticating a TCP connection
-                                   before any transfer takes place
-send buffer               =
+                                   before any transfer takes place\
+Send buffer               =     \
 Maximum Transmission Unit =     Largest complete IP packet that can be put in a
-                                    data link frame
+                                    data link frame\
 SYN                       =     Used to initiate the three-way handshaking
                                    process in TCP. (1 bit ) Synchronize
                                    sequence numbers. Only the first packet
@@ -431,15 +432,18 @@ SYN                       =     Used to initiate the three-way handshaking
                                    set. Some other flags and fields change
                                    meaning based on this flag, and some are
                                    only valid for when it is set, and others
-                                   when it is clear.
-fast retransmit           =
+                                   when it is clear.\
+Fast retransmit           =     \
 TCP flags                 =     Control bits which contains 9 1-bit flags such
-                                   as NS, CWR, ECE, URG, ACK, PSH, RST, SYN, FIN
-exponentially weighted avg=    A calculation to analyze data points by creating
+                                   as NS, CWR, ECE, URG, ACK, PSH, RST, SYN,
+                                   FIN\
+Exponentially weighted avg=    A calculation to analyze data points by creating
                                    series of averages of different subsets of
-                                   the full data set.
-flow control              =     A single TCP sender from overwhelming its receiver
-congestion control        =     Used in TCP, prevents any one host from
+                                   the full data set.\
+Flow control              =     A single TCP sender from overwhelming its
+                                   receiver\
+Congestion control        =     Used in TCP, prevents any one host from
                                    creating excessive traffic by regulating
                                    the rate at which the sending sides can
-                                   send traffic.
+                                   send traffic.\
+

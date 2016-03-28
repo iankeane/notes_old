@@ -1,0 +1,190 @@
+﻿Terms from Chapters 1 and 2:
+----------------------------
+
+Bandwidth              =    Bits per second on a specific link\
+End to end principle   =    This states that in a network, app-specific
+                                functions ought to reside in the end hosts
+                                rather than intermediary nodes, if this can be
+                                accomplished correctly.\
+Encapsulation          =    The process of taking data from one layer and
+                                translating it into another layer, so the data
+                                can continue across a network.\
+Traffic intensity      =    A measure of the average occupancy of a server or
+                                resource during a specified period of time,
+                                normally a busy hour.\
+Queueing delay         =    How long a packet waits on a queue to be
+                                transmitted onto a link\
+Transmission delay     =    Time required to load bits onto a medium\
+Propagation delay      =    Time required for a single bit to traverse from one
+                                side of a medium to the other\
+Circuit switching      =    Traditional method of reserving resources for the
+                                duration of a communication session between
+                                hosts (not used for the internet)\
+Packet switching       =    Alternative to circuit switching where resources
+                                are not reserved, and messages are therefore
+                                queued if resources are not sufficient\
+Multiplexing           =    The job of gathering data chunks at the source host
+                                from different sockets, encapsulating them with
+                                header info (used for demultiplexing) to create
+                                segments, and passing the segments to the
+                                network layer\
+Payload                =    The "actual data" in a packet or file minus all
+                                headers attached for transport and minus all
+                                descriptive meta-data.\
+router                 =    \
+client-server          =    \
+Peer to peer           =    Architecture with minimal or no reliance on
+                                always-on infrastructure servers, which instead
+                                uses direct communication between
+                                intermittently connected hosts\
+Distributed hash table =    Is a class of a decentralized distributed system
+                                that provides a lookup service similar to a
+                                hash table: (key, value) pairs are stored in a
+                                DHT, and any participating node can efficiently
+                                retrieve the value associated with a given
+                                key.\
+socket                 =    \
+
+
+Terms from Chapter 3:
+---------------------
+
+TCP                      =  Transmission Control Protocol, more reliable of
+                                the two protocols used by the Internet.  Uses a
+                                "handshake", !!! secures a TCP connection as
+                                first step. Connections require a teardown.
+                                Throttles connections using congestion control
+                                techniques.  Unencrypted.\
+congestion avoidance     =  \
+Connection oriented      =  A communication session or a semi-permanent
+                                connection is established before any useful
+                                data can be transferred, and where a stream of
+                                data is delivered in the same order as it was
+                                sent.\
+NAK                      =  A negative acknowledgement in an ARQ protocol\
+timeout                  =  \
+SYN                      =  Used to initiate the three-way handshaking
+                                process in TCP. (1 bit ) Synchronize sequence
+                                numbers. Only the first packet sent from each
+                                end should have this flag set. Some other flags
+                                and fields change meaning based on this flag,
+                                and some are only valid for when it is set, and
+                                others when it is clear.\
+FIN                      =  An orderly close of an existing connection in
+                                one direction, after all pending data is
+                                sent.(1 bit TCP flag - No more data from
+                                sender)\
+Three way handshake      =  Process of authenticating a TCP connection
+                                before any transfer takes place\
+SYN flood attack         =  \
+Max Segment Size         =  Amount of data that can be put into a Transport
+                                segment\
+Max Transmission Unit    =  Largest complete IP packet that can be put in a
+                                data link frame\
+slow start               =
+Piggybacking             =  Sending control information along with data
+Active open              =  Call a device (client process) using TCP takes the
+                                active role and initiates the connection by
+                                sending a TCP SYN message to start the
+                                connection.\
+Passive open             =  Can specify that the device (server process) is
+                                waiting for an active OPEN from a specific
+                                client. It does not generate any TCP message
+                                segment. The server processes listening for the
+                                clients are in Passive\
+UDP                      =  User Datagram Protocol, more lightweight of the
+                                two protocols used by the Internet.
+                                Connectionless, does not use handshaking or
+                                require teardown. Does not guarantee that
+                                packets will reach their destination, and
+                                packets may arrive out of order. Does not
+                                control congestion. Many firewalls block UDP
+                                traffic. Unencrypted.\
+Finite state machine     =  An automaton with a limited number of states
+                                connected by transition arrows, whose
+                                transitions are determined by conditions\
+Pipelining               =  Alternative to stop-and-wait, where packets can
+                                be transmitted without acknowledgements.  This
+                                means the range of sequence numbers must be
+                                increased, the sender and receiver may need to
+                                buffer more packets, and adjustments may have
+                                to be made for error handling.\
+Round trip time          =  Time that elapses from when a client requests
+                                the base HTML file until the entire file is
+                                received by the client. Includes propagation,
+                                queueing, and processing delays. The formula
+                                for RTT is !!!\
+Go Back N                =  Method of pipeline error handling where a
+                                sender is only allowed to send N unacknowledged
+                                packets in the pipeline.  Packets are
+                                acknowledged cumulatively. If a packet is
+                                determined to be out of order, it and all
+                                subsequent packages are discarded.\
+Selective repeat         =  \
+Exp. Weighted Moving Avg =  \
+bandwidth probing        =  \
+Additive Increase        =  \
+Multiplicative Decrease  =  \
+
+
+Terms from Chapter 4:
+---------------------
+
+forwarding                    =  \
+quality of service            =  \
+Net Neutrality                =  \
+classful addressing           =  \
+IP Time to live               =  \
+wire speed                    =  \
+interface                     =  \
+subnet                        =  \
+subnet mask                   =  \
+DHCP                          =  \
+address lease time            =  \
+fragmentation offset          =  \
+ping                          =  \
+IPsec                         =  \
+Network Address Translation   =  \
+Link-state message            =  \
+ICMP                          =  \
+firewall                      =  \
+IPv6                          =  \
+unicast                       =  \
+multicast                     =  \
+anycast                       =  \
+Ipv6 flow                     =  \
+tunnelling                    =  \
+Djikstra’s algorithm          =  \
+Virtual Private Network       =  \
+distance-vector algorithm     =  \
+routing loop                  =  \
+split horizon                 =  \
+autonomous system             =  \
+gateway router                =  \
+classless interdomain routing =  \
+RIP                           =  \
+multicast routing             =  \
+flood routing                 =  \
+broadcast storm               =  \
+reverse path forwarding       =  \
+spanning tree                 =  \
+Boundary Gateway Protocol     =  \
+
+
+Terms from Chapter 5
+--------------------
+
+bit error rate               =  \
+cyclic redundancy check      =  \
+Poisson distribution         =  \
+broadcast link               =  \
+time-division multiplex      =  \
+collision                    =  \
+ALOHA                        =  \
+slotted ALOHA                =  \
+CSMA                         =  \
+Frequency-division multiplex =  \
+Forward error correction     =  \
+polling                      =  \
+CSMA/CD                      =  \
+token passing                =  \
