@@ -27,6 +27,11 @@ Components of Program Performance
     Processor and Memory System
     I/O system (hardware and operating system)
 
+Kilobytes and Kibibytes
+    kilobyte | KB | 10^3 || kibibyte | KiB | 2^10
+    megabyte | MB | 10^3 || mebibyte | MiB | 2^10
+    ...
+
 
 1.2
 
@@ -60,7 +65,201 @@ Translation to Hardware Instructions
         high level languages still used today
         translate powerful language into assembly
 
+Scope of Computer Architecture
+    Level 0: Materials Technology
+        what materials should the basic devices be made of?
+        not in the scope of this class
+    Level 1: Device Technology
+        design/fabrication of basic logic/memory elements
+            transistors, logic gates, flip-flops
+            very large scale integration (VLSI)
+    Level 2: Logic Design
+        design of logical circuits from basic gates and memory devices
+        combinational logic
+            adders, multipliers, decoders, muxes, demuxes, etc
+        sequential logic
+            FSA's, counters, sequence detectors, etc
+        memory design
+            construction of SRAM, DRAM, Register Files, etc from smaller
+                elements
+    Level 3: Processor-Memory Organizatoin
+        ALU design using basic combinational logic
+        CPU design
+            control uit design (FSA design) using sequential logic
+            registers
+        memory system organization
+            cache, DRAM, ROM, Virtual Memory
+    Level 4: Instruction Set Architecture (ISA) Design
+        design of assembly language
+            operations/operands permitted
+            addressing modes for operands
+    Level 5: Generic Parallelization and Optimization
+        instruction level parallelism
+            pipelining of instructions
+        memory latency reduction
+            multi-level caching
+            virtual memory
+        multi-threading
+            execude multiple threads concurrently each on an independent core
+        data parallelism
+            execute a single instruction or process concurrently on multiple
+                chunks of data
+    Level 6: Application-Specific Parallelization and Optimization
+        numerical computing
+            matrix operations, finite element computation
+        graphical computing
+        data-intensive computing
+            focus on info stroage/retrieval, I/O, db systems, etc
+        AI/Cognitive Computing
+            speech recognition, pattern recognition
+            
+
 
 1.3
+
+Five Components of a Computer
+    Input
+        keyboard, mouse
+    Output
+        screen
+    Memory
+    Datapath
+    Control
+        datapath and control are parts of the processor
+
+Displays
+    each image is composted of picture elements (pixels)
+        these can be represented in a matrix called a bitmap
+    each pixel has three color values for red, blue, and green
+        8-bit displays use 8 bits for each color
+            24 bits in each pixel
+            2^24 colors possible
+    hardware for graphics includes a raster refresh buffer (frame buffer)
+        stores the bit maps for the images
+
+DRAM and SRAM
+    volatile forms of memory
+    information stored is lost on shutdown
+    this is because the memory is stored electronically, not magnetically
+    about 100,000x faster than secondary storage
+    Dynamic RAM
+        contains the instructions and data of a program
+        "random" means that all memory access takes the same amount of time
+    Static RAM
+        cache memory
+        small, fast memory that acts as a buffer for DRAM memory
+        less dense and more expensive than DRAM
+
+Processors
+    follows the instructions of the program
+    contains two main components:
+        Datapath
+            performs arithmetic operations
+        Control
+            tells the datapath, memory, and I/O devices what to do according to
+                the program
+
+Performance
+    performance is difficult to measure because:
+        there are many variables to account for
+        there are many metrics by which to evaluate performance
+            different metrics may be relevant to different applications of the
+                machine being evaluated
+    ultimately, we are mostly interested in execution time (and sometimes
+        throughput)
+
+Measuring Performance
+    Components of Performance | Units of Measure
+    --------------------------------------------------------------------------
+    CPU execution time        | Seconds for the program
+    Instruction count         | Instructions executed for the program
+    CPI                       | Average number of clock cycles per instruction
+    Clock cycle time          | Seconds per clock cycle
+
+Components of Program Performance
+    Algorithm
+        affects IC, possibly CPI
+        determines the number of program instructions executed
+        may affect CPI by favoring slower or faster instructoins
+        can change IC based on flow of control in the algorithm
+    Programming Language
+        affects IC and CPI
+        translates statements to processor instructions that determine IC
+        features may affect performance (e.g. java vm)
+    Processor and Memory System
+        affects IC and CPI
+        determines the translation into computer instructions
+    ISA
+        affects IC, CR, CPI
+        affects the instructions needed for a function
+        determines cost in cycles for each instruction
+        determines the clock rate for the processor
+
+
+Comparing Performance
+    P  = performance
+    ET = execution time
+    for two computers:
+        P(x) = 1/ET(x)
+    so if:
+        P(x)    > P(y)
+    then:
+        1/ET(x) > 1/ET(y)
+        ET(y)   > ET(x)
+
+    to say "x is n times as fast as y",
+        P(x)/P(y)   = n
+        ET(y)/ET(x) = n
+
+Execution Time
+    Elapsed Time
+        time the user by the user
+    CPU execution time (CPU time)
+        time the CPU spends computing for the task
+        does not include time waiting for I/O or running other programs
+        User CPU Time:
+            CPU time spent in the program
+        System CPU Time:
+            cpu time spent in the OS performing tasks on behalf of the program
+    system performance refers to elapsed time on an unloaded system
+    CPU performance refers to user CPU time
+
+CPU Clock
+    ticks in the cpu clock are called clock cycles
+    a clock period is the time for a complete clock cycle
+    the clock rate is the inverse of the clock period
+        measured in GHz
+
+    MORE ON CLOCKING
+
+CPU Performance
+    ET = CPU execution time for a program
+    CC = CPU clock cycles for a program
+    CR = clock rate
+
+    ET = CC / CR
+
+Instruction Performance
+    execution time also depends on the number of instructions in the program
+
+    IC  = instruction Count
+    CPI = average clock cycles per instruction
+
+    CC = IC * CPI
+    
+    ET = IC * CPI * CCT
+    ET = (IC * CPI) / CR
+
+
+1.6
+
+The Power Wall
+
+
+1.8
+
+Amdahl's Law
+
+MIPS
 
 
