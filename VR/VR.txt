@@ -973,3 +973,24 @@ More on VRPN
     don't use PAWS-secure (maybe phone tethered network)
     make sure each side of the server can ping the other
 
+
+Tue Mar 29 12:52:36 EDT 2016
+----------------------------
+
+Connecting VRPN
+    connect to same network
+        not PAWS-Secure
+    check if you can ping your phone
+
+
+
+Thu Apr 14 12:35:02 EDT 2016
+----------------------------
+
+Implementation Techniques
+    driving
+        !!!
+    flying
+        !!!
+    human joystick
+        

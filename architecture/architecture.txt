@@ -1,0 +1,66 @@
+1.1
+
+Classes of Computers
+    Desktop
+        designed for use by an individual
+        incorporates a graphics display, keyboard, and mouse
+    Server
+        used for running larger programs for multiple users
+        typically accessesd only via a network
+        widest range in cost and capability
+    Supercomputer
+        class with the highest performance and cost
+        configured as servers
+        oriented towards carrying a large workload
+    Datacenters
+        similar to supercomputers
+        considered as large clusters of computers
+    Embedded Computers
+        the largest class of computers
+        widest range of applications and performance
+
+Components of Program Performance
+    Algorithm
+    Programming Language
+    Programming Compiler
+    Programming Archetecture
+    Processor and Memory System
+    I/O system (hardware and operating system)
+
+
+1.2
+
+Software Layer Hierarchy
+    from high to low level:
+    Applications Software
+    Systems Software
+        Operating System
+            interfaces between a user's program and the hardware
+            provides supervisory functions and services, including:
+                handling I/O operations
+                allocating storage and memory
+                providing protected sharing of the computer amongs applications
+        Compiler
+            translates a program into instructions that the hardware can
+                execute
+    Hardware
+
+Translation to Hardware Instructions
+    Binary
+        "Machine Language"
+        this is the lowest level computer language
+        originally computers were instructed in binary by hand
+    Assembler
+        "Assembly Language"
+        this was the first computer compiler
+        a simple program that translates a symbolic instruction to binary
+        requires the programmer to write one line of code for each hardware
+            instruction
+    Compiler
+        high level languages still used today
+        translate powerful language into assembly
+
+
+1.3
+
+
