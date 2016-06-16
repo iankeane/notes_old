@@ -263,3 +263,49 @@ Amdahl's Law
 MIPS
 
 
+2.2
+
+Operations of Computer Hardware
+    most basic operation is arithmetic
+    addition
+        add
+        ex: add a, b, c
+        a = b + c
+        must always have exactly three variables
+    subtraction
+        sub
+        the same as addition
+    addimmediate
+        addi
+        "add immediate"
+        used to add constants
+    load word/half/half unsigned/byte/byte unsigned/linked word/ upper immed.
+        lw/lh/lhu/lb/lbu/ll/lui
+        loads the given object from memory to register
+    store word/half/byte/condition. word
+        sw/sh/sb/sc
+        store the given object from register to memory
+    and/or/not
+        and/or/nor
+        bitwise operations
+    and/or immediate
+        andi/ori
+        bitwise operations for constants
+    shift left/right logical
+        sll/srl
+        shift bits left or right by constant
+    branch on equal/not equal
+        beq/bne
+        equal/not equal test
+    set on less than (unsigned/immediate/immediate unsigned)
+        slt/sltu/slti/sltiu
+        compare less than
+    jump (register/ and link)
+        j/jr/jal
+        jump to target address
+
+Examples
+    !!!
+
+2.3 Operands
+    
