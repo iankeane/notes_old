@@ -275,7 +275,7 @@ Operations of Computer Hardware
     subtraction
         sub
         the same as addition
-    addimmediate
+    add immediate
         addi
         "add immediate"
         used to add constants
@@ -307,5 +307,79 @@ Operations of Computer Hardware
 Examples
     !!!
 
-2.3 Operands
-    
+
+2.3
+
+Registers
+    limited number of small storage spaces for quick access
+    implemented in hardware
+    limited in number
+        32 registers on MIPS
+    each register is 32 bits
+        groups of 32 bits are called a word in MIPS
+    the three operands of MIPS arithmetic instructions must be chosen from one
+        of the 32 32 bit registers
+
+Design Principle 2: Smaller is faster
+    a large number of registers may increase the CCT
+        signals have to travel farther
+    "smaller is faster" is not absolute
+        31 registers may not be faster than 32
+    this principle is still useful enough to be taken seriously
+
+Compiling C Using Registers
+    ex:
+        f = (g + h) - (i + j);
+        // f,g,h,i,j = $s0, $s1, $s2, $s3, $s4
+
+        add $t0, $s1, $s2
+        add $t1, $s3, $s4
+        sub $s0, $t0, $t1
+
+Memory Operands
+    larger structures can not be stored in registers
+        arrays, data structures
+        these are stored in memory instead
+    MIPS includes data transfer instructions to access memory
+
+Data Transfer Instructions
+    to access a word in memory, the instruction must supply the memory address
+        memory is a large, 1D array, where the address is the index
+    MIPS provides instructions for handling this
+    Load:
+        copies data from memory to a register
+        "lw" instruction
+        ex: 
+            # base addres of A is stored in $s3
+            lw $t0, 32($s3)  # $t0 gets A[8]
+    Store:
+        copies data from a register to memory
+        "sw" instruction
+        ex:
+            sw $t0, 48($s3) # stores $t0 into A[12]
+        
+
+Byte Addressing
+    most addressing is done using bytes rather than bits
+    addresses of different elements of an array will differ depending on the
+        type of data structure stored in the array
+        e.g. ints will be stored in groups of 4 bytes
+        in MIPS, addresses for words must be multiples of 4
+            this is called an alignment restriction
+
+
+
+Endianness
+    Big Endian
+        use the leftmost or "big end" byte as the word address
+        MIPS is big-endian
+    Little Endian
+        use the rightmost or "little end" byte as the word address
+
+
+
+
+2.4
+
+
+2.5
