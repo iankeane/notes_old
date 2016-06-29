@@ -377,9 +377,171 @@ Endianness
         use the rightmost or "little end" byte as the word address
 
 
-
-
 2.4
 
 
 2.5
+
+Registers
+    Variable | Number(s) | Use              | Preserved on Call
+    -----------------------------------------------------------
+    $zero    | 0         | Constant value 0 | n.a.
+    $v0-#v1  | 2-3       | Return values    | no
+    $a0-$a3  | 4-7       | Arguments        | no
+    $t0-$t7  | 8-15      | Temporaries      | no
+    $s0-$s7  | 16-23     | Saved            | yes
+    $t8-$t9  | 24-25     | More Temporaries | no
+    $gp      | 28        | Global Pointer   | yes
+    $sp      | 29        | Stack Pointer    | yes
+    $fp      | 30        | Frame Pointer    | yes
+    $ra      | 31        | Return Address   | yes
+
+Fields
+    6,5,5,5,5,6 bits
+    op:    opcode
+    rs:    first register source operand
+    rt:    second register source operand
+    rd:    register destination operand
+    shamt: shift amount
+    funct: function
+        selects the specific variant of the operation in the op field
+
+Register Formats
+          6     5     5     5     5     6
+    R:  | op  | rs  | rt  | rd  |shamt|funct|
+    I:  | op  | rs  | rt  |   addr/const    |
+
+
+2.6
+
+Shifts
+    move all the bits in a word left or right
+        fill emptied bits with 0's
+    ex:
+        sll $t2, $s0, 4  # reg $t2 = reg $s0 << 4
+
+        op  rs  rt   rd   sh  fu
+        0 | 0 | 16 | 10 | 4 | 0
+
+
+2.7
+
+Flow Control
+    ex: 
+        if (i==j) {} else {}
+
+        bne $s3, $s4, Else
+
+Loops
+    ex:
+        while (save[i] == k)
+            i += 1;
+
+        Loop: sll   $t1, $s3, 2    # $t1 = i * 4
+              add   $t1, $t1, $s6  # t1 = address of save[i]
+              lw    $t0, 0($t1)    # t0 = save[i]
+              bne   $t0, $s5, Exit # Exit if save[i] != k
+              addi  $s3, $s3, 1    # i = i + 1
+              j     Loop           # go to Loop
+        Exit:
+
+
+2.8
+
+Procedure Steps
+    1. Store parameters
+    2. Transfer control to procedure
+    3. Acquire storage resources for procedure
+    4. Perform task
+    5. Store result
+    6. Return control to the point of origin
+
+Procedure registers
+    $a0-$a3: four argument registers for parameters
+    $v0-$v1: two value registers for return values
+    $ra:     points to the address of the point of origin
+        jal command jumps to an address and links the point of origin to $ra
+            the PoA is actually PC + 4, so it returns the address after the
+                procedure call
+        jr $ra returns to the point of origin
+
+
+Leaf Procedures
+    ex:
+        int leaf_example (int g, int h, int i, int j) {
+            int f;
+            f = (g + h) - (i + j);
+            return f;
+        }
+
+    leaf_example:
+            addi $sp, $sp, -12 # adjust stack to make room for items
+
+            sw $t1, 8($sp)      # save $t1 for use afterwards
+            sw $t0, 4($sp)      # save $t0 for use afterwards
+            sw $s0, 0($sp)      # save $s0 for use afterwards
+
+            add $t0, $a0, $a1   # register $t0 contains g + h
+            add $t1, $a2, $a3   # register $t1 contains i + j
+            sub $s0, $t0, $t1   # f = $t0 - $t1
+            add $v0, $s0, $zero # returns f ($v0 = $s0 + 0)
+
+            lw $s0, 0($sp)      # restore $s0 for caller
+            lw $t0, 4($sp)      # restore $t0 for caller
+            lw $t1, 8($sp)      # restore $t1 for caller
+
+            addi $sp, $sp, 12   # delete items form stack
+
+            jr $ra              # jump back to calling routine
+
+Nested Procedures
+    ex:
+        int fact (int n){
+            if (n < 1) return(1);
+                else return n* fact(n - 1);
+        }
+
+    fact:
+        addi $sp, $sp, -8   # adjust stack for 2 items
+        sw   $ra, 4($sp)    # save the return address
+        sw   $a0, 0($sp)    # save the argument n
+
+        slti $t0, $a0, 1    # test for n < 1
+        beq  $t0, $zero, L1 # if n >= 1, go to L1
+
+        addi $v0, $zero, 1  # return 1
+        addi $sp, $sp, 8    # pop 2 items off stack
+        jr   $ra            # return to caller
+
+    L1: addi $a0 $a0 -1     # n >= 1: argument gets n - 1
+        jal  fact           # call fact with n - 1
+        
+        lw   $a0, 0($sp)    # return from jal: restore argument n
+        lw   $ra, 4($sp)    # restore return address
+        addi $sp, $sp, 8    # adjust sp to pop 2 items
+
+        mul  $v0, $a0, $v0  # return n * fact(n - 1)
+
+        jr   $ra            # return to caller
+            
+
+The Stack
+
+
+Preserved and Non-Preserved Registers
+
+Global Pointer
+
+Frame Pointer
+
+The Heap
+
+Recursion
+
+
+2.9
+
+
+2.10
+
+
