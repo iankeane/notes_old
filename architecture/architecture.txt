@@ -29,8 +29,11 @@ Components of Program Performance
 
 Kilobytes and Kibibytes
     kilobyte | KB | 10^3 || kibibyte | KiB | 2^10
-    megabyte | MB | 10^3 || mebibyte | MiB | 2^10
+    megabyte | MB | 10^6 || mebibyte | MiB | 2^20
     ...
+
+Design Principles
+    !!!
 
 
 1.2
