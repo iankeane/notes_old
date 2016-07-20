@@ -547,4 +547,284 @@ Recursion
 
 2.10
 
+C.1
 
+C.2
+
+C.3
+
+C.5
+
+C.7
+
+C.8
+
+C.9
+
+C.10
+
+Identity law: A + 0 = A and A · 1 = A
+Zero and One laws: A + 1 = 1 and A · 0 = 0
+Inverse laws: A + ~A = 1 and A · ~A = 1
+Commutativelaws:A+B=B+AandA·B=B·A
+Associative laws: A + (B + C) = (A + B) + C and A · (B · C) = (A · B) · C
+Distributive laws: A · (B + C) = (A · B) + (A · C) and A + (B · C) = (A + B) · (A + C)
+
+C.3
+
+Decoders
+    n input, 2^n output
+    selects one output
+
+Multiplexors
+    select one output
+    selector value determines which inputs become the output
+    C = (A * ~S) + (B * S)
+    If there are n data inputs,there will need to be log2(n) selector inputs
+    1. A decoder that generates n signals, each indicating a different input value
+    2. An array of n AND gates, each combining one of the inputs with a signal from the decoder
+    3. A single large OR gate that incorporates the outputs of the AND gates
+PLA's
+
+ROM
+
+PROM
+
+Don't Cares
+
+Arrays of Logic Elements ***
+
+C.4
+
+C.5
+
+1-Bit ALU
+
+
+4.3
+
+Datapath Elements
+
+Instruction Memory
+    memory unit to store instructions of a program
+    supplys instructions given an address
+
+Program Counter
+    register that holds the address of the current instruction
+
+Increment Adder
+    Increments the PC to the address of the next instruction
+    Performs only as an adder and cannot perform other ALU functions
+    Takes in PC, adds 4
+
+Register File
+    processor's 32 general-purpose registers are stored here
+    a collection of registers in which any registor can be read or written by
+        specifying the umber of the register in the file
+    contains the register state of the computer
+
+ALU
+    operstes on the values read from the register
+    takes 2 32 bit inputs and produces a 32 bit result and a 1 bit result if zero
+    has a 4-bit control signal
+
+
+Data Memory
+    used by lw and sw
+    includes:
+        read and write control signals
+        an address input
+        an input for data to be written into memory
+
+Instruction Execution
+    1.  Fetch instruction from memory and increment PC
+    2.  Read registers while decoding the instruction. The regular format of
+            MIPS  instructions allows reading and decoding to occur
+            simultaneously
+    3.  Execute the operation or calculate an address.
+    4.  Access an operand in data memory.
+    5.  Write the result into a register.
+
+R Format Instructions
+    ex:
+        add $t1, $t2, $t3
+    read 2 registers and perform an ALU operation on the contents
+    write to a result register
+    add, sub, AND, OR, slt, etc
+    for each data word to be read, we need an two inputs:
+        1. one to specify the register number to read
+        2. one to the register file specifying the value read
+    for each data word written, we need two inputs:
+        1. one to specify the register numbr to be written
+        2. one to supply the data to be written
+    the register file always outputs the contents of whatever register numbers
+        are on the read register inputs
+    writes are controlled by the write control signal, which must be asserted
+        for a write to occur at the clock edge
+    there are 4 inputs: 3 for reg numbers and 1 for data
+    there are two outputs: 2 for data
+    the register number inputs are 5 bits wie to specify one of 32 registers
+    data inputs and ouputs are 32 bits wide
+
+LW and SW
+    ex:
+        lw $t1, offset($t2)
+        sw $t1, offset($t2)
+    compute a memory address by adding the base register $t2 to the 16-bit signed
+        offset field in the instruction
+    if the instruction is a store:
+        the value to be stored must also be read from the register file $t1
+    if it is a load:
+        the value to read must be written into the register file $t1
+    thus, we need both the register file and the ALU
+    additionally, we need:
+        a unit to sign-extend the 16 bit ofset field in the instruction to a 32 bit signed value
+        a data memory unit to read from or write to
+
+Beq
+    ex:
+        beq $t1, $t2, offset
+    compute the branch target address by adding the sign-extended offset field
+        to the PC
+    the base for the branch address calculation is the address of the
+        instruction following the branch
+    since we compute PC+4 in the instruction fetch, it is easy to use this
+        value as the base for computing the branch target address
+    the offset field is shifted left 2 bits so that it is a word offset
+        this increases the effective range of the offset by a factor of 4
+    we must also determine whether the next instruction is the instruction that
+        follows sequentially or the instruction at the branch target address
+        when this is true (operands are equal): 
+            the branch target address becomes the new PC, and we say the branch
+                is taken
+        when this is false (operands are not equal): 
+            if the operands are not equal, the incremented PC should replace
+                the current PC (as usual), and we say the branch is not taken
+        thus, the branch datapath must do two operations: 
+            1. compute the branch target address 
+            2. compare the register contents
+        to compute the branch target address, the branch datapath includes a
+            sign extension unit
+        to perform the compare, we need to use the register file to supply the
+            two register operands
+                (we do not need to write into a register file)
+        the comparison can then be done using the zero output of the ALU by
+            subtracting the operands
+            if the zero signal out of the ALU is asserted, the values are equal
+        although the zero ouput always signals if the ouput is zero, we will
+            only use it to implement the equal test of branches
+
+
+        PUT REQUARED COMPONENTS FOR EACH COMMAND
+
+Jump
+    operates by replacing the lower 28 bits of the PC with the lower 26 bits of
+        the instruction shifted by 2 bits
+    this shift is accomplished by concatenating 00 to the jump offset
+
+
+Creating a Single Datapath
+    the simplest datapath will attempt to execute all instructions in one clock cycle
+        this means that no datapath resource can be used more than once per instruction
+        any element needed more than once must be duplicated
+        we therefore need instruction memory to be separate from data memory
+        some of the functional units will need to be duplicated, many of the
+            elements can be shared by different instruction flows
+        to share a datapath between two different instruction classes, we may
+            need to allow multiple connections to the input of an element using
+            a multiplexer and control signal to select among multiple inputs
+
+Building a Datapath
+    r-type operations and the memory instructions datapath are similar
+    the main differences are:
+        1. r-type insstructions use the ALU, with the inputs coming from the
+        two registers
+            the memory instructions can alsu use the ALU to do address
+            calculations, but the second input is the sign-extended 16-bit
+            offset field from the instruction
+        2. the value stored into a distination register comes from the ALU for
+        an r-type instrutions, and from memory for a load.
+    to create a datapath with only a single register file and ALU, we must
+    support two different sources for the second ALU input as well as for the
+    data stored into the register file
+        this can be handled with two multiplexers:
+            one for the data input of the register file
+            one for the ALU input
+
+4.4
+
+Simple Implementation Scheme
+    4.4 focuses on building the simplest possible MIPS implementation
+    covers lw, sw, beq, and add, sub, AND, OR, slt
+
+ALU control
+    6 combinations for control outputs:
+        0000 | AND
+        0001 | OR
+        0010 | add
+        0110 | sub
+        0111 | slt
+        1100 | NOR
+    for lw and sw, we use the ALU add to compute the memory address
+    for r-type instructions we will use the ALU depending on the 6 bit funct field
+    for beq, the alu must perform a subtraction
+    we use a 4-bit ALU control unit
+        inputs:
+            funct field of the instruction
+            2 bit control field (ALUOp)
+                00 | add
+                01 | beq
+                10 | determined by funct field
+        output:
+            generates one of the four bit signals from the first table
+
+  Opcode      ALUOp Operation      Funct    Desired Action    Cntrl Input
+-------------------------------------------------------------------------
+LW           | 00 | load word    | XXXXXX | add              | 0010
+SW           | 00 | store word   | XXXXXX | add              | 0010
+Branch equal | 01 | branch equal | XXXXXX | subtract         | 0110
+R-type       | 10 | add          | 100000 | add              | 0010
+R-type       | 10 | subtract     | 100010 | subtract         | 0110
+R-type       | 10 | AND          | 100100 | AND              | 0000
+R-type       | 10 | OR           | 100101 | OR               | 0001
+R-type       | 10 | slt          | 101010 | set on less than | 0111
+
+    because only a small number of the 64 possible funct values are of
+        interest, and the funct field is only used when ALUOp == 10, we can
+        construct a table using don't cares to simplify the logic
+
+     ALUOp     | Funct  Field                |
+ALUOp1 | ALUOp | F5 | F4 | F3 | F2 | F1 | F0 | Operation
+0      | 0     | X  | X  | X  | X  | X  | X  | 0010
+0      | 1     | X  | X  | X  | X  | X  | X  | 0110
+1      | 0     | X  | X  | 0  | 0  | 0  | 0  | 0010
+1      | X     | X  | X  | 0  | 0  | 1  | 0  | 0110
+1      | 0     | X  | X  | 0  | 1  | 0  | 0  | 0000
+1      | 0     | X  | X  | 0  | 1  | 0  | 1  | 0001
+1      | X     | X  | X  | 1  | 0  | 1  | 0  | 0111
+
+Designing the Main Control Unit
+    op field: bits 31:26
+    rs and rt  fields: 5:21, 20:16  
+        This is true for the r-types, beq,and sw
+    base register for lw and sw: 5:21 (rs)
+    16-bit offset for beq, lw, and sw: 15:0
+    destination register is in one of two places
+        lw: 0:16  (rt)
+        r-types: 5:11  (rd)
+            thus, we will need to add a multiplexor to select which field of the instruction is used to indicate the register number to be written
+
+4.5
+
+4.6
+
+4.7
+
+4.8
+
+5.1
+
+5.2
+
+Weak Points
+    clocking methodology
