@@ -814,7 +814,94 @@ Designing the Main Control Unit
         r-types: 5:11  (rd)
             thus, we will need to add a multiplexor to select which field of the instruction is used to indicate the register number to be written
 
+Control Signals
+Signal name           | Effect when deasserted                                             | Effect when asserted
+RegDst                | The register destination number for the Write register comes from the
+rt  eld (bits 20:16). | The register destination number for the Write register comes from the rd  eld (bits 15:11).
+RegWrite              | None.                                                              | The register on the Write register input is written with the value on the Write data input.
+ALUSrc                | The second ALU operand comes from the second register  le output (Read
+data 2).              | The second ALU operand is the sign- extended, lower 16 bits of the instruction.
+PCSrc                 | The PC is replaced by the output of the adder that computes the value of
+PC + 4.               | The PC is replaced by the output of the adder that computes the branch target.
+MemRead               | None.                                                              | Data memory contents designated by the address input are put on the Read data output.
+MemWrite              | None.                                                              | Data memory contents designated by the address input are replaced by the value on the Write data input.
+MemtoReg              | The value fed to the register Write data input comes from the ALU. | The value fed to the register Write data input comes from the data memory.
+
+The Control Unit
+    the  control unit can set all signals except PCSrc from the opcode of the instruction
+        PCSrc has two conditions:
+            1. the instruction is beq
+            2. the the Zero output of the ALU is asserted
+                these two signals must be anded to create this decision
+    these nine control signals (7 from above and two from ALU) can be set on
+        the basis of six input signals to the control unit
+            (opcode bits 31 to 26)
+
+The Control function
+
+    Instruction|RegDst|ALUSrc|MemtoReg|RegWrite|MemRead|MemWrite|Branch|ALUOp1|ALUOp0
+R-format       |1     |0     |0       |1       |0      |0       |0     |1     |0
+lw             |0     |1     |1       |1       |1      |0       |0     |0     |0
+sw             |X     |1     |X       |0       |0      |1       |0     |0     |0
+beq            |X     |0     |X       |0       |0      |0       |1     |0     |1
+
+Following an Instruction's Path
+    ex:
+        add $t1, $t2, $t3
+    1.  The instruction is fetched, and the PC is incremented. 
+2.  Two registers, $t2 and $t3, are read from the register  le; also, the main  control unit computes the setting of the control lines during this step.
+3.  The ALU operates on the data read from the register  le, using the function  code  (bits  5:0,  which  is  the  funct   eld,  of  the  instruction)  to  generate  the  ALU function. 
+4.  The result from the ALU is written into the register  le using bits 15:11 of  the instruction to select the destination register ($t1). 
+
+    ex:
+        lw $t1, offset($t2)
+    1.  An instruction is fetched from the instruction memory, and the PC is  incremented.
+    2.  A register ($t2) value is read from the register  le.
+    3.  The ALU computes the sum of the value read from the register  le and the  sign-extended, lower 16 bits of the instruction (offset).
+    4.  The sum from the ALU is used as the address for the data memory.
+    5.  The data from the memory unit is written into the register  le; the register  destination is given by bits 20:16 of the instruction ($t1) . 
+    
+    ex:
+        beq $t1, $t2, offset
+    1.  An instruction is fetched from the instruction memory, and the PC is  incremented.
+    2.  Two registers, $t1 and $t2, are read from the register  le.
+    3.  The ALU performs a subtract on the data values read from the register   le.  The  value  of  PC  +  4  is  added  to  the  sign-extended,  lower  16  bits  of  the instruction (offset) shifted left by two; the result is the branch target  address.
+    4.  The Zero result from the ALU is used to decide which adder result to store  into the PC.
+
+
+Finalizing Control
+    the control function can be precisely defined using this table:
+I/O     | Name     | R-format | lw | sw | beq
+---------------------------------------------
+Inputs  | Op5      | 0        | 1  | 1  | 0
+        | Op4      | 0        | 0  | 0  | 0
+        | Op3      | 0        | 0  | 1  | 0
+        | Op2      | 0        | 0  | 0  | 1
+        | Op1      | 0        | 1  | 1  | 0
+        | Op0      | 0        | 1  | 1  | 0
+Outputs | RegDst   | 1        | 0  | X  | X
+        | ALUSrc   | 0        | 1  | 1  | 0
+        | MemtoReg | 0        | 1  | X  | X
+        | RegWrite | 1        | 1  | 0  | 0
+        | MemRead  | 0        | 1  | 0  | 0
+        | MemWrite | 0        | 0  | 1  | 0
+        | Branch   | 0        | 0  | 0  | 1
+        | ALUOp1   | 1        | 0  | 0  | 0
+        | ALUOp0   | 0        | 0  | 0  | 1
+
+Implementing Jumps
+    jumps look like a branch instruction, but compute the target PC differently
+        and are not conditional
+    like branch, the lower 2 bits of a jump address are always 00
+    then next lower 26 bits come from the 26 bit immediate field in the instruction
+    the upper four bits that should replace the PC come from the PC of the jump instruction plus 4
+    thus, we can implement a jump by storing into the PC the concatenation of:
+        the upper 4 bits of the current PC + 4 
+        the 26-bit immediate  field of the jump instruction 
+        the bits 00
+
 4.5
+
 
 4.6
 
