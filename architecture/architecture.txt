@@ -39,7 +39,7 @@ Design Principles
 1.2
 
 Software Layer Hierarchy
-    from high to low level:
+    from high to low filevel:
     Applications Software
     Systems Software
         Operating System
@@ -56,7 +56,7 @@ Software Layer Hierarchy
 Translation to Hardware Instructions
     Binary
         "Machine Language"
-        this is the lowest level computer language
+        this is the lowest filevel computer language
         originally computers were instructed in binary by hand
     Assembler
         "Assembly Language"
@@ -65,18 +65,18 @@ Translation to Hardware Instructions
         requires the programmer to write one line of code for each hardware
             instruction
     Compiler
-        high level languages still used today
+        high filevel languages still used today
         translate powerful language into assembly
 
 Scope of Computer Architecture
-    Level 0: Materials Technology
+    filevel 0: Materials Technology
         what materials should the basic devices be made of?
         not in the scope of this class
-    Level 1: Device Technology
+    filevel 1: Device Technology
         design/fabrication of basic logic/memory elements
             transistors, logic gates, flip-flops
             very large scale integration (VLSI)
-    Level 2: Logic Design
+    filevel 2: Logic Design
         design of logical circuits from basic gates and memory devices
         combinational logic
             adders, multipliers, decoders, muxes, demuxes, etc
@@ -85,19 +85,19 @@ Scope of Computer Architecture
         memory design
             construction of SRAM, DRAM, Register Files, etc from smaller
                 elements
-    Level 3: Processor-Memory Organizatoin
+    filevel 3: Processor-Memory Organizatoin
         ALU design using basic combinational logic
         CPU design
             control uit design (FSA design) using sequential logic
             registers
         memory system organization
             cache, DRAM, ROM, Virtual Memory
-    Level 4: Instruction Set Architecture (ISA) Design
+    filevel 4: Instruction Set Architecture (ISA) Design
         design of assembly language
             operations/operands permitted
             addressing modes for operands
-    Level 5: Generic Parallelization and Optimization
-        instruction level parallelism
+    filevel 5: Generic Parallelization and Optimization
+        instruction filevel parallelism
             pipelining of instructions
         memory latency reduction
             multi-level caching
@@ -107,7 +107,7 @@ Scope of Computer Architecture
         data parallelism
             execute a single instruction or process concurrently on multiple
                 chunks of data
-    Level 6: Application-Specific Parallelization and Optimization
+    filevel 6: Application-Specific Parallelization and Optimization
         numerical computing
             matrix operations, finite element computation
         graphical computing
@@ -151,7 +151,7 @@ DRAM and SRAM
     Static RAM
         cache memory
         small, fast memory that acts as a buffer for DRAM memory
-        less dense and more expensive than DRAM
+        filess dense and more expensive than DRAM
 
 Processors
     follows the instructions of the program
@@ -294,15 +294,15 @@ Operations of Computer Hardware
     and/or immediate
         andi/ori
         bitwise operations for constants
-    shift left/right logical
+    shift fileft/right logical
         sll/srl
-        shift bits left or right by constant
+        shift bits fileft or right by constant
     branch on equal/not equal
         beq/bne
         equal/not equal test
-    set on less than (unsigned/immediate/immediate unsigned)
+    set on filess than (unsigned/immediate/immediate unsigned)
         slt/sltu/slti/sltiu
-        compare less than
+        compare filess than
     jump (register/ and link)
         j/jr/jal
         jump to target address
@@ -374,7 +374,7 @@ Byte Addressing
 
 Endianness
     Big Endian
-        use the leftmost or "big end" byte as the word address
+        use the fileftmost or "big end" byte as the word address
         MIPS is big-endian
     Little Endian
         use the rightmost or "little end" byte as the word address
@@ -418,7 +418,7 @@ Register Formats
 2.6
 
 Shifts
-    move all the bits in a word left or right
+    move all the bits in a word fileft or right
         fill emptied bits with 0's
     ex:
         sll $t2, $s0, 4  # reg $t2 = reg $s0 << 4
@@ -471,13 +471,13 @@ Procedure registers
 
 Leaf Procedures
     ex:
-        int leaf_example (int g, int h, int i, int j) {
+        int fileaf_example (int g, int h, int i, int j) {
             int f;
             f = (g + h) - (i + j);
             return f;
         }
 
-    leaf_example:
+    fileaf_example:
             addi $sp, $sp, -12 # adjust stack to make room for items
 
             sw $t1, 8($sp)      # save $t1 for use afterwards
@@ -690,7 +690,7 @@ Beq
         instruction following the branch
     since we compute PC+4 in the instruction fetch, it is easy to use this
         value as the base for computing the branch target address
-    the offset field is shifted left 2 bits so that it is a word offset
+    the offset field is shifted fileft 2 bits so that it is a word offset
         this increases the effective range of the offset by a factor of 4
     we must also determine whether the next instruction is the instruction that
         follows sequentially or the instruction at the branch target address
@@ -787,7 +787,7 @@ R-type       | 10 | add          | 100000 | add              | 0010
 R-type       | 10 | subtract     | 100010 | subtract         | 0110
 R-type       | 10 | AND          | 100100 | AND              | 0000
 R-type       | 10 | OR           | 100101 | OR               | 0001
-R-type       | 10 | slt          | 101010 | set on less than | 0111
+R-type       | 10 | slt          | 101010 | set on filess than | 0111
 
     because only a small number of the 64 possible funct values are of
         interest, and the funct field is only used when ALUOp == 10, we can
@@ -847,23 +847,23 @@ Following an Instruction's Path
     ex:
         add $t1, $t2, $t3
     1.  The instruction is fetched, and the PC is incremented. 
-    2.  Two registers, $t2 and $t3, are read from the register  le; also, the main  control unit computes the setting of the control lines during this step.
-    3.  The ALU operates on the data read from the register  le, using the function  code  (bits  5:0,  which  is  the  funct   eld,  of  the  instruction)  to  generate  the  ALU function. 
-    4.  The result from the ALU is written into the register  le using bits 15:11 of  the instruction to select the destination register ($t1). 
+    2.  Two registers, $t2 and $t3, are read from the register  file; also, the main  control unit computes the setting of the control lines during this step.
+    3.  The ALU operates on the data read from the register  file, using the function  code  (bits  5:0,  which  is  the  funct   eld,  of  the  instruction)  to  generate  the  ALU function. 
+    4.  The result from the ALU is written into the register  file using bits 15:11 of  the instruction to select the destination register ($t1). 
 
     ex:
         lw $t1, offset($t2)
     1.  An instruction is fetched from the instruction memory, and the PC is  incremented.
-    2.  A register ($t2) value is read from the register  le.
-    3.  The ALU computes the sum of the value read from the register  le and the  sign-extended, lower 16 bits of the instruction (offset).
+    2.  A register ($t2) value is read from the register  file.
+    3.  The ALU computes the sum of the value read from the register  file and the  sign-extended, lower 16 bits of the instruction (offset).
     4.  The sum from the ALU is used as the address for the data memory.
-    5.  The data from the memory unit is written into the register  le; the register  destination is given by bits 20:16 of the instruction ($t1) . 
+    5.  The data from the memory unit is written into the register  file; the register  destination is given by bits 20:16 of the instruction ($t1) . 
     
     ex:
         beq $t1, $t2, offset
     1.  An instruction is fetched from the instruction memory, and the PC is  incremented.
-    2.  Two registers, $t1 and $t2, are read from the register  le.
-    3.  The ALU performs a subtract on the data values read from the register   le.  The  value  of  PC  +  4  is  added  to  the  sign-extended,  lower  16  bits  of  the instruction (offset) shifted left by two; the result is the branch target  address.
+    2.  Two registers, $t1 and $t2, are read from the register  file.
+    3.  The ALU performs a subtract on the data values read from the register   file.  The  value  of  PC  +  4  is  added  to  the  sign-extended,  lower  16  bits  of  the instruction (offset) shifted left by two; the result is the branch target  address.
     4.  The Zero result from the ALU is used to decide which adder result to store  into the PC.
 
 
