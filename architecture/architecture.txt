@@ -815,17 +815,15 @@ Designing the Main Control Unit
             thus, we will need to add a multiplexor to select which field of the instruction is used to indicate the register number to be written
 
 Control Signals
-Signal name           | Effect when deasserted                                             | Effect when asserted
-RegDst                | The register destination number for the Write register comes from the
-rt  eld (bits 20:16). | The register destination number for the Write register comes from the rd  eld (bits 15:11).
-RegWrite              | None.                                                              | The register on the Write register input is written with the value on the Write data input.
-ALUSrc                | The second ALU operand comes from the second register  le output (Read
-data 2).              | The second ALU operand is the sign- extended, lower 16 bits of the instruction.
-PCSrc                 | The PC is replaced by the output of the adder that computes the value of
-PC + 4.               | The PC is replaced by the output of the adder that computes the branch target.
-MemRead               | None.                                                              | Data memory contents designated by the address input are put on the Read data output.
-MemWrite              | None.                                                              | Data memory contents designated by the address input are replaced by the value on the Write data input.
-MemtoReg              | The value fed to the register Write data input comes from the ALU. | The value fed to the register Write data input comes from the data memory.
+Signal name | Effect when deasserted                                               | Effect when asserted
+---------------------------------------------------------------------------------------------------------
+RegDst      | The reg. dest. number for the write register comes from the rt field | The register destination number for the Write register comes from the rd field
+RegWrite    | None.                                                                | The register on the Write register input is written with the value on the Write data input
+ALUSrc      | The 2nd ALU operand comes from the 2nd register file output          | The second ALU operand is the sign extended lower 16 bits of the instruction
+PCSrc       | The PC is replaced by PC + 4.                                        | The PC is replaced by the output of the adder that computes the branch target
+MemRead     | None.                                                                | Data memory contents designated by the address input are put on the Read data output
+MemWrite    | None.                                                                | Data memory contents designated by the address input are replaced by the Write data input
+MemtoReg    | The value fed to the register Write data input comes from the ALU    | The value fed to the register Write data input comes from the data memory
 
 The Control Unit
     the  control unit can set all signals except PCSrc from the opcode of the instruction
