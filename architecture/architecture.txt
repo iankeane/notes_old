@@ -849,9 +849,9 @@ Following an Instruction's Path
     ex:
         add $t1, $t2, $t3
     1.  The instruction is fetched, and the PC is incremented. 
-2.  Two registers, $t2 and $t3, are read from the register  le; also, the main  control unit computes the setting of the control lines during this step.
-3.  The ALU operates on the data read from the register  le, using the function  code  (bits  5:0,  which  is  the  funct   eld,  of  the  instruction)  to  generate  the  ALU function. 
-4.  The result from the ALU is written into the register  le using bits 15:11 of  the instruction to select the destination register ($t1). 
+    2.  Two registers, $t2 and $t3, are read from the register  le; also, the main  control unit computes the setting of the control lines during this step.
+    3.  The ALU operates on the data read from the register  le, using the function  code  (bits  5:0,  which  is  the  funct   eld,  of  the  instruction)  to  generate  the  ALU function. 
+    4.  The result from the ALU is written into the register  le using bits 15:11 of  the instruction to select the destination register ($t1). 
 
     ex:
         lw $t1, offset($t2)
