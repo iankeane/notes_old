@@ -900,16 +900,93 @@ Implementing Jumps
 
 4.5
 
+Pipelining
+    5 stages:
+        IF- Instruction fetch from memory
+        ID-Instruction decode & register read
+        EX-Execute operation or calculate address
+        MEM - Access memory
+        WB - Write back result to register
+    clock speed is equal to the slowest instructions for sequential
+    instruction length in pipelining is equal to the length of the slowest instruction
+
+Designing for Pipelining
+    in mips all instructions are the same length
+        this makes IF stage easier
+    mips also only has a few instruction formats, with the source register in
+    the same location for each instruction
+        this means that the second stage can begin reading the register file at
+        the same time as the hardware is determining the instruction type
+    MIPS memory operands only appear in loads or stors, which means we can use
+    the execute stage to calculate the memory address and access memory in the
+    following stage
+    operands are also aligned in memory, so we do not worry about a single
+    transfer requiring two data memory accesses
+
+Structural Hazards
+    means hardware cannot support the combination of instructions in the same clock cycle
+        example is a combo washer/dryer
+    MIPS does not have structural hazards
+
+Data Hazards
+    occure when the pipeline must be stalled because one step must wait for
+    another to complete
+
+    ex:
+        add $s0, $t0, $t1
+        sub $t2, $s0, $t3
+
+    ex:
+        lw $s0, 20($t1) 
+        sub $t2, $s0, $t3
+
+Control Hazards
+    come from the need to make a decision based on the results of one
+    instruction while others are executing
+    two solutions to control hazards
+        stall on branch:
+            stall immediately after fetching a branch
+            slow
+        branch prediction: 
+            doesn't slow down when correct
+            requires code to be redone when incorrect
+            two methods:
+                predict that branches will always be untaken
+                    only when branches are taken does the pipeline stall
+                predict that branches are always taken
+            more dynamic methods allow the method to change over time
+                this often involves keeping a history for each branch taken/untaken
 
 4.6
 
-4.7
+Pipelined Datapath and Control
+    5 stages are separate parts of processor
+    proceed left to write, except for
+        writeback stage
+        selection of the next value of the PC, choosing between incremented PC
+            and the branch address from the MEM stage
+    left-to-right flowing data does not affect the next instruction
 
-4.8
+Pipeline Registers
+    between each stage, none after WB or before IF
+        this is because that data is stored in the main registers
+    INSTRUCTION MUST BE SAVED IN ALL REGISTERS AND THEN FED BACK INTO WRITE
+        REGISTER
+
+Pipelined Control
+    to specify the control for the pipeline, we need only set the control
+        values during each pipeline stage
+    because each control line is associated with a component active only in a
+        single pipeline stage, we can divide the control lines into 5 groups
+        according to pipeline stage
+    IF/ID:
+    ID/EX: WB, MEM, EX
+    EX/MEM: WB, MEM
+    MEM/WB: WB
+
+
 
 5.1
 
 5.2
 
-Weak Points
-    clocking methodology
