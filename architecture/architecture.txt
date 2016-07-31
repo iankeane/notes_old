@@ -984,9 +984,154 @@ Pipelined Control
     EX/MEM: WB, MEM
     MEM/WB: WB
 
+4.7
+
 
 
 5.1
 
+Memory Hierarchy
+    consists of multiple levels of memory of different speeds and sizes
+        faster memory is smaller and more expensive per bit
+        memory types include SRAM, DRAM, and magnetic disk
+
+Hits and Misses
+    data is only copied between two adjacent levels of hierarchy at a time
+    the upper level is closer to the processor
+        smaller, faster, and more expensive
+    the minimum unit of information that can be present in a two-level
+    hierarchy is called a block or line
+        in the library analogy, a block would be one book
+    if the data requested by the processor appears in a block in the upper
+        level, it is called a hit
+        if not, it is a miss
+    hit rate is the fraction of memory accesses found in the upper level
+        the miss rate = 1 - hit rate
+    hit time is the time to access the upper level of the memory hierarchy,
+        which includes the time needed to determine wheter the access is a hit or miss
+    miss penalty is the time to replace a block in the upper level with the
+        corresponding block from the lower level
+
+
 5.2
 
+Direct Mapping
+    assigns a location in cache for each word in memory based on the address of the word
+        most use (B.Address) modulo (# of blocks in the cache)
+    # of entries in a cache = log2(cache size in blocks)
+    tags are used to determine whether a word in cache matches the requested
+    word
+        the tag contains the bits that are not used as an index into the cache
+    we also need a bit to represent whether the information in in a cache block
+        is valid (not meaningless)
+    in MIPS, since words are aligned to multiples of four bytes, the least
+        significant two bits of every address specify a byte within a word
+        therefore, the least significant two bits are ignored when selecting a
+            word in the block
+    the total number of bits needed for a cache is a function of the cache size
+        and the address size, because the cache includes both storage for the data
+        and the tags
+
+Formulas for Caching
+    n-bit cache = 2^n cache entries
+    B.Addr      = Mem.Addr. / B. per block
+    B.Num       = B.Addr % Num. of cache blocks
+
+Handling Cache Misses
+    if the cache reports a hit, the computer continuse as if nothing happened
+    miss handling is done in collaboration with the processor control unit and
+        a separate controller that initiates memory access and refills the cache
+    processing a cache miss creates a pipeline stall
+    for a cache miss, we can stall the entire processor while we wait for memory
+        while the processor is stalled, register values are maintained
+
+Steps Taken on Cache Miss
+    1. Send the original PC value (current PC – 4) to the memory.
+    2. Instruct main memory to perform a read and wait for the memory to com­
+        plete its access.
+    3. Write the cache entry, putting the data from memory in the data portion
+        of the entry, writing the upper bits of the address (from the ALU) into the
+        tag  eld, and turning the valid bit on.
+    4. Restart the instruction execution at the  rst step, which will refetch
+        the instruction, this time  nding it in the cache.
+
+!!! CLEAN UP !!!
+
+Handling Writes
+    write-through:
+        writes data into both the memory and the cache
+            this keeps cache and main memory consistent
+        after a block is fetched and placed into cache, we overwrite the word
+            that caused the miss, and also write it into main memory
+        this scheme does not provide very good performance, because every write
+            causes data to be written to main memory
+    write buffer:
+        stores data while it is waiting to be written to memory
+        after writing the data into cache and the buffer, the processor can continue execution
+        when a write to main memory completes, the entry in the buffer is freed
+        if the write buffer is full when the processor reaches a write, the
+            processor stalls and waits for an available buffer slot
+            if the rate of write completion is less than the rate of write
+                generation, no amount of write buffering can help
+            stalls may still occure when generation is less than completion if
+                the writes occur in bursts
+    write-back (copy back):
+        when a write occurs, the new value is written only to the block in the cache
+        the modified (dirty) block is written to the lower level of hierarchy when it
+        is replaced
+
+        MORE IN BOOK IF NEEDED 
+
+
+
+
+5.3
+
+Fully Associative Caches
+    allow a given block to go in any cache entry
+    requires all entries to be searched
+    searched in parallel with a comparator per entry (expensive)
+
+N-way Set Associative Caches
+    each set contains n entries
+    block numbers determine which set
+        B.Num. % num sets in cache
+    search all entries in a give set a once
+    n comparators (less expensive)
+
+Replacement
+    direct mapped:
+        no choice
+    set associative:
+        prefer non-valid entry, if there is one
+        otherwise, choose among entries in the set
+    least recently used (LRU):
+        chuse the one unused for the longest time
+            simple for 2-way, manageable for 4-way, too hard beyond that
+
+Multilevel Caches
+    primary cache attached to CPU
+        small but fast
+    level-2 cache services misses from primary cache
+        larger, slower, but faster than main memory
+    main memory services l2 cache misses
+    some high-end systems include l3 cache
+
+Virtual Memory
+    ram acts as a cache for secondary storage (disk)
+        usually implemented with magnetic disks
+        VM "block" is called a page
+        VM "miss" is called a page fault
+    while programs are running, pages are being swapped in and out of memory to disk
+
+
+
+5.4
+
+5.5
+
+7.1
+
+7.2
+
+7.3
