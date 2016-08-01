@@ -1300,3 +1300,224 @@ Virtual Memory
 7.2
 
 7.3
+
+
+----------------------------
+Additional Notes from Slides
+----------------------------
+
+ Design Principles
+    1. Simplicity favors regularity
+        regularity makes implementation simpler
+        simplicity enables higher performance at lower cost
+        if arithmetic operations took variable numbers of operands, the HW
+            would be much more complex
+    2. Smaller is faster
+        in one cycle, we must read / write to memory
+        large # of registers increases clock cycle time because signal travels farther 
+        (must select from more registers – takes more time)
+        compare with main memory - millions of locations but slower access time
+    3. Make the common case fast
+        small constants are common
+        immediate operand
+            avoids a load instruction
+            saves a register
+        $zero constant is a common case
+    4. Good design demands good compromises
+        different formats complicate coding, but allow 32-bit instructions
+            uniformly
+        keep formats as similar as possible
+
+Amdahl’s Law
+    A rule stating that the performance enhancement possible with a given
+        improvement is limited by the amount that the improved feature is used
+        Ex: if we improve the performance of add instructions, but add only
+            makes up 1% of our program, how much have we really improved?
+    Ti = time(improved)
+    Ta = time(affected)
+    Tu = time(unaffected)
+    IF = improvement factor
+
+    Ti = Ta/IF + Tu
+
+
+----------------------
+Ch 7 Notes From Slides
+----------------------
+
+Three Terms
+    Scalability:
+        improve performance as we increase the number of processors
+            (software must support multiprocessors)
+    Availability:
+        some designs support operation in the presence of broken hardware if a
+            processor fails
+    Power Efficiency:
+        replacing large inefficient processors with smaller, efficient
+            processors can deliver better performance per power unit
+
+Types of Parallelism
+    Job-level:
+        high throughput for independent jobs
+        each job running on a separate processor
+    Parallel processing program:
+        single program runs on multiple processors
+        must split the work over multiple processors
+
+Difficulties of parallel programming
+    Partitioning (load-balancing):
+        must break work into equal sized pieces to make sure all processors are busy
+    Coordination:
+        synchronizing (if dependencies are present)
+    Communications overhead
+        can't spend too much time sending data back and forth between processors
+
+Amdahl's Law
+    sequential part can limit speedup
+    ex:
+        100 processors, we want 90x speedup. How large is the sequential
+            portion?
+
+            Fp = Fparallelizable
+
+            speedup = 1/((1-Fp)+Fp/100) = 90
+
+            sequential part needs to be <0.1% of original time to get a speedup
+                of 90 with 100 processors
+
+Scaling Examples
+    Suppose you want to perform two sums: 
+        one is a sum of 10 scalar variables
+        one is a matrix sum of a pair of two-dimensional arrays, with dimensions 10 by 10
+    What speed-up do you get with 10 versus 100 processors?
+    What happens if we increase the matrix size to 100 by 100?
+        Assume performance is a function of the time for an addition, t.
+        Also assume that adding scalars is inherently sequential.
+
+    Single processor: 
+        Time = (10 + 100) × tadd
+
+    10 processors:
+        Time = 10 × tadd + 100/10 × tadd = 20 × tadd Speedup = 110/20 = 5.5 
+            (55% of potential)
+
+    100 processors:
+        Time = 10 × tadd + 100/100 × tadd = 11 × tadd Speedup = 110/11 = 10 
+            (10% of potential)
+
+    *Assumes load can be balanced across processors
+
+
+    What if matrix size is 100 × 100?
+    
+    Single processor: Time = (10 + 10000) × tadd
+    
+    10 processors:
+        Time = 10 × tadd + 10000/10 × tadd = 1010 × tadd Speedup = 10010/1010 = 9.9
+            (99% of potential)
+
+    100 processors:
+        Time = 10 × tadd + 10000/100 × tadd = 110 × tadd Speedup = 10010/110 = 91 
+            (91% of potential)
+
+    *Assuming load balanced
+
+Non Load-Balanced Scaling Examples
+    Assume we want to multiply all numbers in two 1000x1000 arrays of integers
+        and we want to add this to the product of 20 scalar variables
+    Assume that one multiply operation takes t time units
+    What is the speedup if we use 50 processors to run this program? 
+        What about 500 processors?
+
+Strong vs Weak Scaling
+    Strong scaling: problem size fixed As in example
+    Weak scaling: problem size proportional to number of processors
+        10 processors, 10 × 10 matrix 
+            Time=10×tadd +100/10*tadd=20×tadd
+        100 processors, 32 × 32 matrix
+            Time = 10 × tadd + ~1000/100 × tadd = 20 × tadd
+        Constant performance in this example
+
+Shared Memory
+    Given the difficulty of rewriting old programs to run on parallel hardware,
+        an obvious question is to ask what computer designers can do to simplify the task.
+    One answer: provide a single, shared address space
+    All variables of a program can be made available at
+    any time to any processor (no need to pass over the network)
+    Processors communicate through shared variables
+    How can we ensure that two processors don’t try to update the same block of
+        data at the same time?
+    Synchronize shared variables using locks
+
+    SMPs come in two styles:
+        Uniform Memory Access (UMA) multiprocessors 
+            takes the same amount of time to access memory regardless of which
+                processor requests it
+        Non-Uniform Memory Access (NUMA) multiprocessors 
+            some memory accesses are much faster than others, depending on
+                which processor asks for which word.
+            NUMA has the advantage of scaling to larger number processors and very
+                low latency to nearby memory
+    One nice thing about the SMP model is that the programmer does not have to
+        send messages from one processor to the other
+    One bad thing about SMP is that it has limited space in which to work
+
+Message Passing
+    Each processor has private physical address space
+    Hardware sends/receives messages between processors 
+    System must have routines to send/recv messages
+    Network of independent computers
+    Each has private memory and OS
+        Connected using I/O system E.g., Ethernet/switch, Internet
+    Message passing systems are typical of large- scale supercomputers
+        These supercomputers often have specialized networks to minimize the
+            overhead cost of communication
+        However, these are too expensive for common applications
+        So, more commonly, people use clusters of commodity computers
+
+Commodity Clusters
+    Suitable for applications with independent tasks (requiring little
+        communication)
+        Web servers, databases, simulations, ...
+    High availability, scalable, affordable
+    Problems:
+        Administration cost
+        Cost of administering a cluster of n machines is about the same as the
+            cost of administering n independent machines
+        In SMP, you only have to administer one machine
+        Low interconnect bandwidth
+        Network slower than SMP which has no message passing
+
+
+Address Subdivision
+    Assume memory addresses are 32-bit
+    The index and the tag are larger than our previous example. We have 32-bits instead of 5
+    This means we can have larger caches
+    An n-bit index means 2^n cache entries
+        10 bit index means 1024 cache entries
+
+Example: Larger Block Size
+    64 cache blocks, 16 bytes/block
+    What is total cache size?
+    How is the address subdivided?
+    To what block number (in the cache) does memory address 1200 map?
+
+    Block address = 1200/16 = 75 
+    Block number = 75 % 64 = 11
+
+    idx = log2(num blocks)  = log2(64) = 6b
+    off = log2(bytes/block) = log2(16) = 4b
+    tag = 32 - idx - off = 22b
+
+    1111 1111 1111 1111 1111 11|11 1111 | 1111
+    |--------------------------|--------|-----|
+            tag (22b)           idx(6b)  Offset(4b)
+
+    Why have blocks larger than 1 word?
+        Larger block sizes exploit spatial locality to lower miss rates
+        Increasing block size usually decreases miss rate
+        The miss rate may go up if the block size becomes a significant
+            fraction of the cache size
+
+
+
