@@ -6,7 +6,7 @@ Classes of Computers
         incorporates a graphics display, keyboard, and mouse
     Server
         used for running larger programs for multiple users
-        typically accessesd only via a network
+        typically accessed only via a network
         widest range in cost and capability
     Supercomputer
         class with the highest performance and cost
@@ -23,7 +23,7 @@ Components of Program Performance
     Algorithm
     Programming Language
     Programming Compiler
-    Programming Archetecture
+    Programming Architecture
     Processor and Memory System
     I/O system (hardware and operating system)
 
@@ -39,7 +39,7 @@ Design Principles
 1.2
 
 Software Layer Hierarchy
-    from high to low filevel:
+    from high to low level:
     Applications Software
     Systems Software
         Operating System
@@ -47,7 +47,7 @@ Software Layer Hierarchy
             provides supervisory functions and services, including:
                 handling I/O operations
                 allocating storage and memory
-                providing protected sharing of the computer amongs applications
+                providing protected sharing of the computer among applications
         Compiler
             translates a program into instructions that the hardware can
                 execute
@@ -56,7 +56,7 @@ Software Layer Hierarchy
 Translation to Hardware Instructions
     Binary
         "Machine Language"
-        this is the lowest filevel computer language
+        this is the lowest level computer language
         originally computers were instructed in binary by hand
     Assembler
         "Assembly Language"
@@ -65,18 +65,18 @@ Translation to Hardware Instructions
         requires the programmer to write one line of code for each hardware
             instruction
     Compiler
-        high filevel languages still used today
+        high level languages still used today
         translate powerful language into assembly
 
 Scope of Computer Architecture
-    filevel 0: Materials Technology
+    level 0: Materials Technology
         what materials should the basic devices be made of?
         not in the scope of this class
-    filevel 1: Device Technology
+    level 1: Device Technology
         design/fabrication of basic logic/memory elements
             transistors, logic gates, flip-flops
             very large scale integration (VLSI)
-    filevel 2: Logic Design
+    level 2: Logic Design
         design of logical circuits from basic gates and memory devices
         combinational logic
             adders, multipliers, decoders, muxes, demuxes, etc
@@ -85,34 +85,34 @@ Scope of Computer Architecture
         memory design
             construction of SRAM, DRAM, Register Files, etc from smaller
                 elements
-    filevel 3: Processor-Memory Organizatoin
+    level 3: Processor-Memory Organization
         ALU design using basic combinational logic
         CPU design
-            control uit design (FSA design) using sequential logic
+            control unit design (FSA design) using sequential logic
             registers
         memory system organization
             cache, DRAM, ROM, Virtual Memory
-    filevel 4: Instruction Set Architecture (ISA) Design
+    level 4: Instruction Set Architecture (ISA) Design
         design of assembly language
             operations/operands permitted
             addressing modes for operands
-    filevel 5: Generic Parallelization and Optimization
-        instruction filevel parallelism
+    level 5: Generic Parallelization and Optimization
+        instruction level parallelism
             pipelining of instructions
         memory latency reduction
             multi-level caching
             virtual memory
         multi-threading
-            execude multiple threads concurrently each on an independent core
+            execute multiple threads concurrently each on an independent core
         data parallelism
             execute a single instruction or process concurrently on multiple
                 chunks of data
-    filevel 6: Application-Specific Parallelization and Optimization
+    level 6: Application-Specific Parallelization and Optimization
         numerical computing
             matrix operations, finite element computation
         graphical computing
         data-intensive computing
-            focus on info stroage/retrieval, I/O, db systems, etc
+            focus on info storage/retrieval, I/O, db systems, etc
         AI/Cognitive Computing
             speech recognition, pattern recognition
             
@@ -151,7 +151,7 @@ DRAM and SRAM
     Static RAM
         cache memory
         small, fast memory that acts as a buffer for DRAM memory
-        filess dense and more expensive than DRAM
+        files dense and more expensive than DRAM
 
 Processors
     follows the instructions of the program
@@ -183,7 +183,7 @@ Components of Program Performance
     Algorithm
         affects IC, possibly CPI
         determines the number of program instructions executed
-        may affect CPI by favoring slower or faster instructoins
+        may affect CPI by favoring slower or faster instructions
         can change IC based on flow of control in the algorithm
     Programming Language
         affects IC and CPI
@@ -294,15 +294,15 @@ Operations of Computer Hardware
     and/or immediate
         andi/ori
         bitwise operations for constants
-    shift fileft/right logical
+    shift left/right logical
         sll/srl
-        shift bits fileft or right by constant
+        shift bits left or right by constant
     branch on equal/not equal
         beq/bne
         equal/not equal test
-    set on filess than (unsigned/immediate/immediate unsigned)
+    set on files than (unsigned/immediate/immediate unsigned)
         slt/sltu/slti/sltiu
-        compare filess than
+        compare files than
     jump (register/ and link)
         j/jr/jal
         jump to target address
@@ -353,7 +353,7 @@ Data Transfer Instructions
         copies data from memory to a register
         "lw" instruction
         ex: 
-            # base addres of A is stored in $s3
+            # base address of A is stored in $s3
             lw $t0, 32($s3)  # $t0 gets A[8]
     Store:
         copies data from a register to memory
@@ -374,7 +374,7 @@ Byte Addressing
 
 Endianness
     Big Endian
-        use the fileftmost or "big end" byte as the word address
+        use the left or "big end" byte as the word address
         MIPS is big-endian
     Little Endian
         use the rightmost or "little end" byte as the word address
@@ -418,7 +418,7 @@ Register Formats
 2.6
 
 Shifts
-    move all the bits in a word fileft or right
+    move all the bits in a word left or right
         fill emptied bits with 0's
     ex:
         sll $t2, $s0, 4  # reg $t2 = reg $s0 << 4
@@ -471,13 +471,13 @@ Procedure registers
 
 Leaf Procedures
     ex:
-        int fileaf_example (int g, int h, int i, int j) {
+        int leaf (int g, int h, int i, int j) {
             int f;
             f = (g + h) - (i + j);
             return f;
         }
 
-    fileaf_example:
+    leaf_example:
             addi $sp, $sp, -12 # adjust stack to make room for items
 
             sw $t1, 8($sp)      # save $t1 for use afterwards
@@ -569,7 +569,7 @@ Zero and One laws: A + 1 = 1
                    A · 0 = 0
 Inverse laws:      A + ~A = 1
                    A · ~A = 1
-Commutativelaws:   A + B = B + A
+Commutative laws:   A + B = B + A
                    AB = BA
 Associative laws:  A + (B + C) = (A + B) + C
                    A(BC) = (AB)C
@@ -617,7 +617,7 @@ Datapath Elements
 
 Instruction Memory
     memory unit to store instructions of a program
-    supplys instructions given an address
+    supplies instructions given an address
 
 Program Counter
     register that holds the address of the current instruction
@@ -629,12 +629,12 @@ Increment Adder
 
 Register File
     processor's 32 general-purpose registers are stored here
-    a collection of registers in which any registor can be read or written by
+    a collection of registers in which any register can be read or written by
         specifying the umber of the register in the file
     contains the register state of the computer
 
 ALU
-    operstes on the values read from the register
+    operates on the values read from the register
     takes 2 32 bit inputs and produces a 32 bit result and a 1 bit result if zero
     has a 4-bit control signal
 
@@ -665,7 +665,7 @@ R Format Instructions
         1. one to specify the register number to read
         2. one to the register file specifying the value read
     for each data word written, we need two inputs:
-        1. one to specify the register numbr to be written
+        1. one to specify the register number to be written
         2. one to supply the data to be written
     the register file always outputs the contents of whatever register numbers
         are on the read register inputs
@@ -673,8 +673,8 @@ R Format Instructions
         for a write to occur at the clock edge
     there are 4 inputs: 3 for reg numbers and 1 for data
     there are two outputs: 2 for data
-    the register number inputs are 5 bits wie to specify one of 32 registers
-    data inputs and ouputs are 32 bits wide
+    the register number inputs are 5 bits wide to specify one of 32 registers
+    data inputs and outputs are 32 bits wide
 
 LW and SW
     ex:
@@ -688,7 +688,7 @@ LW and SW
         the value to read must be written into the register file $t1
     thus, we need both the register file and the ALU
     additionally, we need:
-        a unit to sign-extend the 16 bit ofset field in the instruction to a 32 bit signed value
+        a unit to sign-extend the 16 bit offset field in the instruction to a 32 bit signed value
         a data memory unit to read from or write to
 
 Beq
@@ -700,7 +700,7 @@ Beq
         instruction following the branch
     since we compute PC+4 in the instruction fetch, it is easy to use this
         value as the base for computing the branch target address
-    the offset field is shifted fileft 2 bits so that it is a word offset
+    the offset field is shifted left 2 bits so that it is a word offset
         this increases the effective range of the offset by a factor of 4
     we must also determine whether the next instruction is the instruction that
         follows sequentially or the instruction at the branch target address
@@ -721,11 +721,11 @@ Beq
         the comparison can then be done using the zero output of the ALU by
             subtracting the operands
             if the zero signal out of the ALU is asserted, the values are equal
-        although the zero ouput always signals if the ouput is zero, we will
+        although the zero output always signals if the output is zero, we will
             only use it to implement the equal test of branches
 
 
-        PUT REQUARED COMPONENTS FOR EACH COMMAND
+        PUT REQUIRED COMPONENTS FOR EACH COMMAND
 
 Jump
     operates by replacing the lower 28 bits of the PC with the lower 26 bits of
@@ -747,13 +747,13 @@ Creating a Single Datapath
 Building a Datapath
     r-type operations and the memory instructions datapath are similar
     the main differences are:
-        1. r-type insstructions use the ALU, with the inputs coming from the
+        1. r-type instructions use the ALU, with the inputs coming from the
         two registers
-            the memory instructions can alsu use the ALU to do address
+            the memory instructions can also use the ALU to do address
             calculations, but the second input is the sign-extended 16-bit
             offset field from the instruction
-        2. the value stored into a distination register comes from the ALU for
-        an r-type instrutions, and from memory for a load.
+        2. the value stored into a destination register comes from the ALU for
+        an r-type instructions, and from memory for a load.
     to create a datapath with only a single register file and ALU, we must
     support two different sources for the second ALU input as well as for the
     data stored into the register file
@@ -797,7 +797,7 @@ R-type       | 10 | add          | 100000 | add              | 0010
 R-type       | 10 | subtract     | 100010 | subtract         | 0110
 R-type       | 10 | AND          | 100100 | AND              | 0000
 R-type       | 10 | OR           | 100101 | OR               | 0001
-R-type       | 10 | slt          | 101010 | set on filess than | 0111
+R-type       | 10 | slt          | 101010 | set on files than| 0111
 
     because only a small number of the 64 possible funct values are of
         interest, and the funct field is only used when ALUOp == 10, we can
@@ -852,7 +852,7 @@ The Control Unit
     the  control unit can set all signals except PCSrc from the opcode of the instruction
         PCSrc has two conditions:
             1. the instruction is beq
-            2. the the Zero output of the ALU is asserted
+            2. the Zero output of the ALU is asserted
                 these two signals must be anded to create this decision
     these nine control signals (7 from above and two from ALU) can be set on
         the basis of six input signals to the control unit
@@ -874,7 +874,7 @@ Following an Instruction's Path
             main  control unit computes the setting of the control lines during this
             step.
     3.  The ALU operates on the data read from the register  file, using the
-            function  code  (bits  5:0,  which  is  the  funct   eld,  of  the
+            function  code  (bits  5:0,  which  is  the  funct  field,  of  the
             instruction)  to  generate  the  ALU function. 
     4.  The result from the ALU is written into the register  file using bits
             15:11 of  the instruction to select the destination register ($t1). 
@@ -953,7 +953,7 @@ Designing for Pipelining
     the same location for each instruction
         this means that the second stage can begin reading the register file at
         the same time as the hardware is determining the instruction type
-    MIPS memory operands only appear in loads or stors, which means we can use
+    MIPS memory operands only appear in loads or stores, which means we can use
     the execute stage to calculate the memory address and access memory in the
     following stage
     operands are also aligned in memory, so we do not worry about a single
@@ -965,7 +965,7 @@ Structural Hazards
     MIPS does not have structural hazards
 
 Data Hazards
-    occure when the pipeline must be stalled because one step must wait for
+    occur when the pipeline must be stalled because one step must wait for
     another to complete
 
     ex:
@@ -1116,7 +1116,7 @@ Stall on Branch
                   {} - {} - {} - {} - {}
                        IF - ID - EX - MEM- WB
 Branch Prediction
-    stall pentaly becomes unacceptable if we cannot determine branch outcome early
+    stall penalty becomes unacceptable if we cannot determine branch outcome early
     one way to avoid this is to predict the outcome, and stall only if wrong
         we can do this by assuming every time that the branch is / is not taken
     
@@ -1173,7 +1173,7 @@ Hits and Misses
     hit rate is the fraction of memory accesses found in the upper level
         the miss rate = 1 - hit rate
     hit time is the time to access the upper level of the memory hierarchy,
-        which includes the time needed to determine wheter the access is a hit or miss
+        which includes the time needed to determine whether the access is a hit or miss
     miss penalty is the time to replace a block in the upper level with the
         corresponding block from the lower level
 
@@ -1203,7 +1203,7 @@ Formulas for Caching
     B.Num       = B.Addr % Num. of cache blocks
 
 Handling Cache Misses
-    if the cache reports a hit, the computer continuse as if nothing happened
+    if the cache reports a hit, the computer continues as if nothing happened
     miss handling is done in collaboration with the processor control unit and
         a separate controller that initiates memory access and refills the cache
     processing a cache miss creates a pipeline stall
@@ -1212,13 +1212,13 @@ Handling Cache Misses
 
 Steps Taken on Cache Miss
     1. Send the original PC value (current PC – 4) to the memory.
-    2. Instruct main memory to perform a read and wait for the memory to com­
-        plete its access.
+    2. Instruct main memory to perform a read and wait for the memory to
+        complete its access.
     3. Write the cache entry, putting the data from memory in the data portion
         of the entry, writing the upper bits of the address (from the ALU) into the
-        tag  eld, and turning the valid bit on.
-    4. Restart the instruction execution at the  rst step, which will refetch
-        the instruction, this time  nding it in the cache.
+        tag  field, and turning the valid bit on.
+    4. Restart the instruction execution at the  first step, which will refetch
+        the instruction, this time  finding it in the cache.
 
 !!! CLEAN UP !!!
 
@@ -1238,7 +1238,7 @@ Handling Writes
             processor stalls and waits for an available buffer slot
             if the rate of write completion is less than the rate of write
                 generation, no amount of write buffering can help
-            stalls may still occure when generation is less than completion if
+            stalls may still occur when generation is less than completion if
                 the writes occur in bursts
     write-back (copy back):
         when a write occurs, the new value is written only to the block in the cache
@@ -1271,7 +1271,7 @@ Replacement
         prefer non-valid entry, if there is one
         otherwise, choose among entries in the set
     least recently used (LRU):
-        chuse the one unused for the longest time
+        choose the one unused for the longest time
             simple for 2-way, manageable for 4-way, too hard beyond that
 
 Multilevel Caches
