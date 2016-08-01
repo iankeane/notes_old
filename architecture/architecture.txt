@@ -563,12 +563,23 @@ C.9
 
 C.10
 
-Identity law: A + 0 = A and A · 1 = A
-Zero and One laws: A + 1 = 1 and A · 0 = 0
-Inverse laws: A + ~A = 1 and A · ~A = 1
-Commutativelaws:A+B=B+AandA·B=B·A
-Associative laws: A + (B + C) = (A + B) + C and A · (B · C) = (A · B) · C
-Distributive laws: A · (B + C) = (A · B) + (A · C) and A + (B · C) = (A + B) · (A + C)
+Identity law:      A + 0 = A
+                   A · 1 = A
+
+Zero and One laws: A + 1 = 1
+                   A · 0 = 0
+
+Inverse laws:      A + ~A = 1
+                   A · ~A = 1
+
+Commutativelaws:   A + B = B + A
+                   AB = BA
+
+Associative laws:  A + (B + C) = (A + B) + C
+                   A · (BC) = (AB)· C
+
+Distributive laws: A(B + C) = (AB) + (AC)
+                   A + (BC) = (A + B) · (A + C)
 
 C.3
 
@@ -581,9 +592,13 @@ Multiplexors
     selector value determines which inputs become the output
     C = (A * ~S) + (B * S)
     If there are n data inputs,there will need to be log2(n) selector inputs
-    1. A decoder that generates n signals, each indicating a different input value
-    2. An array of n AND gates, each combining one of the inputs with a signal from the decoder
-    3. A single large OR gate that incorporates the outputs of the AND gates
+        1. A decoder that generates n signals, each indicating a different
+            input value
+        2. An array of n AND gates, each combining one of the inputs with a
+            signal from the decoder
+        3. A single large OR gate that incorporates the outputs of the AND
+            gates
+
 PLA's
 
 ROM
@@ -812,18 +827,31 @@ Designing the Main Control Unit
     destination register is in one of two places
         lw: 0:16  (rt)
         r-types: 5:11  (rd)
-            thus, we will need to add a multiplexor to select which field of the instruction is used to indicate the register number to be written
+            thus, we will need to add a multiplexor to select which field of
+                the instruction is used to indicate the register number to be written
 
 Control Signals
-Signal name | Effect when deasserted                                               | Effect when asserted
 ---------------------------------------------------------------------------------------------------------
-RegDst      | The reg. dest. number for the write register comes from the rt field | The register destination number for the Write register comes from the rd field
-RegWrite    | None.                                                                | The register on the Write register input is written with the value on the Write data input
-ALUSrc      | The 2nd ALU operand comes from the 2nd register file output          | The second ALU operand is the sign extended lower 16 bits of the instruction
-PCSrc       | The PC is replaced by PC + 4.                                        | The PC is replaced by the output of the adder that computes the branch target
-MemRead     | None.                                                                | Data memory contents designated by the address input are put on the Read data output
-MemWrite    | None.                                                                | Data memory contents designated by the address input are replaced by the Write data input
-MemtoReg    | The value fed to the register Write data input comes from the ALU    | The value fed to the register Write data input comes from the data memory
+RegDst   | 0 | The reg. dest. number for the write register comes from the rt field
+         | 1 | The register destination number for the Write register comes from the rd field
+
+RegWrite | 0 | No Effect.
+         | 1 | The register on the Write register input is written with the value on the Write data input
+
+ALUSrc   | 0 | The 2nd ALU operand comes from the 2nd register file output
+         | 1 | The second ALU operand is the sign extended lower 16 bits of the instruction
+
+PCSrc    | 0 | The PC is replaced by PC + 4.
+         | 1 | The PC is replaced by the output of the adder that computes the branch target
+
+MemRead  | 0 | No Effect.
+         | 1 | Data memory contents designated by the address input are put on the Read data output
+
+MemWrite | 0 | No Effect.
+         | 1 | Data memory contents designated by the address input are replaced by the Write data input
+
+MemtoReg | 0 | The value fed to the register Write data input comes from the ALU
+         | 1 | The value fed to the register Write data input comes from the data memory
 
 The Control Unit
     the  control unit can set all signals except PCSrc from the opcode of the instruction
@@ -847,24 +875,37 @@ Following an Instruction's Path
     ex:
         add $t1, $t2, $t3
     1.  The instruction is fetched, and the PC is incremented. 
-    2.  Two registers, $t2 and $t3, are read from the register  file; also, the main  control unit computes the setting of the control lines during this step.
-    3.  The ALU operates on the data read from the register  file, using the function  code  (bits  5:0,  which  is  the  funct   eld,  of  the  instruction)  to  generate  the  ALU function. 
-    4.  The result from the ALU is written into the register  file using bits 15:11 of  the instruction to select the destination register ($t1). 
+    2.  Two registers, $t2 and $t3, are read from the register  file; also, the
+            main  control unit computes the setting of the control lines during this
+            step.
+    3.  The ALU operates on the data read from the register  file, using the
+            function  code  (bits  5:0,  which  is  the  funct   eld,  of  the
+            instruction)  to  generate  the  ALU function. 
+    4.  The result from the ALU is written into the register  file using bits
+            15:11 of  the instruction to select the destination register ($t1). 
 
     ex:
         lw $t1, offset($t2)
-    1.  An instruction is fetched from the instruction memory, and the PC is  incremented.
+    1.  An instruction is fetched from the instruction memory, and the PC is
+            incremented.
     2.  A register ($t2) value is read from the register  file.
-    3.  The ALU computes the sum of the value read from the register  file and the  sign-extended, lower 16 bits of the instruction (offset).
+    3.  The ALU computes the sum of the value read from the register  file and
+            the  sign-extended, lower 16 bits of the instruction (offset).
     4.  The sum from the ALU is used as the address for the data memory.
-    5.  The data from the memory unit is written into the register  file; the register  destination is given by bits 20:16 of the instruction ($t1) . 
+    5.  The data from the memory unit is written into the register  file; the
+            register  destination is given by bits 20:16 of the instruction ($t1)
     
     ex:
         beq $t1, $t2, offset
-    1.  An instruction is fetched from the instruction memory, and the PC is  incremented.
+    1.  An instruction is fetched from the instruction memory, and the PC is
+            incremented.
     2.  Two registers, $t1 and $t2, are read from the register  file.
-    3.  The ALU performs a subtract on the data values read from the register   file.  The  value  of  PC  +  4  is  added  to  the  sign-extended,  lower  16  bits  of  the instruction (offset) shifted left by two; the result is the branch target  address.
-    4.  The Zero result from the ALU is used to decide which adder result to store  into the PC.
+    3.  The ALU performs a subtract on the data values read from the register
+            file.  The  value  of  PC  +  4  is  added  to  the  sign-extended,  lower
+            16  bits  of  the instruction (offset) shifted left by two; the result is
+            the branch target  address.
+    4.  The Zero result from the ALU is used to decide which adder result to
+            store  into the PC.
 
 
 Finalizing Control
