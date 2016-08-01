@@ -565,21 +565,16 @@ C.10
 
 Identity law:      A + 0 = A
                    A · 1 = A
-
 Zero and One laws: A + 1 = 1
                    A · 0 = 0
-
 Inverse laws:      A + ~A = 1
                    A · ~A = 1
-
 Commutativelaws:   A + B = B + A
                    AB = BA
-
 Associative laws:  A + (B + C) = (A + B) + C
-                   A · (BC) = (AB)· C
-
+                   A(BC) = (AB)C
 Distributive laws: A(B + C) = (AB) + (AC)
-                   A + (BC) = (A + B) · (A + C)
+                   A + (BC) = (A + B)(A + C)
 
 C.3
 
@@ -1026,6 +1021,135 @@ Pipelined Control
     MEM/WB: WB
 
 4.7
+
+Stages Used by Each Instruction
+    Instr    | IF | ID | EX | Mem | WB
+    ----------------------------------
+    lw       | x  | x  | x  | x   | x
+    sw       | x  | x  | x  | x   |
+    r-format | x  | x  | x  |     | x
+    beq      | x  | x  | x  |     | 
+
+
+Pipelining Hazards
+    Three types:
+        1. Structural hazards:
+            a required resource is busy
+        2. Data hazards:
+            need to wait for previous instruction to complete its read/write
+        3. Control hazards:
+            deciding on control action depends on previous instruction
+
+Data Hazards
+    an instruction depends on completion of data access by a previous instruction
+
+    ex:
+        add $s0, $t0, $t1
+        sub $t2, $s0, $s3
+
+        IF - ID - EX  - MEM - WB
+            { } - { } - { } - { } - { }
+                  { } - { } - { } - { } - { }
+                         IF - ID  - EX  - MEM - WB
+
+Forwarding (bypassing)
+    uses the result when it is computed, without waiting
+    requires extra connections in the datapath
+
+    ex: 
+        add     $s0, $t0, $t1
+        sub     $t2, $s0, $s3
+
+        IF - ID - EX | MEM - WB
+             IF - ID | EX  - MEM - WB
+
+    this works because r-format instructions are done after EX
+        this does not work for lw, which is finished after the MEM step
+
+    ex: 
+        lw      $s0, 20($t1)
+        sub     $t2, $s0, $t3
+
+        IF - ID - EX - MEM | WB
+             {} - {} - {}  | {} - {}
+                  IF - ID  | EX - MEM - WB
+
+
+Code Reordering
+    ex:
+        lw      $t1, 0($t0) 
+        lw      $t2, 4($t0) 
+        add     $t3, $t1, $t2    (stall)
+        sw      $t3, 12($t0) 
+        lw      $t4, 8($t0) 
+        add     $t5, $t1, $t4    (stall)
+        sw      $t5, 16($t0)
+
+        here, $t2 and $t4 create a problem
+
+        solution:
+
+        lw      $t1, 0($t0) 
+        lw      $t2, 4($t0) 
+        lw      $t4, 8($t0) 
+        add     $t3, $t1, $t2 
+        sw      $t3, 12($t0) 
+        add     $t5, $t1, $t4 
+        sw      $t5, 16($t0)
+
+Control Hazards
+    need to make a decision based on results of an instruction while others are executing
+    branch determines flow of control
+        fetching next instruction depends on branch outcome
+        pipeline can't always fetch correct instruction
+            still working on ID stage of branch, doesn't know what to fetch
+
+Stall on Branch
+    wait until branch outcome is determined before fetching next instruction
+
+    ex:
+        add $4, $5, $6
+        beq $1, $2, 40
+
+        IF - ID - EX - MEM- WB
+             IF - ID - EX - MEM- WB
+                  {} - {} - {} - {} - {}
+                       IF - ID - EX - MEM- WB
+Branch Prediction
+    stall pentaly becomes unacceptable if we cannot determine branch outcome early
+    one way to avoid this is to predict the outcome, and stall only if wrong
+        we can do this by assuming every time that the branch is / is not taken
+    
+    ex: (predict not taken)
+        add     $4, $5, $6
+        beq     $1, $2, 40
+        lw      $3, 300($0)
+    
+    prediction correct:
+
+        IF - ID - EX - MEM- WB
+             IF - ID - EX - MEM- WB
+                  IF - ID - EX - MEM- WB
+    
+    prediction incorrect:
+        
+        IF - ID - EX - MEM- WB
+             IF - ID - EX - MEM- WB
+                  {} - {} - {} - {} - {}
+                       IF - ID - EX - MEM- WB
+
+
+
+    instr    | finished after
+    -------------------------
+    lw       | MEM
+    sw       |
+    r-format | EX
+    beq      |
+
+
+
+
 
 
 
