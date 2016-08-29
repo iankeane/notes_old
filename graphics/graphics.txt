@@ -1,0 +1,525 @@
+Thu Aug 11 08:02:53 EDT 2016
+----------------------------
+
+Office Hours
+    416 Boyd
+    Mon:  3:30PM- 4:30PM
+    Tue:  9:30AM-10:30AM
+    Wed: 10:00AM-11:00AM
+    Thu:  9:30AM-10:30AM
+
+
+Textbook
+    Computer Graphics with OpenGL (Hearn, Baker, Carithers)
+
+Graphics vs Image Processsing
+    significant overlap
+        signal processing is similar
+        these three subjects fall under the category of "imaging science"
+    typical graphics package:
+        input is some sort of description
+            describes the image to be drawn
+        output is an artificially created image
+    typical impage processing package:
+        input is a picture
+        output is a description (of a picture)
+    so, a graphics package and IP package are the inverse of each other
+
+Analog vs Digital Images
+    Analog:
+        precise and accurate
+            absolutely "correct"
+        an Analog signal will degrade during transfer/transportation
+            ex: using a copier to copy an image over and over again
+    Digital:
+        approximate
+            "kind of correct", not precise
+        a digital signal will degrade much more slowly than analog
+            uses a corrective mechanism to counter energy loss
+                this involves rounding values that are off by small amounts
+                thus the signal is exact after transfer
+                (correction is implemented at the circuit level)
+    conversion from analog to digital signals:
+        single signal is continuous while analog
+        the signal is divided into small chunks during conversion, rounded
+            this is similar to estimation for a curve using taylor expansion
+            the final picture is in discrete digits
+
+Discrete vs Continuous Video
+    true analog video would have infinite fps
+        at one trillion fps, you would be able to see light moving
+            trillion fps video exists
+            creates storage issues
+            also creates copying issues
+                copying is the most expensive computer operation
+
+Performance and Video
+    high performance computing is pushed by the image processing community
+        due to the limitation of the speed of light, a display with billions of
+            pixels is not possible on one processor
+
+Applications of Computer Graphics
+    any computer's front end is a graphics package
+    computer games
+    simulators
+    molecular graphics
+    CAD (computer aided design)
+
+Displaying a Line
+    lines do not exist (no thickness)
+    computer decides which pixels need to be activated to give the impression
+        of a geometric shape
+    drawing a line is the most important function of a graphics package
+
+Homework:
+    google applications of computer graphics
+    google one trillion fps video
+
+
+Tue Aug 16 08:02:10 EDT 2016
+----------------------------
+
+Processor Performance
+    there is over a hundred miles of path in an average processor
+    smaller processors are faster and use less energy
+        this is due to reduced distance
+        processor shrinking can be done through photographic technology
+
+Parallel Processing
+    adding processors to increas performance can circumvent the issue of
+        overheating in denser processors
+    each neuron in the brain is a processor
+        as humans age, they use neurons
+        connectivity between neurons is more responsible for brainpower than
+            the number of neurons
+        the brain, as an adaptive system, can become more powerful by thinking
+        the best possible connectivity would be each neuron being directly
+            connected to every other neuron
+            evolution does not allow this because each neuron would need n
+                connections, where n is the number of total connections
+            this would make the brain the size of a house
+        we have the same opimization issues with parallel processors
+
+CRT Technology
+    electron beam shoots through a series of plates before being projected onto
+        the glass screen
+        first pair of plates are the focusing plates (very small aperture)
+        second pair are horizontal deflection plates
+        third pare are vertical deflection plates
+    the beam hits a layer of chemical behind the screen
+        this causes the point to emit light
+    two types of chemical
+        short-persistent phosphor
+            very short emission
+            all animation systems must be short persistent
+        long-persistent phosphor
+            has to be specifically deactivated
+            to erase a full screen of LPP, even with today's technology, takes
+                half a second
+    all modern laptops are short-persistent
+    screen is made up of pixels
+        the entire array of pixels is called the raster
+        in this example, each pixel can be black white or grey
+
+Graphics Display Options
+    Random Scan Display Device
+        naturally a line drawing display device
+        refres system
+            to draw a square, the beam of light moves in a square to activate the
+                phosphor in the shape of a square
+    RSDD's can be huge without increasing processing power too much
+
+Levels of Grapical Primitives:
+    point
+    line
+        (a line can be one pixel big)
+    all other shapes (including curves)
+
+
+Wed Aug 17 08:02:02 EDT 2016
+----------------------------
+
+Random Scan Display Devices
+    RSDD's shoot their beam of light directly where they need it
+        sort-persistent display
+    refreshes only where it needs to be refreshed
+        we do not worry about dark pixels
+    display buffer:
+        this is NOT a frame buffer
+        the line definitions are stored in the display buffer
+            lines here are stored as start and end coordinates
+            four numbers in each row, associated with each line
+                (x,y),(x,y)
+    display controller/processor:
+        takes line definitions from the display buffer and converts them into
+            instructions (at the speed of the refresh rate)
+        amount of info in the buffer changes from frame to frame
+    Pros:
+        animation is very natural
+            selective erase feature
+        can display very complex images
+        not heavily dependant on the number of pixels
+    Cons:
+        RSDD's are expensive
+        can not increase the size of the display buffer without altering the
+            display controller
+        no standard for display buffers
+        limited number of colors
+            humans can only see a few hundred colors
+            it is still important to have more for programmatic analysis
+
+Direct View Storage Tubes
+    also a line drawing system
+    conceptually CRT based
+        long-persistant display
+    display buffer:
+        similar to RSDD's
+    display controller:
+        is much cheaper than on RSDD's
+        can be very slow
+    Pros:
+        can have more complex images (doesn't need frequent refreshing)
+        inexpensive
+        not heavily dependant on number of pixels
+        displays can be arbitrarily large
+    Cons:
+        animation is out of the question
+        limited colors
+    these displays are often used in technical drawings
+        often more expensive only because they are not mass produced
+
+
+Thu Aug 18 07:59:45 EDT 2016
+----------------------------
+
+Raster Scan Display Devices
+    pixel resolution is technically the number of pixels total on a raster
+        usually is represented as rows x cols
+    frame buffer:
+        1:1 correspondance to the screen's pixels
+    display processor:
+        determines the intensity of each pixel
+
+Memory Cells
+    pixels are sometimes called memory cells
+        1 bit per pixel  = 2 possible grays
+        2 bits per pixel = 4 possible grays
+        n bits per pixel = 2^n possible grays
+
+Interlacing
+    technique for refreshing the screen
+        refresh all even number lines, then jump to beginning and refresh odds
+        at any pass, displays the image at its half resolution
+    reduces required power for display processsor
+        the human eye CAN detect the difference, though
+            usually only when compared side by side
+
+Color
+    on most displays, each pixel is made up of three colors
+        each pixel is divided into three bands
+        each band radiates a "primary color" in terms of RGB
+    the frame buffer is also divided this way
+    all displays mentioned so far can be considered conceptually CRT based
+        here, conceptually, we can think of each pixel as three electron beams
+
+Color Mixtures
+    works completely different from paint mixtures
+        "additive mixture" vs "subtractive mixtures"
+    | Green | Yellow | Red     |
+    ----------------------------
+    | Cyan  | White  | Magenta |
+    ----------------------------
+            | Blue   |
+    we cannot get true black because if the values were truly perfectly
+        uncharged, it would take too long to change from black
+        for this reason, many systems use a dark gray as black
+    grays occur when all values are the same for each color
+        in a one bit system, there are two shades of gray
+            black and white
+            000 and 111
+        in a two bit system, there are four shades of gray
+            000000, 010101, 101010, 111111
+
+
+Tue Aug 23 08:02:23 EDT 2016
+----------------------------
+
+
+Color Calculations
+    bits/pixel = x
+    bits/color = y
+    # of color options = 2^x
+    # of true grays = 2^y
+
+Uses for Millions of Pixels
+    2^24 color options in most displays
+    changes in pixels can be exaggerated to analyze things like:
+        heartrate
+        sound waves
+    medical imaging experts are advocating for more than 2^24 colors
+
+Raster Scan Display Devices
+    pros:
+        no matter how complex images are, it takes the same amount of time to
+            display at the front end
+        inexpensive
+        filling methods
+        free use of color
+    cons:
+        point based, not line based
+            lines are non-decomposable, points are not
+            no need to compute which pixels to activate for a line
+        scan conversion
+            computation of which pixels to make from lines
+        lower resolution (must walk over all pixels)
+        selective erase is more challenging
+            must use scan conversion to selectively erase as well
+        lines do not appear straight
+
+Homework:
+    search for image magnification talk by Michael Rubinstein
+
+
+Wed Aug 24 08:04:10 EDT 2016
+----------------------------
+
+Color Today
+    8 bits per primary color
+        2^24 color options
+        256 grays
+
+Color Lookup Tables
+    originally motivated by memory constraints
+        CLT's allow for more colors without increasing the memory size
+        fewer bits per pixel = less memory required in the frame buffer
+    using a CLT, each pixel in the frame buffer is stored as an index rather
+        than a full color
+        each color is mapped in the CLT
+    ex:
+        6 b/pixel in frame buffer
+        2^6 entries in the CLT
+        64 colors "pallete"
+            each of these 64 can represent one of 2^n possible colors, where n
+                is the number of bits in each row of the CLT
+    pros:
+        increase in possible colors (arbitrarily many colors)
+        overhead is negligible
+    cons:
+        only 2^n colors can be displayed simultaneously
+        lookup overhead
+
+Modern Uses of CLT's
+    memory is not an issue in the modern world
+    can be used to implement:
+        color cycling
+        animations
+            animation frames can be replaced with the background color until
+                they are needed
+
+Example Question:
+    256x256 resolution color RGB raster scan display
+    frame buffer size is 98304B
+    no CLT
+
+    a) how many colors can be displayed simultaneously?
+        we have to find the number of bits/pixel
+            98304B / ((256*256)pix / 8b)) = 12 bits per pixel
+            number of possible pixels = 2^12 = 4096
+    
+    b) using CLT size 13824B, how many colors can be displayed simultaneously?
+        answer is still 2^12
+
+    c) using CLT size 13824B, what is the number of color options?
+        we need to find the width of the CLT in bits
+
+        Area = 13824B * 8b
+        length = 2^12 = 4096b (from before)
+        
+        (13824B * 8b)/(4096b) = 27
+        2^27 possible colors
+
+    d) how many distinct shades of grey?
+        2^(27/3) = 2^9
+
+Dividing Color Possibilites
+    in examples so far, the number of possibles has always been divisible by 3
+        if not, sacrifice bits dedicated to blue
+        ex:
+            14 = 5 shades red 5 shades green 4 shades blue
+    this can come up when using multiresolution systems
+        allow the user to change the number of bits per pixel
+
+
+Thu Aug 25 08:02:17 EDT 2016
+----------------------------
+
+!!! Everything from here on is in reference to raster scan devices !!!
+
+Line Drawing Algorithms (Line Scan-Conversion Algorithm)
+    most important primitive of any graphics package
+        can be used to build other geometric entities
+        considered to be the most primitive entity
+    most basic task is to decide which pixels need to be activated to create a
+        line between two points
+        this is called "digitization"
+
+Basic Line-Drawing Algorithm
+    y = mx + c
+    delta(x) = x1-x0
+    dleta(y) = y1-y0
+        delta(var) = difference in the (var) direction
+    assumption: delta(x) > delta(y)
+        because of this constraint, we only need to activate 1px per column
+        therefore, our loop only needs to iterate through the columns once per line
+            so, we iterate delta(x) times
+            and, we already know what the x values are
+    we only need to compute y values, so we solve the equation for y
+        y = (delta(y)/delta(x)) * i + y0
+            i is the x value we are iterating through
+        x = x0 + i
+    pseudocode:
+
+        m = delta(y)/delta(x)
+
+        for (i=0; i<= (delta(x) - 1); i++){
+            x = x0 + i;
+            y = m * i + y0;
+            y = trunc(y);       // same as floor?
+            image[x,y] = white  // line is white, image is frame buffer image
+        }
+    
+    pseudocode walkthrough example:
+        x0 = 0
+        y0 = 0
+        x1 = 8
+        y1 = 4
+        delta(x) = 8
+        delta(y) = 4
+        m = 0.5
+
+        i = 0:
+            x = 0
+            y = 0
+        i = 1:
+            x = 1
+            y = floor(m * i + y0)
+            y = floor(.5 * 1 + y0) = floor(.5) = 0
+
+        i = 2:
+            x = 2
+            y = floor(m * i + y0)
+            y = floor(.5 * 2 + y0) = floor(1) = 1
+        
+    note:
+        this only works using dlta(x) > delta(y)
+            we need special cases for perfectly vertical and horizontal lines
+    issues:
+        Trunc is an expensive operation
+        multiplication is more expensive than division
+        floats should be avoided as well
+
+Simple Digital Analyzer (DDA)
+    very similar to line drawing algorithm
+        we still use our assumption of delta(x) > delta(y)
+    
+    pseudocode:
+
+        yinc = delta(y)/delta(x)
+        x = x0
+        y = y0
+        image[x,y] = w              // w is white
+
+        for ( k = 0; k <= (delta(x)-1); k++){
+            x = x+1
+            y = y+yinc
+            image[x,round(y)] = w   // we can use round or trunc
+        }
+
+    walkthrough:
+        x0 = 0
+        y0 = 0
+        yinc = 0.5 // slope
+        x = 0
+        y = 0
+
+        k = 0:
+            x = 0+1 = 1
+            y = 0+.5 = .5
+            image[x,round(y)] = w   // we can use round or trunc
+            image[1,1] = w
+
+
+        k = 1:
+            x = 1+1 = 2
+            y = .5+.5 = 1
+            image[x,round(y)] = w   // we can use round or trunc
+            image[2,1] = w
+
+
+    using round vs trunc:
+        round(x) = trunc(x + .5)
+        they are equally expensive
+        it does not matter much which we use
+            everything is approximate anyway
+            worst case, the line is off by 1
+
+    pros:
+        avoids multiplication (less expensive)
+        x = x+1 can be optimized (adding one to a constant is a special
+            optimization case)
+    issues:
+        slowed down by use of floating points
+
+Bresenham's Algorithm
+    Dr. Bresenham specialized in mapping floating point algorithms to fixed arithmetic
+        this algorithm checks for under/overflow errors, and adjusts accordingly
+        only uses ints
+
+    still assuming that delta(x) > delta(y)
+
+    initializations:
+        deltay = y1 - y0
+        deltax = x1 - x0
+        E = 2 * deltay - deltax
+        inc1 = 2 * deltay
+        inc2 = 2(deltay - deltax)
+        y = y0
+        x = x0
+    
+    Loop:
+        image[x,y] = w
+        
+        if E < 0:
+            E = E + inc1
+        else:
+            y = y+1
+            E = E + inc2
+
+        x = x + 1
+
+        if x >= x1:
+            return
+        else:
+            continue looping
+
+    pros:
+        all ints
+        no multiplications/divisions/truncs
+        uses compiler-optimized steps
+            checking if E < 0 is optimized
+            x = x + 1 is optimized
+            multiplying by two is also optimized
+                handled through bit shifting
+        additional work in initialization step is less important because it
+            happens per line, not per pixel
+
+    walkthrough:
+        deltay = 4
+        deltax = 8
+        E = 0
+        inc1 = 8
+        inc2 = -8
+        y = 0
+        x = 1
+
+        follow flowchart

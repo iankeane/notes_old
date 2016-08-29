@@ -1,0 +1,263 @@
+Fri Aug 12 12:06:51 EDT 2016
+----------------------------
+
+www.physast.uga.edu/~loris
+
+Foundations of Astronomy, 13th ed (seeds and backman)
+
+
+Mon Aug 15 12:21:09 EDT 2016
+----------------------------
+
+Basic Concepts
+    Galaxy:
+        localized group of stars orbiting a central point
+            most galaxies have a black whole at the center
+            the milky way is a larger than average galaxy
+        galaxies are the 'building blocks of the universe'
+    only our solar system is in the scope of this class
+        the sun is only one star out of billions in our galaxy
+
+Powers of Ten and Scale
+    orders of magnitude are used for imprecise estimation
+        77 and 100 are identical in terms of order of magnitude
+    the moon = 10^7 OM from the Earth
+    venus = 10^10 OM from the Earth
+        so it will take 10^2 times longer to to reach venus than the moon
+    jupiter = 10^8 OM from Earth
+    kuiper belt = 10^15 OM from Earth
+        kuiper belt is the effective edge of the solar system for this class
+        (asteroid belt made of ice)
+    one light year = 10^18 
+    1 astronomical unit (AU) 
+        = distance from the Earth to the Sun 
+        = 93  * 10^7 mi
+        = 1.5 * 10^8 km
+        ~ 10^11 m
+    mass of the sun ~ 2*10^30
+    mass of the Earth ~ 2*10^24
+        2*10^30 / 6*10^24 = 20*10^29 / 6*10^24 = 300,000
+            the sun has 300,000x more mass than the earth
+
+
+10 m = 10^7
+10 m m = 10^13
+
+
+Supplementary book notes:
+-------------------------
+
+section 2-2, 2-3
+
+Mon Aug 22 12:09:09 EDT 2016
+----------------------------
+
+EXAM ONE MOVED BACK ONE WEEK
+
+HW: 
+    milankovitch cycles (sp?)
+    motion of the moon
+    eclipses
+
+section 2-1 is not covered on the exam
+
+
+Milankovitch Cycles
+    earth moves in an elliptical orbit
+        the sun is at one of the focuses of the ellipse
+        this means that sometimes the earth will be closer to the sun
+            closest distance is parahelion
+            farthest is aphelion
+        the measure of an eclipse is called the eccentricity
+            varies from 0-1
+                0 is closer to a circle, 1 is closer to a line
+            the difference between earth's para-and-aphelion is 5m km
+        precession is the slow change of the axis of the Earth's tilt
+            currently the earth is tilted at ~23.4 degrees
+                what is vertical?
+    earth's orbit is so close to a circle, it cannot be detected as an ellipse
+        by the naked eye
+    Milankovich did not discover that the earth's orbit is an ellipse
+    he discovered 3 things:
+        1. that the eccentricity changes by 1.77% every ~100k years
+        this change is due to gravitational disturbances from other planets in
+            the solar system (perturbations)
+        newton's physics for predicting the earth's orbit only works for a two
+            body system
+        2. that in addition to precession, the earth's axis
+            vascillates from 22 to 25 degrees 
+        3. the earth's position during the seasons relative to the
+            para-and-aphelion can change over time
+            right now, during summer we are closer to the aphelion in the
+                northern hemisphere
+        the combination of these three discoveries account for a pattern that
+            is called the Milankovich cycle
+                these cycles are only observable over hundreds of thousands of years
+
+Motion of the Moon
+    the moon keeps the same face toward the earth
+        this is called syncronous rotation
+        the period of rotation around the axis is the same as the period of
+            revolution around earth
+        lunar day == lunar year
+        this is a very common situation for moons
+    geometry causes a relationship between:
+        1. phase of the moon
+        2. direction of the moon
+        3. time of day
+
+Sun vs Stars as Reference Point
+    moon goes around the earth in 29.5 days, or 27.3
+        both are correct
+        one measures full moon to full moon
+            this is the synodic period
+            this does not account for the motion between the sun
+        the other uses the stars
+            counts the time to return to exact relative position, unrelated to
+            the phase
+
+
+Wed Aug 24 12:16:22 EDT 2016
+----------------------------
+
+Eclipses
+    Solar:
+        moon's shadow blocks the sun
+        new moon
+    Lunar:
+        earth's shadow blocks the moon
+            full moon
+    usually on a full moon, the moon's shadow misses the earth
+        this is because the moon's orbit is not on the ecliptic plane
+            it is off by 5 degrees
+    according to this, there SHOULD be two solar and two lunar eclipses every year
+        this does not happen because the moon's orbital plane also rotates slowly
+        instead it lines up 2x per 346.6 days
+            this is called an eclipse year/draconian year
+    we get an eclipse when the moon phase lines up with the line of nodes
+        this happens every 18.2 years
+            this is called a saros cycle
+
+Geometry of Eclipses
+    Moon:
+        Diameter = 3474km
+        r = 384000 km
+    Sun:
+        diameter = 1.4*10^6 km
+        r = 1.5*10^8 km
+    we can use S = r(theta) to find the size of the shadow (roughly) (using radians)
+        this isn't the formula we really need
+            we don't want the arc, we want the chord
+        instead we use the small angle formula
+            if theta is less than a degree, we can do r(theta)/206265 = D
+                (using arcseconds)
+                1 degree = 60 arcminutes
+                1 arcminute = 60 arcseconds
+                1 arcminute = 1', 1 arcsecond = 1''
+                206265 is a conversion factor for these measurements
+            the book calls theta the angular diameter and D the linear diameter
+    theta(moon) = (206265(D))/r
+                = (206265(3474))/384000
+    theta(sun) = 206265(1.4*10^6)/1.5*10^8
+        theta(moon) ~ theta(sun)
+        this is why the eclipse works despite the size difference of the sun
+            and moon
+
+Looking at Eclipses
+    what you see is the corona of the sun
+        this is not normally visible
+        the corona won't hurt your eyes (?)
+            the photosphere is what hurts your eye due to UV radiation
+    shadow of the moon is called the umbra
+        partial shadows are called penumbra
+        this happens when you are not directly under the shadow
+            "partial solar eclipse" vs "total solar eclipse"
+        a partial eclipse will hurt your eye
+    annular eclipse???
+
+
+Fri Aug 26 12:21:57 EDT 2016
+----------------------------
+
+Calendar Systems
+    the motion of celestial objects repeats in observable patterns
+    in the past, every king would have a court astronomer
+        this was partially for astrological reasons (pseudoscience)
+        the astronomer was also responsible for timekeeping
+            generally they focused on the synodic period (29.5 days)
+
+Handling Leap Years
+    the earth goes around the sun every 365.24219 days
+    all calendars have compromises
+    historically, the years have been broken up this way:
+        6 months x 30 days
+        6 months x 29 days
+            this means that every month begins on a full moon
+                each week is a moon phase
+            adds up to 354 days, which is not very accurate
+            slips 11 days per year
+            this is how the muslim calendar works
+                holy days change time of year
+    egyptian method:
+        12 months x 30 days = 360 days
+            remaining days are replaced by a feast
+    hebrew method:
+        every 3 years add one month (interpolation)
+            this month is 33 days
+    roman method:
+        caesar introduced the leap year
+            every fourth year, add a day
+            this gets us to 365.25 days per year
+            pretty close, but still causes time slipping
+        he also added three months to that year to fix the equinox (by decree)
+            historians called it the "year of confusion"
+            15 months long
+    gregorian method:
+        time had slipped by 11 days by 1582
+        by papal decree, Oct 4, 1582 is followed by Oct 15
+            this is after the protestant reformation
+            it took some time for everyone to switch
+            by the 1700's, everyone was using the gregorian calendar
+        gregory kept the leap year, but added the stipulation that:
+            every year that ends in 00 is a leap year, except those divisible by 400
+                this brings us to 365.2425 days
+
+----------------------------
+End of Material for Exam One
+----------------------------
+
+Copernican Revolution
+    Copernicus:
+        mid 1500's
+    Tycho Brahe:
+        1600
+    Johannes Kepler:
+        early 1600's
+    Galileo:
+        early 1600's
+    Newton:
+        late 1600's
+
+    geocentric model:
+        earth at center
+        everything orbits the earth
+        most popular model at the time
+    heliocentric model:
+        sun at center
+        everything orbits the sun
+
+The Greek Heliocentric Model
+    the greeks seriously considered this model
+        knew that we could be in motion without feeling it
+        rejected the model based on observed data
+        (only mercury, venus, mars, jupiter, saturn observable with naked eye)
+    aristotle argued that if the earth orbits the sun:
+        we should see the angle between the same stars shrinking and growing
+            over time (parallax effect)
+        the issue is that the stars are so far away that the parallax shift is
+            difficult to observe
+            this was not observed until 1836
+        aristotle know of this issue, but he said it didn't make sense for the
+            "sphere of the stars" to be so far away from saturn
+            "why would a create create so much empty space?"
+    
