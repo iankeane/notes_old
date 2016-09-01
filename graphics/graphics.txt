@@ -7,6 +7,7 @@ Office Hours
     Tue:  9:30AM-10:30AM
     Wed: 10:00AM-11:00AM
     Thu:  9:30AM-10:30AM
+    706-340-4707
 
 
 Textbook
@@ -523,3 +524,172 @@ Bresenham's Algorithm
         x = 1
 
         follow flowchart
+
+
+Tue Aug 30 08:06:27 EDT 2016
+----------------------------
+
+Line Attributes (HW requirements)
+    dotted lines: 
+        skip every other iteration
+    dashed lines: 
+        gap size = dash size
+        can be accomplished using modulo operator
+    first argument tells whether to use dotted, dashed, or solid lines
+
+Generalizing the Algorithms (HW requirements)
+    one way would be to have separate cases separated by flow control
+        this is not how it is done in graphics
+        we do not do redundant checks
+        instead, we decide whether deltax < deltay or not before the loop
+            also check for special cases
+            so at least 5 different loops !!! Ask before project about this
+        distinct cases:
+            positive slope (deltax < deltay)
+            negative slope
+            perfectly straight
+            perfectly horizontal
+            perfectly diagonal
+                no computation needed for this
+                next step is x+1, y+1
+    time all of your functions (except dotted/dashed)
+        only the critical parts (not the random number generator)
+
+Advantages of Bresenham's Algorithm
+    no floating points
+        generates lines using only integers
+    no expensive arithmetic
+        some addition/subtraction
+        some multiplication by 2 (bit shift)
+            bit shift is faster even than addition
+            even shifting by 1 and adding 1 is faster than multiplying by 3
+            all of this only works in the integer space, not floating point
+    no round or truncate
+
+Line Scan Conversion
+    vertical digitization:
+        find the intersection of the line with the top and bottom of each
+            raster line
+        make a square
+    horizontal digitization:
+        round the other two corners of the square
+    finding the intersection points:
+        use the endpoints to find the angle of the line with the raster grid
+        make a triangle with edge sizes of 1 and w
+            1 is the vertical side if we do vertical digitization first
+        w = 1/tan(theta) = cot(theta)
+        first intersection point is x0 + cot(theta), y0 + 1
+        next intersections: x0 + n(cot(theta)), y0+n
+    for each scanline:
+        initialX = x0 + (i*cot(theta))
+        finalX = initialX + cot(theta)
+        y-value = y0 + i (only need one, y is one pixel)
+        line(solid, Round(x0 + (i * cot(theta)), y-value, Round(finalX), y-value
+    this is a very slow solution
+        trig functions, round, floating point space all create time issues
+    it is still used because there is no dependence between scanlines
+        this allows for multiprocessing
+
+
+Wed Aug 31 07:55:42 EDT 2016
+----------------------------
+
+Mid-Term Exam will be on Oct 4th (Tuesday)
+
+Note on Processor Speedup
+    if there are two processors for 1000 scanlines, we would use Bresenham's Alg
+        Bresenham's algorithm can "kind of" be split up for two processors
+        it only needs information from the last line at the place where the
+            scanlines cross over
+
+Polyline
+    included in most graphics packages
+    used to draw polygons where all the lines are connected to each other
+        (can be drawn without picking up pen)
+    polyline(n, list)
+        n = # of lines
+        list = list of y coordinates
+            looks like [(0,10),(0,0),(10,0),(10,10),(0,10),(5,15),(10,10)]
+    polyline was used for plotters
+        there isn't really a technical reason for this function to still exist
+
+Translating 2D to RAM
+    2D values do not exist in ram
+        everything value one dimensional
+    Row major order:
+        (x0, y0), (x1,y0) ... (xn, y0), (x1, y0) ...
+    to access these values, we need to use an array mapping function
+        value in RAM of (x,y) is (base address) + (numrows)(x) + y
+
+Pixel Functions
+    putPixel(c,x,y)
+        c = color
+    image[x,y] = c
+
+    pseudocode:
+        address(x,y) = address(0,0) + y * Width + x
+        activate pixel
+    this is expensive and happens for every pixel
+        each dimension of an array adds another multiplication
+    
+
+    if deltaX > deltaY, there are two options:
+        address(x + 1,y) = address(x,y) + 1
+        address(x + 1, y + 1) = address(x,y) + width + 1
+    this is the optimized version of putpixel, used in certain algorithms
+
+
+Thu Sep  1 08:05:06 EDT 2016
+----------------------------
+
+
+Antialiasing
+    all algorithms previously discussed have created aliased lines
+        "stairstep effect"
+    we have also assumed the lines to have 'no thickness'
+        geometrically lines do not have thickness
+    to antialias the lines we've created, we assume a thickness of 1px
+        so the lines are actually a rectangular shape
+    to antialias, we find all of the pixels that overlap the new rectangular
+        shape and  assign different intensities to them
+        intensity is based on the area of the overlap
+    as resolutions improve, need for antialiasing decreases
+
+Calculating the Area of a Pixel
+    case1: the line intersects the top and bottom of the pixel:
+        find the x intercepts of the pixel
+            x = x0 + (i + 1)(cot(theta))
+            x = x0 + i(cot(theta)
+        find the midpoint of those intercepts
+            x = x0 + (i + 0.5)cot(theta)
+        use the triangle formed by the midpoints to form the polyon formed by the
+            intersection into a rectangle
+        find the area of the intersection from this information
+
+Circle Generators
+    circles do not change no matter how they are rotated
+        this includes rotation around an external point
+    this makes circles especially useful
+        one of the first popular graphics packages was "molecular graphics"
+            molecules are made of lines and circles
+
+    simple circle generator:
+        assume that the thickness is 1px
+        xC = center x value
+        yC = center y value
+        r = radius
+        if y is iterated through, we just need to slove for x
+
+        (x-xC)^2 + (y-yC)^2 = r^2
+        x = +- (sqrt(r^2-(y-yC)^2)) + xC
+            we need both the positive and negative values to find both halves
+
+        so:
+            
+        xIn1 = + (sqrt((r-1)^2-(y-yC)^2)) + xC
+        xIn2 = - (sqrt((r-1)^2-(y-yC)^2)) + xC
+        xOut1= +- (sqrt(r^2-(y-yC)^2)) + xC
+        xOut2 = - (sqrt(r^2-(y-yC)^2)) + xC
+
+        xIns are the inner points of the circle
+        xOuts are the outer points

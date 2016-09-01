@@ -260,4 +260,170 @@ The Greek Heliocentric Model
         aristotle know of this issue, but he said it didn't make sense for the
             "sphere of the stars" to be so far away from saturn
             "why would a create create so much empty space?"
-    
+
+
+Mon Aug 29 12:20:51 EDT 2016
+----------------------------
+
+Identifying Planets (the Greeks)
+    planeta in means "wanderer" in latin
+        greeks also refered to planets as wanderers
+    the constallations gave a framework for recognizing parts of the sky
+    the planets were the only objects that did not move predictibly
+        this is how planets were first identified
+
+Pre-Copurnican Problems of Planetary Motion
+    the problem: everything in the sky moves systematically except the planets
+        only naked eye planets were visible at this time
+        Mercury and Venus are always close to the Sun (difficult to see)
+            never seen at night
+        Mars Jupiter and Saturn generally move west but not always
+            once a year they stop and move backwards
+                "retrograde motion"
+
+Geocentric Answers to Planetary Motion (greeks)
+    explainations of "wandering stars"
+        the greeks did not think of planets the way we do
+        still believed in the "fire, water, earth, air" model of the universe
+        the fifth essence was called "the aether", representing the things
+            outside of Earth
+    the greeks theorized that the inner planets were on a second orbit around
+        the sun in addition to the orbit it shares with the rest of the sky
+        CLARIFY
+        "epicycles"
+    they theorized that the other planets also had smaller orbits within their
+        large orbits, explaining retrograde
+    this "cleaning up" of the geocentric model was the work of Ptolomy
+    unaddressed issues:
+        varying speeds of planets
+        varying brightness of planets throughout the year
+
+Heliocentric Answers to Planetary Motion
+    the planets closer to the sun always appear in the sky near the sun because
+        of their position relative to the earth
+        axiomatic explaination
+        this is one of the biggest factors contributing to heliocentrism's
+            adoption
+    the behavior of the outer planets is also handled naturally by the
+        heliocentric model
+        if an inner planet is moving around the sun faster than an outer
+            planet, it causes retrograde motion in the sky
+            the "loop" is caused by earth passing mars
+        planets closer to the sun generally move faster
+
+Copernicus's Heliocentrism
+    copernicus had a 'medieval' mindset
+        assumed that orbits were perfect circles
+        in order to make that work with observed data, he had to introduce
+            epicycles
+
+
+
+Tue Aug 30 20:00:49 EDT 2016
+----------------------------
+
+(Lab)
+
+Ecliptic Plane
+    low in summer, high in winter
+        this is due to the earth's tilt
+        north pole faces the sun in summer
+        south pole faces the sun in winter
+    annotate how to find the height of the sun during the summer solstace on a
+        given latitude !!!
+
+Starmap
+    use the magnitude system
+        bright objects have low magnitudes
+        faint objects are around the 6th magnitude
+        bright objects are aronud 1 and 2 magnitudes
+    the greeks though that it looked like the stars could be grouped into 6
+        categories based on brightness
+    centuries later, this was turned into a system
+    rule: when the magnitude changes by 5, the brightness is multiplied by 100
+        each magnitude is a factor of sqrt(100) ~ 2.512
+            (2.5)^5 ~ 100
+        ???
+        this is because the eye responds to light with a logarithmic dropoff
+    there are 0th magnatude stars as well
+        Vega is close to 0th magnetude
+    there are also negative magnitudes
+        sirius is -1.4
+        jupiter is -2.4
+        venus is -4
+        full moon is -12
+        sun is -26
+
+Telescopes
+    "level of magnification" is a bad metric
+        focal length of the primary lens (mirror)/focal length of eyepeice
+            this can be changed by changing eyepeices
+            high magnification is frustrating
+                more sensitive to vibrations
+    worthwhile metrics:
+        light gathering power
+            area of the primary mirror
+        resolution
+            ability to see fine detail
+            also determined by mirror size
+
+Types of Telescopes
+    Dabsonian:
+        newtian telescope
+            light comes through the top and is deflected by a second, angled 45 degrees
+                mirror into the eyepeice
+    Casagarian:
+        eyepiece at the bottom of the telescope
+        second mirror is not angled, goes through the bottom
+
+
+Wed Aug 31 12:22:52 EDT 2016
+----------------------------
+
+Tycho Brahe
+    royal astronomer
+        had his nose chopped off in a duel
+        had a pet moose
+        died at a party from kidney issues
+    best observer of the skies up until his time
+        no telescopes yet
+        best naked-eye dataset
+    Kepler was his subordinate
+        kepler ended up with the data set after Brahe's death
+
+Kepler
+    analyzed data set for 20 years
+    used it to create "Kepler's 3 Laws"
+        1. Planets move around the sun in elliptical orbits with the sun at one focus
+            Kepler did not have an explanation why this is true
+        2. Equal areas of an orbit are "swept out" in equal times
+            this refers to the area of the segment made between two earth
+                positions on the orbit and the sun (focus)
+            this means that the speed of the planet along its orbit increases
+                as it gets closer to the sun
+            kepler theorized that there was some kind of magnetic influence
+            from the sun
+                no concept of gravity yet
+        3. 
+
+
+Ellipses
+    symmetric about both axes
+        you can determine the whole ellipse from just one quarter
+    "size" of the ellipse is the semimajor axis
+        distance from the origin to the farthest point in the ellips
+        distance from the outermost points is the "major axis"
+        "sort of" like the radius of the circle
+        the other axes are called semiminor axes
+    foci:
+        an ellipse is defined as every point s.t. the distance between that
+            point and the two focii is the same constant
+    eccentricity:
+        a = semimajor axis
+        b = semiminor axis
+        c = focus
+        c/a = eccentricity
+        0 <= e <= 1
+            e = 0 is a circle
+            e = 1 is a line (basically)
+
