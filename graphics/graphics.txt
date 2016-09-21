@@ -693,3 +693,513 @@ Circle Generators
 
         xIns are the inner points of the circle
         xOuts are the outer points
+
+
+Tue Sep  6 08:01:21 EDT 2016
+----------------------------
+
+
+Issues with Circle Generators
+    circles can become rectangles when using few enough pixels
+    in the digitized space, the symmetrical properties of circles can be lost
+        circle should be mirrored exactly if cut through the center at any angle
+        humans are very good at recognizing when a circle isn't perfect
+    fixing symmetry
+        if a circle is at (xC, yC) and symmetry is broken, we can fix it by moving
+            the center to (xC,yC-.5)
+        we alternatively could have moved the circle up by .5
+    expenses:
+        square root is a very expensive algorithm
+        have to make sure we are not taking a square root of a negative
+        uses floating point math
+
+Another Description of Circle Generation Algorithm
+    we create a 1px wide outer/inner circle boundary
+        then move the center down .5
+    for each scanline:
+        find the intersection of both circles with the scanline
+        fill in between the intersections, rounding to the nearest integer value
+        if there is no intersection with the inner boundary, fill between the
+            outer boundaries (??)
+    new xOuts
+        xOut1 = -sqrt(r^2-(y-yC+.5)^2) + xC
+        xOut2 =  sqrt(r^2-(y-yC+.5)^2) + xC
+    new xIns
+        xIn1  = -sqrt((r-1)^2-(y-yC+.5)^2) + xC
+        xIn1  =  sqrt((r-1)^2-(y-yC+.5)^2) + xC
+
+Usefulness of Circle Generators
+    circle algorithm can be adjusted to create
+        curves
+        ovals
+        splines
+        etc
+
+Bresenham's Circle Generator
+    often, when a problem is well defined in the floating point space, you can
+        use the integer space by multiply by a power of ten equal to your error tolerance
+        multiplying by 10^x before a loop, then dividing back after a loop is common
+        this is not possible with this algorithm, but still relevant
+    instead of this, Bresenham takes advantage of the circle's symmetry
+        we don't need to calculate the entire circle
+    from (x,y) on a circle with center (0,0):
+        to cut the complexity in 1/2:
+            (x,y),(-x,y)
+        1/4:
+            (x,y),(-x,y),(x,-y),(-x,-y)
+        1/8:
+            (x,y),(-x,y),(x,-y),(-x,-y)
+            (y,x),(-y,x),(y,-x),(-y,-x)
+    we can not go further than this due to line inaccuracy in the digital space
+        only straight or perfectly diagonal lines are accurate
+    from (x,y) on a circle with center(xC,yC):
+        (x+xC,y+yC),(-x+xC,y+yC),(x+xC,-y+yC),(-x+xC,-y+yC)
+        (y+xC,x+yC),(-y+xC,x+yC),(y+xC,-x+yC),(-y+xC,-x+yC)
+
+    pseudocode:
+        plotCirclePoints():
+            setPixel( x+xC, y+yC, color)
+            setPixel(-x+xC, y+yC, color)
+            setPixel( x+xC,-y+yC, color)
+            setPixel(-x+xC,-y+yC, color)
+            setPixel( y+xC, x+yC, color)
+            setPixel(-y+xC, x+yC, color)
+            setPixel( y+xC,-x+yC, color)
+            setPixel(-y+xC,-x+yC, color)
+
+        // this function is defined locally to the calling function
+
+        x = 0;
+        y = R;
+        P = 3 - 2 * R;
+        
+        if x < y:
+            plotCirclePoints()
+            if p < 0:
+                p=p+(4x)+6
+                x=x+1
+                return to beginning of loop
+            else:
+                p=p+4(x-y)+10
+                y=y-1
+        else:
+            if x == y:
+                plotCirclePoints()
+                return
+            else:
+                return
+
+    in this pseudocode, p approximates the value of pi
+        it over and under adjusts it in a pattern to keep it semi accurate
+    this is a very optimized algorithm
+        only multiplication by powers of 2, addition, dec/increment, and comparison
+
+
+Wed Sep  7 07:57:44 EDT 2016
+----------------------------
+
+Scan Conversion
+    every graphics package has a function called display()
+        scan conversion is contained in this function
+        every time you are ready to display, you pass line information into the
+            scan conversion routine
+    this is the end of coverage of scan conversion for 2D images in this class
+        from here on, the term "display" includes the scan conversion step
+
+Basic 2D Geometric Transformations (of lines)
+    1. Translation
+        (x,y)   = the point to be translated
+        (x',y') = translated point
+        Tx      = displacement in the x direction
+        Ty      = displacement in the y direction
+
+        x' = x + Tx
+        y' = y + Ty
+
+    2. Scale (around the origin of the coordinate system)
+        Sx      = horizontal scaling factor
+        Sy      = vertical scaling factor
+
+        x' = x * Sx
+        y' = y * Sy
+
+        the origin of this transformation is at (0,0)
+
+    3. Rotation (around the origin of the coordinate system) (clockwise)
+        x' =  x * cos(theta) + y * sin(theta)
+        y' = -x * sin(theta) + y * cos(theta)
+
+        we do not worry so much about expensive operations so much for these algorithms
+            this is because they are applied to each graphics primitive, not
+                each pixel
+
+    in order to apply a transformation to a picture:
+        walk over each line, considering the endpoints of the line
+        store the new endpoints
+        if it is required, call display
+
+Transformation Around a Pivot
+    translate shape to origin
+    apply scale or rotation
+    translate back to original location
+
+
+Thu Sep  8 08:05:55 EDT 2016
+----------------------------
+
+
+Rotating About a Specified Point
+    1. translate by (-xC,-yC)
+    2. rotate by theta
+    3. translate by (xC, yC)
+    this strategy is not optimal, because we have to walk over all the lines 3 times
+    we also have to calculate the x' and y' values multiple times
+        optimally we would do both of these once
+
+Combining Transformations
+    ex: combining translate and rotate
+
+        x' = x + Tx
+        y' = y + Ty
+
+        x' =  x * cos(theta) + y * sin(theta)
+        y' = -x * sin(theta) + y * cos(theta)
+
+2D Basic Gemortric Transformations (Matrix)
+    Translation:
+                           [ 1  0 0 ]
+                 [x y 1] * [ 0  1 0 ] = [x' y' 1]
+                           [Tx Ty 1 ]
+
+    Scale:
+        
+                           [ Sx 0 0 ]
+                 [x y 1] * [ 0 Sy 0 ]
+                           [ 0  0 1 ]
+
+    Rotate:
+                           [cos(theta) -sin(theta) 0]
+                 [x y 1] * [sin(theta)  cos(theta) 0]
+                           [0           0          1]
+
+    ex:
+        translate (10, 20) by (5, 10)
+
+        Tx = 5
+        Ty = 10
+                    [ 1  0 0 ]
+        [10 20 1] * [ 0  1 0 ] = [15 30 1]
+                    [ 5 10 1 ]
+
+Rotating About a Specified Point (Matrix)
+    ex:
+        rotate the triangle (1,1),(2,3),(3,1) by 45 deg about (2,2)
+            (translation to origin matrix) * (rotation matrix) * (translation back matrix)
+            [ 1  0 0 ]   [.7 -.7 0 ]   [ 1 0 0 ]   [ .7 -.7  0 ]
+            [ 0  1 0 ] * [.7  .7 0 ] * [ 0 1 0 ] = [ .7  .7  0 ]
+            [-2 -2 1 ]   [ 0   0 1 ]   [ 2 2 1 ]   [-.8   2  1 ]
+
+            multiplication must go right to left
+
+        now we can multiply the final matrix by the points in the original
+            picture in the form [x y 1] to get the transformaiton
+
+Homework: practice matrix multiplication
+
+
+Tue Sep 13 08:04:21 EDT 2016
+----------------------------
+
+
+For midterm, we can have a one page, one side, handwritten formula sheet
+    be able to perform matrix multiplication, translations about a point by hand
+    bring calculator
+
+Finding Transformation Matrices
+    ex:
+        find the transformation matrix which does the following:
+            translate the image by (10,4)
+            scale the image by (7,2) about (2,2)
+            rotate image by 90 degrees about (3,3)
+        
+            1. perform translation
+            2. translate to zero
+            3. scale
+            4. translate back
+            5. translate to zero
+            6. rotate
+            7. translate back
+
+        [ 1  0 0 ] [  1  0 0 ] [ 7 0 0 ] [ 1 0 0 ] [  1  0 0 ] [ 0 -1 0 ] [ 1 0 0 ]
+        [ 0  1 0 ] [  0  1 0 ] [ 0 2 0 ] [ 0 1 0 ] [  0  1 0 ] [ 1  0 0 ] [ 0 1 0 ]
+        [ 10 4 1 ] [ -2 -2 1 ] [ 0 0 1 ] [ 2 2 1 ] [ -3 -3 1 ] [ 0  0 1 ] [ 3 3 1 ]
+
+    ex 2:
+        find the transformation matrix which does the following:
+            translate the image by (10,4)
+            scale the image by (7,2) about (0,0)
+            rotate image by 90 degrees about (3,3)
+        [ 1  0 0 ] [ 1 0 0 ] [ 7 0 0 ] [ 1 0 0 ] [  1  0 0 ] [ 0 -1 0 ] [ 1 0 0 ]
+        [ 0  1 0 ] [ 0 1 0 ] [ 0 2 0 ] [ 0 1 0 ] [  0  1 0 ] [ 1  0 0 ] [ 0 1 0 ]
+        [ 10 4 1 ] [ 0 0 1 ] [ 0 0 1 ] [ 0 0 1 ] [ -3 -3 1 ] [ 0  0 1 ] [ 3 3 1 ]
+
+        this makes matrices 2 and 4 identity matrices
+            so we can skip these steps
+            this is an optimization case
+
+Window to Viewport Transformations
+    window into the world is Xw, Yw
+    window's coordinates on the screen is Xs, Ys
+        we need to compute Xw,Yw in terms of Xs,Ys
+    Xs = a * Xw + b
+    Ys = c * Yw + d
+        a,b,c, and d are constants
+    a = (Vx2 - Vx1)/(Wx2 - Wx1)
+    b = Vx1 - a * Wx1
+    c = (Vy2 - Vy1)/(Wy2 - Wy1)
+    d = Vy1 - c * Wy1
+        Wy2, Wy1 are the top and bottom limits of the viewport window
+        Wx1, Wx2 are the left and right limits of the viewport window
+        Vy2, Vy1 are the coordinates of the top/bottom of the viewport window on the screen
+        Vx2, Vx1 are the coordinates of the left/right of the viewport window on the screen
+    this is a relatively simple linear transformation
+
+
+
+Wed Sep 14 08:02:54 EDT 2016
+----------------------------
+
+
+Viewports
+    lines are often clipped by the viewing area
+        handled by "line clipping algorithm"
+        if(left < x < right and bottom < y < top)
+            plot point
+        else
+            adjust to the corresponding value on the edge (based on slope)
+    this is expensive and requires redundant computations
+
+Line Clipping Algorithms
+    we need to determine which lines are outside of the window of visibility
+        some are difficult to test for (partially visible)
+            some lines can intersect the viewport but have both endpoints
+                outside of the window
+
+Cohen-Sutherland Algorithm
+    divides the imaging area into 9 distict regions:
+        extends the viewport by one viewport size in all directions
+            _|_|_
+            _|_|_
+             | |
+    assigns a 4-bit code to each region
+        bit 1 (xxx1) is set if the region is on the left of the viewing area
+        bit 2 (xx1x) is set if the region is on the right of the viewing area
+        bit 3 (x1xx) is set if the region is below the viewing area
+        bit 4 (1xxx)is set if the region is above the viewing area
+             1001 | 1000 | 1010
+             ------------------
+             0001 | 0000 | 0010
+             ------------------
+             0101 | 0100 | 0110
+    we assign this four bit code to each endpoint that ends in each region
+        if we logical or them together and get 4 0's, we know that line is
+            completely visible
+    algorithm:
+        C0 and C1 are the 4-bit codes of a line
+        1. if C0 or C1 == 0000:
+            line is completely visible
+            send coordinates of the line to the scan conversion algorithm
+        2. elif C0 and C1 != 0000:
+            line is completely outside the viewing area
+        (these two checks handle all trivial cases to be skipped)
+        3. else:
+            the line is potentially visible
+            find the intersection of the line with a side of the viewing area
+                (extended side if necessary
+            consider the line to be to have two segments
+                go through the tests considering each segment if necessary
+                    (loop through the if statements again)
+
+    algorithmically, we assume that the boundaries have a "thickness"
+
+    examples:
+        completely visible:
+            _|_|_
+            _|x|_
+             | |
+            0000 or 0000 = 0000 (if pass)
+            draw
+        completely invisible:
+            x|_|_
+            _|_|_
+            x| |
+            1001 or 1101 = 1101 (if fail)
+            1001 and 0101 = 0001 (elif pass)
+            skip
+        partially visible:
+            __|__|__
+            __|x_|x_
+              |  |
+            0000 or 0010 = 0010 (if fail)
+            0000 and 0010 = 0000 (elif fail)
+            divide into segment A and segment B
+            repeat tests
+                segment B:
+                    __|__|__
+                    __|__|xx
+                     | |
+                    0010 or 0010 = 0010 (if fail)
+                    0010 and 0010 = 0010 (elif pass)
+                    skip
+                segment A:
+                    __|__|__
+                    __|xx|__
+                      |  |
+                    0000 or 0000 = 0000 (if pass)
+                    display
+        potentially visible (not visible):
+        x|x|_
+        x|_|_
+         | |
+        fails if and elif
+        divide into two segements (arbitrarily start with horizontal
+        intersection)
+            segment A:
+            _|_|_
+            x|_|_
+             | |
+            0001 and 0001 = 0001 (if fail)
+            skip
+
+            segment B:
+            x|x|_
+            _|_|_
+             | |
+            1000 and 1001 = (if fail)
+            1000 or 1001 = 1000 (elif pass)
+            skip (trivial case)
+
+        potentially visible (visible):
+        _|x|_
+        x|x|_
+         | |
+         0001 and 1000 = (if fail)
+         0001 or 10000 = (elif fail)
+         divide into two segments (arbitrarily start with horizontal intersection)
+            segment A:
+            _|x|_
+            _|x|_
+             | |
+             if fail
+             elif fail
+
+                segment A1:
+                _|x|_
+                _|_|_
+                 | |
+                 if fail (???)
+                 elif pass
+
+                 segment A2:
+                _|_|_
+                _|x|_
+                 | |
+                 if pass
+                 draw
+            segment B:
+                _|x|_
+                x|x|_
+                 | |
+                we do not need to test segment B because one of segment A's
+                    subsegments passed
+                    if a segment passes, it is not necessary to continue process
+
+
+Thu Sep 15 08:01:33 EDT 2016
+----------------------------
+
+Representation of Areas
+    1. matrix of intensity values (bitmap representation)
+        trivial implementation
+    2. using geometry
+        uses non-overlapping, closed contour polygons
+            when people say n polygons, they usually mean n triangles
+            'poligonization' is conversion of an image to triangles
+                polygons near boundaries become smaller, larger in the center
+
+Area Filling
+    problem can be reduced to polygon filling
+        we can fill any area by filling the polygons it is made of
+    filling is done scanline by scanline
+        for each scanline, find intersections with 2 lines of intersection at a
+            time and fill
+        (we always want an even number of intersections)
+
+
+Tue Sep 20 08:02:16 EDT 2016
+----------------------------
+
+Area Filling (cont'd)
+    bitmap representation is only suitable for very small areas
+        characters, smiley faces, etc
+        usually a few tens of pixels
+    for larger areas, we use polygons
+    polygons include all geometric shapes as special cases
+
+Scanline Polygon Filling Algoritm (Y-X Algorithm)
+    for each edge of the polygon:
+        1. compute all intersections of the edge with the scanlines
+            build a list of x,y intersections
+        2. sort the list so that intersections for each scanline are grouped
+            together, and x values increase
+        3. remove the elements from the list in pairs
+            [(xa, ya)(xb,yb)] ...
+            only plot the pixels between [(xa, ya)(xb,yb)] 
+                ya = yb and xa <= xb always during this step
+
+Singularity Problem of the Y-X Algorithm
+    if we have a polygon with vertices superimposed exactly on a scanline, we will
+        end up with an odd number of intersections 
+        we need an even number of intersections for this algorithm to work
+    we can "fix" this by considering x to be slightly above the scanline by a tiny amount 
+
+Rule for Implementing Y-X Algorithm
+    if y is monotonically increasing or decreaseing as you walk up or down,
+        count each intersection as one vertex
+    if y changes direction as you follow a line, count the intersection where
+        the line changes direction as two intersections
+
+    example:
+                 /\               
+            /\  /  \    /\        
+       ___ /__\/____\__/__\____   
+        A /  B,B   C \/D   \E     
+         /__________________\     
+
+
+
+Wed Sep 21 08:03:48 EDT 2016
+----------------------------
+
+
+Boundary Fill Algorithm (flood fill)
+    starts from an arbitrary point, fills a polygon recursively
+        nearest neighbor algorithm
+
+    floodFill(x,y,fillColor,boundaryColor):
+        if (image[x,y] != boundaryColor) and (image[x,y] != fillColor):
+            image[x,y] = fillColor
+            floodFill(x+-1,y+-1,fillColor,boundaryColor)
+        else
+            return
+
+    this algorithm can cause a stack overflow if the area is large enough
+        can also be handled scanline-by-scanline
+
+Clipping a Polygon
+    for hollow polygons, clip each line with the Cohen-Sutherland algorithm
+    for a filled polygon:
+        when we say a polygon is "filled", we know the fill color, but have not
+            necessarily filled the polygon
+        to clip a filled polygon, clip the polygon, then ???
+            discussed tomorrow

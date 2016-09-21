@@ -404,8 +404,7 @@ Kepler
             kepler theorized that there was some kind of magnetic influence
             from the sun
                 no concept of gravity yet
-        3. 
-
+        !!! Third law tomorrow
 
 Ellipses
     symmetric about both axes
@@ -427,3 +426,272 @@ Ellipses
             e = 0 is a circle
             e = 1 is a line (basically)
 
+
+Fri Sep  2 12:24:24 EDT 2016
+----------------------------
+
+
+Kepler (cont'd)
+    3. (period (in years))^2 = (semimajor axis)^3
+            applies only to Mercuray, Venus, Earth, Mars, Jupiter, Saturn
+            this law is stange, because it is setting years equal to a distance
+                conversion factor is missing
+                this can be ignored because there is a conversion factor of 1
+                    1 earth year
+                later, newton defines the law with a conversion factor:
+                    p^2 = (4(pi^2)(a^3))/(G(M1+m2))
+            there is no mass taken into account in kepler's 3rd law
+                it can be ignored for two decimal places b/c the difference
+                    between the mass of the sun and the mass of the planet is
+                    so large
+            kepler also could not explain this relationship
+
+
+Fri Sep  9 12:22:41 EDT 2016
+----------------------------
+
+
+Galileo's Books
+    "The Starry Messenger"
+        book about his discoveries with the telescope
+    Dialogue Concerning the Two Chief World Systems
+        defense of the heliocentric theory
+    Dialogue Concerning Two New Sciences
+        book about mechanics/strength of materials
+        this is where a lot of newton's ideas came from
+
+Galileo's Discoveries with the Telescope
+    craters on the moon
+    sunspots (may have contributed to Galileo's later blindness)
+        the heliocentric model had been integrated into theology by this point
+            thomas aquinas had helped develop this model
+            created a progression of perfection , with hell being at the center of
+                the earth and god being beyond the stars
+            everything beyond the Earth was in the realm of perfection
+                according to this scheme, comets were in the Earth's atmosphere
+                "disturbed the perfection of the heavens"
+            the belief concerning the moon was that the moon was perfect, but
+                was reflecting imperfections from the earth
+                this explained splotches in the moon
+    when Galileo said there were craters and sunspots, it implied imperfection
+    Galileo also observed phases of Venus
+        this can be explained by the heliocentric model
+    he also notices that the milky way is made up of stars
+        not just a solid band
+    sees the 4 moons of jupiter
+        "meddicini stars"
+        now called the Gallilean Satillites
+    all of these things are in "The Starry Messenger"
+        he was brought to trial twice for this book
+        the church was more concerned with it being published in italian rather
+            than latin
+    after his second book, he recants his ideas under threat of torture and
+        spends the rest of his life under house arrest
+        during this time, he puts together his third books and redefines
+            mechanics
+        dies in 1642 (year of Newton's birth)
+
+Newton's Laws
+    Laws of motion:
+        1. Things move at constant velocity unless a force acts on them
+        2. F = m * a
+        3. For every action, there is an equal and opposite reaction
+    Law of universal gravitation:
+        F = (G(M1)(M2))/r^2
+
+    using these laws, you can describe all observable motion at that time
+        this is the beginning of phyisics
+        these are the first laws that are this general (apply to everything)
+
+Defining Mass
+    amount of "stuff" in something
+        mass does not have a satisfactory definition today
+        newton defined it as 'a quality that anything has that resists acceleration'
+
+
+Mon Sep 12 12:08:26 EDT 2016
+----------------------------
+
+
+Mass vs Weight
+    F=ma
+    F is a weight, m is a mass
+        using the kms (kilogram/meter/second) system:
+            F = ma = (100kg)(9.8m/s) = 980kgm/s^2 = weight in Newtons
+    mass is like weight that is not dependant on location (gravity)
+    when comparing weight to mass, 2.2lbs ~ 1kg
+        this is only true on the earth's surface
+
+Newton's Third Law
+    "if you exert a force on something, that thing exerts the same force back"
+    if a person weighs 100kg:
+        the person is exerting 980N on the floor
+        the floor is exerting 980N on the person
+        if this was not true, the person would accelerate through the floor
+    this law mostly exists to allow Newton to work while ignoring details
+    if you have two masses, m1 and m2, and they are spherical:
+        you can treat the spheres as if all their mass is at the center
+        if the distance between the centers is r:
+            F = (G(m1)(m2))/r^2
+    using the second and third laws (and the equation above), we can derive
+        that centripetal acceleration = v^2/r
+
+Measuring the Speed of Falling Objects
+    F=ma
+    if chalk is falling:
+        a = G(Mearth)(Mchalk)/(Rearth-chalk)^2
+            Rearth-chalk is the distance between the earth and the chalk
+        mass does not affect the rate of falling
+            suppose we have a cannonball and a wood ball attached to each other:
+                according to aristotle, the wood ball would slow down the cannonball
+                gallileo argued that because of this, they must fall at the same rate
+
+What is G?
+    G=6.67*10^-11 (Nt m^2)/kg^2
+    G is a constant used to make the units line up on the F=ma equation
+        using G in this form means we have to use the KMS system
+
+Problems With These Estimation
+    second law compares two different concepts:
+        1) quality to resist acceleration (left side of equation)
+        2) quality that attracts two objects to each other (right side of equation)
+    these are very different concepts 
+        this bothered Newton, and to a lesser extent Galileo
+    "Why is the quality to resist motion the same as the quality of attraction
+        to other objects?"
+        Newton never answers these questions
+        relativity does not make the distinction (inertial mass = gravitational mass)
+    another problem is centripetal vs centrifugal acceleration
+        centripetal:
+            inertial, not accelerating according to the system by which we judge the motion
+            F=ma
+        centrifugal:
+            non-inertial, not accelerating "" "" ""
+                example: rotating system
+                coordinate system is rotating
+            F = ma + centrifugal term + coriolis term + other terms
+        we have no devices to tell us if we are moving at constant velocity or not
+            in a car with no windows, you can not tell if you are moving
+                without acceleration
+        because of this, Newton was force to define the concept of "absolute
+            space" to make these judgements
+            the problem is that absolute space can not be made out of matter
+                m = 0
+                Newton called it "God's Sensorium"
+                    he also knew that this was not a satisfactory explanation
+    these are important logical gaps in newtonian mechanics
+        "should bother students" thinking about the nature of realityt
+    despite these problems, the system still works
+
+
+
+Tue Sep 13 20:04:44 EDT 2016
+----------------------------
+
+(lab)
+
+Parallax
+    when viewing a star from two different positions in space, the angle
+        between the two views is creates an angle
+        1/2 of this angle is called the "parallax angle"
+
+
+Wed Sep 14 12:18:42 EDT 2016
+----------------------------
+
+
+------------------------
+Exam 4 is over Ch 4 only
+------------------------
+
+
+
+Fri Sep 16 12:26:48 EDT 2016
+----------------------------
+
+
+Motion of Planets
+    eTotal = kinetic energy + gravitational potential energy
+        KE = (1/2)mv^2
+        GPE = -((GMm)/r)
+        only KE and GPE matter in the scope of planetary motion
+    as an object approaches a star, the KE is converted into GPE
+        if the object is moving fast, the KE may dominate and cause the planet
+            to avoid falling into orbit
+        if the object is moving slow, the GPE may dominate and cause the planet
+            to fall into orbit
+    an object orbiting another object is a "bound system"
+        if KE dominates and the objects are unbound, we have positive total
+            energy
+        if GPE dominates and the objects are bound, we have negative total
+            energy
+        bound orbits are circular or elliptical
+        unbound orbits are hyperbolic
+    the transition from unbound to bound happens when the energy is 0
+        when energy is exactly zero, we get a parabolic orbit
+    there are only 4 types of orbits
+        one circular
+        infinite elliptical
+        one parabolic
+        infinite hyperbolic
+    these are the conic sections
+
+Newton's Version of Kepler's 3rd Law
+    p^2 = a^3
+        only works for a star with the same mass as the sun
+    p^2 = (4pi^2a^3)/(G(M+m))
+
+
+Mon Sep 19 12:26:12 EDT 2016
+----------------------------
+
+
+Problems with Newtonian Mechanics
+    newtonian mechanics had worked perfectly for the solar system, except for
+        the precession of the perihelion of Mercury's orbit
+        off by 45" per century
+    at the end of 19th century, Kelvin did a review of physics saying that
+        physics was done, with two clouds on the horizon:
+        1. The Mercury Problem
+            this problem lead to general relativity
+            (this is not what he was trying to explain though (electrodynamis problem))
+        2. The Unltraviolet Catastrophe (not covered in this class)
+            this problem lead to quantum mechanics
+    Kelvin was wrong about this, and wrong to think these two problems were small
+
+Einstein's Mechanics (Special Relativity)
+    in the 19th century, phyisics consists of 3 things:
+        Newtonian Mechanics
+        Electrodynamics
+        Thermodynamics
+    Einstein was approaching a problem with electrodynamics
+        a stationary experiment should reurn the same results in a moving lab
+            this works in Newtonian mechanics using Galilean transformations
+        this problem does not work for results of experiments in electrodynamics
+            this can be solved using Lorrentz transformations
+        Einstein devloped a way to use Lorrentz transformations for both systems
+    using the Lorrentz transformations for electrodynamics leads to the rules of SR
+    rules of special relativity:
+        1) time slows down in moving frames of reference
+            l = l0 * sqrt(1-(v^2/c^2))
+                c is the speed of light
+                the value of v^2/c^2 is so small it is almost immeasureable
+        2) lengths contract in the direction of motion in moving labs
+        3) E = mc^2
+            (equivalence between matter and energy)
+    SR deals with non-accelerated motion (a = 0)
+    Minkowski discovered that special relativity makes more sense if you think
+        of it in a 4 dimensional space
+        3 dimensions of space, 1 dimension of time
+
+Principle of Equivalence
+    imagine you are on the surface of the Earth
+        g = 9.8 m/s^2
+        if you are in a box with no gravity and a 9.8 m/s^2, you can not tell
+            the difference
+        this means that "gravity" is really a property of space
+    rules of general relativity:
+        1. matter tells spacetime how to curve or deform
+        2. curved space tells matter how to move
+            things move in straight lines (Galileo was right)
+            straight lines in curved space don't look straight

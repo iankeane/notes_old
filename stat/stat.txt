@@ -1,0 +1,140 @@
+------
+Review
+------
+
+
+---
+3.4
+---
+
+
+Regression Analysis
+
+Simpson's Paradox
+
+Lurking Variables vs Confounding
+
+
+----
+12.1
+----
+
+
+Example Notes
+    problem:
+        it may be dangerous to test 1RM of a BP for an untrained individual
+    variables:
+        x = # of times someone can lift a bench press at 60 lbs
+        y = maximum bench press
+    questions:
+        how well can we predict an athelete's maximum bench press from their 60 lb reps?
+        what is the association between these variables in the population?
+
+
+Regression
+    this chapter focuses on association between two qunatitative variables
+        x, y in the example are quantitative
+    first step of a regression analysis is to identify the response and explanatory variables
+        here, the BP 1RM is the response variable
+            this is because we want to know how well we can predict this variable
+        the explanatory variable is the # of 60 lb reps
+            also called the "predictor"
+        y = response variable, x = explanatory variable by convention
+
+The Regression Line Equation
+    ŷ = a + bx
+        this is the regression line
+            also called the "prediction equation"
+        ŷ represents the predicted value of the response variable y
+        if b (the slope) is positive, the association is positive, and vise versa
+
+Residuals
+    the difference y - ŷ is the prediction error, called a residual
+    in a scatterplot, the residual is the vertical distance between a point and the regression line
+    we can summarize how near the regression line the data points fall using:
+        sum of squared residuals = Σ(residual)² = Σ(y-ŷ)²
+    the regression line has the smallest SSR of any other line
+        it is called the least squares line because of this
+
+Population Regression Equation
+    μy = α + βx
+        uses the population y-intercept and population slope
+            these are parameters, so in practice their values are unknown
+        μy = population mean of y for all the subjects at a particular x
+
+Variability about the line
+    at each x, variability occurs in y's around their mean value μy
+        the probability distribution of y values at a fixed x is a conditional distribution
+        at each value of x, there is a conditional distribution of y values
+            σ represents the standard deviation of each conditional distribution
+
+Income and Education Example
+    μy = -20000 + 4000x
+        x = years of education
+        μy = annual income
+            mean of y's
+    the conditional dist of anual income at each x is modeled with a normal dist
+        σ = 13000
+    question: explore the mean and variability around the mean for the
+        conditional dist's at education values 12 and 16 years
+
+    x = 12:
+        -20000 + 4000(12) = 28000
+    x = 16:
+        -20000 + 4000(16) = 33000
+    σ = 13000
+
+    since the cond dist's are modeled as normal, nearly all values should fall
+        within 3 SD's of the mean
+    for x = 16:
+        44000 +- 3(13000) = (5000, 83000)
+            nearly all incomes fall in this range
+
+
+----
+12.2
+----
+
+
+Correlation
+    correlation (denoted r) describes linear assocation between two variables
+        r has the same sign as the slope b
+        -1 <= r <= 1
+        larger r's denote strong association
+            r = +-1 means all data points are exactly on the regression line
+
+Correlation Matrix
+    provided by software
+    lists variables in the rows and cols, showing correlation between each pair
+        does not differentiate between response and explanatory variables
+            b/c r is the same whether we use x to predict y or vise versa
+
+Internet Use Example
+
+                 | Internet Users | Unemployment | GDP
+    Unemployment | .238
+    GDP          | .938           | .163
+    C02          | .569           | -.107        | .740
+
+    correlations with internet use appear in the first column
+        the value most strongly associated with internet use is GDP
+    C02 emmission has the second strongest association
+
+Finding the Correlation and Prediction Equations
+    b = r(sy/sx)
+    ybar = a + bxbar
+        xbar, ybar = sample means
+        sx, sy = sample standard deviations
+    if we replace xbar with x, we get ŷ
+        so, ŷ = a + bxbar = ybar
+        so, a subject who has an average x value is predicted to have an average y value
+
+Correlation vs Slope
+    we can't use slope to describe association strength because its value
+        relies on the unite of measurement
+    correlation is a standardized version of the slope
+        since r and b are related by b = r(sy/sx), r = b(sx/sy)
+Predicting Strength Example
+    
+
+ŷ 
