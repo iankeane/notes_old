@@ -138,3 +138,173 @@ Predicting Strength Example
     
 
 ŷ 
+
+
+
+plus minus                  | ± | +-
+squared                     | ² | 2S
+coproduct                   | ∏ | *P
+summation                   | ∑ | +Z
+bullet operator             | ∙ | Sb
+(square) root               | √ | RT
+infinity                    | ∞ | 00
+
+Greek Letters
+-------------
+Gamma                       | Γ | G*
+Delta                       | Δ | D*
+Theta                       | Θ | H*
+Pi                          | Π | P*
+Sigma                       | Σ | S*
+Phi                         | Φ | F*
+Psi                         | Ψ | Q*
+Omega                       | Ω | W*
+alpha                       | α | a*
+beta                        | β | b*
+gamma                       | γ | g*
+delta                       | δ | d*
+epsilon                     | ε | e*
+eta                         | η | y*
+theta                       | θ | h*
+kappa                       | κ | k*
+lambda                      | λ | l*
+mu                          | μ | m*
+pi                          | π | p*
+rho                         | ρ | r*
+sigma                       | σ | s*
+sigma                       | ς | *s
+tau                         | τ | t*
+phi*                        | φ | f*
+psi*                        | ψ | q*
+omega*                      | ω | w*
+dagger                      | † | /-
+double dagger               | ‡ | /=
+left arrow*                 | ← | <-
+up arrow                    | ↑ | -!
+right arrow                 | → | ->
+down arrow                  | ↓ | -v
+Logic
+for all                     | ∀ | FA
+partial differential        | ∂ | dP
+there exists                | ∃ | TE
+logical and                 | ∧ | AN
+logical or                  | ∨ | OR
+therefore                   | ∴ | .:
+because                     | ∵ | :.
+Sets
+Null set                    | ∅ | /0
+Null set                    | Ø | O/
+element of                  | ∈ | (-
+contains as member          | ∋ | -)
+set intersect               | ∩ | (U
+set union                   | ∪ | U)
+subset of (contained in)    | ⊂ | (C
+superset of (contains)      | ⊃ | )C
+subset of or equal to       | ⊆ | (_
+superset of or equal to     | ⊇ | )_
+concatenation, centered dot | ∘ | Ob
+Calculus
+integral S                  | ∫ | In
+double integral S           | ∬ | DI
+line integral S with circle | ∮ | Io
+Delta                       | ∆ | DE
+Nabla                       | ∇ | NB
+Equalities, inequalities, et al.
+tilde operator              | ∼ | ?1
+approximately equal to      | ≅ | ?=
+almost equal to             | ≈ | ?2
+not equal to                | ≠ | !=
+less than or equal to       | ≤ | =<
+greater than or equal to    | ≥ | >=
+plus minus                  | ± | +-
+squared                     | ² | 2S
+coproduct                   | ∏ | *P
+summation                   | ∑ | +Z
+bullet operator             | ∙ | Sb
+(square) root               | √ | RT
+infinity                    | ∞ | 00
+
+Greek Letters
+-------------
+Gamma                       | Γ | G*
+Delta                       | Δ | D*
+Theta                       | Θ | H*
+Pi                          | Π | P*
+Sigma                       | Σ | S*
+Phi                         | Φ | F*
+Psi                         | Ψ | Q*
+Omega                       | Ω | W*
+alpha                       | α | a*
+beta                        | β | b*
+gamma                       | γ | g*
+delta                       | δ | d*
+epsilon                     | ε | e*
+eta                         | η | y*
+theta                       | θ | h*
+kappa                       | κ | k*
+lambda                      | λ | l*
+mu                          | μ | m*
+pi                          | π | p*
+rho                         | ρ | r*
+sigma                       | σ | s*
+sigma                       | ς | *s
+tau                         | τ | t*
+phi*                        | φ | f*
+psi*                        | ψ | q*
+omega*                      | ω | w*
+dagger                      | † | /-
+double dagger               | ‡ | /=
+left arrow*                 | ← | <-
+up arrow                    | ↑ | -!
+right arrow                 | → | ->
+down arrow                  | ↓ | -v
+
+Logic
+-----
+for all                     | ∀ | FA
+partial differential        | ∂ | dP
+there exists                | ∃ | TE
+logical and                 | ∧ | AN
+logical or                  | ∨ | OR
+therefore                   | ∴ | .:
+because                     | ∵ | :.
+
+Sets
+----
+Null set                    | ∅ | /0
+Null set                    | Ø | O/
+element of                  | ∈ | (-
+contains as member          | ∋ | -)
+set intersect               | ∩ | (U
+set union                   | ∪ | U)
+subset of (contained in)    | ⊂ | (C
+superset of (contains)      | ⊃ | )C
+subset of or equal to       | ⊆ | (_
+superset of or equal to     | ⊇ | )_
+concatenation, centered dot | ∘ | Ob
+
+Calculus
+--------
+integral S                  | ∫ | In
+double integral S           | ∬ | DI
+line integral S with circle | ∮ | Io
+Delta                       | ∆ | DE
+Nabla                       | ∇ | NB
+
+Equalities, inequalities, et al.
+--------------------------------
+tilde operator              | ∼ | ?1
+approximately equal to      | ≅ | ?=
+almost equal to             | ≈ | ?2
+not equal to                | ≠ | !=
+less than or equal to       | ≤ | =<
+greater than or equal to    | ≥ | >=
+
+
+Office Meeting Notes
+--------------------
+
+Can I get a list of what to do for "interpret in context"
+    y intercept
+    slope of regression line
+    R^2 value

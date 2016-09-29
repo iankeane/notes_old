@@ -1,0 +1,33 @@
+
+
+Wed Sep 21 09:12:36 EDT 2016
+----------------------------
+
+Common errors with quiz
+    lurking variable was regression to the mean
+        
+    CI for B: (0.128, .296)
+        p value for b: <.001
+    B=0 is not in the interval
+        (B is beta)
+        0 is not a reasonable value
+        reject H0: B=0
+        small p value
+        having the sample slope in the interval doesn't tell us anything because
+            that's how we defined the interval
+
+T statistic in JMP
+    you have everything youn eed in the regular output
+    t = (bi-0)/SEbi
+        bi i= b sub i = run estimeate
+        SEbi = Run std error
+
+CI for Bi = bi +- tn*-2(SEbi)
+    t*n-2 = t star sub n - 2
+        which is t stat with DF = n-2
+
+alpha tells you the probability of type 1 error
+
+doing an f test protects against the problem that starting with multiple t
+    tests can lead to high type 1 error rates
+    

@@ -695,3 +695,101 @@ Principle of Equivalence
         2. curved space tells matter how to move
             things move in straight lines (Galileo was right)
             straight lines in curved space don't look straight
+
+
+Mon Sep 26 12:24:05 EDT 2016
+----------------------------
+
+
+Light
+    two types of radiation
+        electromagnetic
+            "optical light"
+            radio waves
+            gamma waves
+            x-rays
+            microwaves
+            UV rays
+            infrared
+            etc
+        particle radiation
+            alpha-particles
+            beta-particles
+            cosmic rays
+            solar wind
+            etc
+            particle radiation is dangerous
+                constantly sending out particles
+                particles move through your body, disrupting cells
+    electromatic radiation
+        transferring energy from point A to B
+        can be thought of as waves or particles
+            when light is a particle, it is called "photons"
+            photons are different from "particle radiation" particles
+                the difference here is that photons don't have mass
+                    this is a mystery of science
+                    somehow photons have energy but no mass
+    light has a wave-particle duality
+        if you try to detect particle properties, you will and vise versa
+
+Wave Properties of Light
+    refraction
+        waves do this, particles don't
+    diffraction
+        when a wave spreads out after exiting a narrow opening
+    interference pattern
+        waves can cancel each other out under certain conditions
+    something always goes up and down
+        with sound it's air, with water it's water
+        with light, it is electric and magnetic fields
+    electric fields accelerate charged particles
+        electric field is straight acceleration
+        causes straight motion
+    magnetic fields accelerate charged particles as well
+        magnetic field is turning acceleration
+        causes spiral motion
+
+
+Wed Sep 28 12:16:56 EDT 2016
+----------------------------
+
+
+Frequency and Wavelength
+    any wave can be described in terms of frequency and wavelength
+        in astronomy, frequncy is f and wavelength is λ
+    wavlength is the length of the pattern of the wave
+    frequency is how many times the pattern goes by a point in a second
+        1hz = 1/second (inverse seconds)
+    λ = 1/f
+
+Photons and Waves
+    phtons are the particle way talking about light
+        every photon has a frequency
+    energy is proportional to frequency, inversely proportional to wavelength
+        E = hf, where h is Planck's constant (~6 * 10^-34 m^2kg/s)
+            mk^2kg/s = J/s (J = joule)
+        E = hf = h(c/λ)
+    short wavelengths/long frequencies hurt you because they carry a lot of energy
+
+Telescopes
+    only optical and radio astronomy can be done from the ground
+        need space telescopes for ultraviolet, xray, and gamma ray astronomy
+            infrared astronomy can be done from a high airplane
+    optical methods:
+        refractors
+            bend light towards a focus
+            not really used anymore (none since the start of the 20th century)
+                it is very difficult to support a large glass lens that is thin
+                    on the edges
+                mirrors can be supported from the bottom, so there isn't this
+                    limitation
+        reflectors
+            reflect light off a parabolic surface to a focus
+            invented by Newton
+
+    magnification is the focal length of the primary mirror / focal length of
+        the eyepeice
+    resolution is the ability to see fine detail
+        can only be improved by building a bigger primary mirror
+        resolution is the inverse of the size of the mirror
+
