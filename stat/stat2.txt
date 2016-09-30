@@ -1,0 +1,265 @@
+t-test
+    examination of two population means
+    examines whether two samples are different and is commonly used when the
+        variances of two normal distributions are unknown and when an
+        experiment uses a small sample size
+z-test
+    used to determine whether two population means are different when the variances are known and the sample size is large
+    test statistic is assumed to have a normal distribution
+    standard deviation must be known beforehand
+
+f-test
+    as R2 increases, the f-test statistic increases
+
+f-distribution
+    can only assume non-negative values
+    is skewed right
+    mean is approximately 1
+    shape is determined by two degrees of freedom
+        df₁ = # of explanatory variables in the model
+        df₂ = n - # of parameters in the regression equation
+
+P-value
+    represents the likelihood of obtaining a sample mean that is
+        at least as extreme as our sample mean in both tails of the distribution 
+
+MSE
+    square of the sample standard deviation
+    
+Total S.o.S.
+    sum, over all observations, of the squared differences of each observation from
+        the overall mean
+        
+S.o.S.Res.
+    sum of the squares of residuals
+    aka sum of squared errors
+    
+confounding
+    when two x vars are both associated with a response but are also associated
+        with each other
+        each var's effect could be partly due to its relationship with the other
+
+confounding vs lurking
+    a lurking variable is not measured in the study
+    if it were included, it would become a confounding variable
+
+simpson's paradox
+    Simpson's paradox can also arise in correlations, in which two variables appear
+        to have (say) a positive correlation towards one another, when in fact they
+        have a negative correlation, the reversal having been brought about by a
+        "lurking" confounder
+        
+ecological fallacy
+    making predictions about individuals based on the summary results of groups
+        if something is strongly correlated when we measure the summary means
+        for each country, this does not imply they will be for measurements on individuals
+
+T1 Error
+    incorrect rejection of a true null hypothesis
+    false positive
+
+T2 Error
+    incorrectly retaining a false null hypothesis 
+    false negative
+
+St. Dev.
+    a quantity calculated to indicate the extent of deviation for a group as a whole
+
+Residual
+    the difference between an observed outcome and its predicted value
+    each observation has a residual
+    the average of all residuals = 0
+    we can summarize how near the regression line the data points fall using
+        the S.o.S.Res.
+
+Standardized Residual
+    does not depend on units
+    residual divided by a standard error of the residual
+    behaves like a z-score
+        indicates how many s.e.'s a residual falls from 0
+    if the relationship is truly linear and the standardized residuals have a
+        bell-shaped distribution, absolute values larger than 3 are rare
+        these are considered outliers
+        when this happens, check if the observation is unusual in some way
+        even if the model is perfect, we'd expect about 5% of the st. res.
+            values to be above 2 by chance
+
+Residual Standard Deviation
+    describes the typical size of the residuals
+    its square is the MSE
+
+Residual Sum of Squares
+    summarizes the sample variability around the regression line
+
+Residual Plots
+    can be used to check if our 3 assumptions are correct
+        for bivariate regression, visually check whether a straight line model
+            is appropriate
+    for multiple regression, it is more complex
+    First assumption: conditional dist of y is normal at any fixed value of the
+        explanatory variables
+        if this is true, the residuals should have approximate bell shaped histograms
+        nearly all standardized res.'s should fall between -3 and 3
+    in a scatterplot, residuals should be scattered evenly about 0
+        if not, y may be nonlinearly related to x₁
+        if the residuals increase as x₁ increases, the res. st. dev. of y is
+            not constant (displays more variability at larger values of x₁)
+
+Regression Line
+    represents the predicted value of the response variable y
+    has a smaller S.o.S.Res. than any other line
+    a.k.a. least squares line, line of fit
+
+r
+    represents correlation
+    has the same sign as the slope of the regression line
+    -1 <= r <= 1
+    larger r's represent a stronger association
+        r = 1 when all points fall exactly on the regression line
+    correlation is standardized slope (does not rely on units of measurement)
+    represents the value that the slope equals if two variables have the same st. Dev
+
+r2
+    describes predictive power
+    represents the "proportional reduction in error"
+    0 <= r2 <= 1
+    when r2 = 1, Res.S.o.S. = 0
+    when r2 = 0, Res.S.o.S. = Total S.o.S.
+        this happens when b = 0, in which case y-hat = ybar
+
+Assumptions for Using Regression to make Statistical Inference
+    data was gathered using randomization
+    population values of y at each x follow a normal distribution with the same
+        st. dev. at each x value
+
+Steps of a Two Sided Sig. Test About a Population Slope β (bivariate)
+    1. Assumptions:
+        population satisfies regression line
+        data gathered using randomization
+        populations have normal distribution etc
+    2. Hypotheses: H₀:β=0, Ha:β!=0
+    3. Test statistic: t = b/se, software supplies b and se
+    4. P-value, using df = n - 2
+        2 = number of parameters in bivariate line equation
+        μy = α + βx => two params
+    5. Conclusions
+        if p <= .05, reject H₀
+
+Steps of a Two Sided Sig. Test About a Mult. Reg. Parameter (such as β₁)
+    1. Assumptions:
+        each x has a straight line relation with μy, with the same slope for
+            all combinations of values of other predictors in the model
+        data gathered with randomization
+        normal distribution for y with the same st. dev. at each combination of
+            values of other predictors in the model
+    2. Hypotheses: H₀:β₁=0, Ha:β₁!=0
+        when H₀ is true, y is independent of x₁, controlling for the other predictors
+    3. Test statistic: t = b₁/se, software supplies slope of b, its se, and t
+    4. P-value: two-tail probability from t dist of values larger than observed
+        t test stat (in absolute value)
+        t dist has df = n - # of parameters in the regression equation
+        μy = α + β₁x₁ + β₂x₂=> three params
+    5. Interpret P-value in context
+        
+
+Multiple Regression Model
+    relates the mean of y's to a set of explanatory x's
+    a slope describes the effect of an explanatory variable while controlling
+        the effects of other explanatory variables in the model
+
+Multiple Correlation R
+    correlation between the observed y values and the predicted values
+    R can not be negative, falls between 0 and 1
+
+R2 (multiple)
+    describes proportional reduction in error,etc
+    R2 = 1 when all residuals are 0, so SS = 0
+    R2 gets larger or at worst stays the same when an explanatory variable is added
+    values of R2 do not depend on units of measurement
+    r2 is a special case of R2 with only one x
+
+Interaction
+    for two x vars, interaction exists between them if their effects on the
+        response variable when the slope of the relationship between μy and one
+        of them changes as the other value changes
+
+Bivariate regression
+    has only a single explanatory variable
+        a slope in bivariate regression describes the effect of that variable
+            while ignoring all other possible variables
+
+Hypothesis Testing for Multiple Variables
+    H₀:β₁ = β₂ = β₃ = 0
+        this states that the mean of y does not depend on any of the predictors
+            in the model
+        that is, y is statistically independent of all the explanatory vars
+    HA: At least one β is not equal to 0
+        this states that at least one explanatory variable is associated with y
+    F = MSR/MSE
+    when H₀ is true, F is approximately equal to 1
+    when H₀ is false, F is generally > 1
+        higher F = stronger evidence against H₀
+    the P-value is the right tail probability from a samp dist of the F statistic
+
+Confidence Interval for a Mult Regr β parameter
+    estimated slope ± t.₀₂₅(se)
+    df = n - # of params in regression equation
+
+Model Building
+    when P-value of an F test is small, we conclude that at least one x
+        variable affects y
+    we can use more narrowly focused t tests to judge which effects are nonzero
+        t tests are always done after an F test
+        this prevents having one t test be significant from random variation
+            when there are truly not effects on population
+    if we find that the plausible values for a parameter are all near zero, we
+        drop that predictor from the model
+
+Process of Multiple Regression
+    1. Identify response and potential explanatory vars
+    2. Create a multiple regression model:
+        perform appropriate tests (F and t) to see if and which x vars have a
+            statistically significant effect in predicting y
+    3. Plot y vs y-hat for resulting models and find R and R2 values
+    4. Check assumptions (residual plot, randomization, residuals histogram)
+    5. Chose appropriate model
+    6. Create confidence intervals for slope
+    7. Make predictions at specified levels of x vars
+    8. Create prediction intervals
+
+Indicator Variables
+    used to specify categories of a categorical x variable
+        equals 1 if the observation is in that category, else 0
+    a categorical var with more than two categories uses an additional var for
+        each category
+        3 categories: x₁ = 1,0; x₂ = 1,0
+            if x₁ = x₂ = 0, then it is the third category, we do not need a third x
+
+Logistic Regression
+    used when y is categorical
+    denote possible outcomes of y with 0 and 1
+        the population mean of the 0 and 1 scores = the pop proportion of
+            successes for the response variable
+        so, μy = p, which also represents probability
+    for a single x var, p = α + βx
+        this is usually inadequate for comparing multiple x vars
+    for multiple x vars:
+        p = (e^(α+βx))/(1 + e^(α+βx))
+        s shaped line
+
+Ways to Interpret the Logistic Regression Model
+    the sign of β in the logistic regr model tells us whether the probability
+        of p increases or decreases as x increases
+    3 ways of interpreting the model:
+    1. to describe the effect of x, compare the estimates of p at two values of x
+        one way is to compare p-hat found at the min and max values of x
+        another is to instead use values of x to evaluate this probability that
+            are not as affected by outliers, like the 1st and 3rd quartiles
+    2. check the x value at which p = .5
+        this depends on the params α and β
+        p = .5 => x = -α/β
+    3. interpret the steepness of the curve using a straight line approximation
+            at p = .5, the regr curve has a slope β/4
+            this represents the approx change in p for a one unit increase of x,
+                when x is close to the value at which p = .5
+            tangent lines at other points have weaker slopes
