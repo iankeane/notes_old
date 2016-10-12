@@ -793,3 +793,139 @@ Telescopes
         can only be improved by building a bigger primary mirror
         resolution is the inverse of the size of the mirror
 
+
+Fri Sep 30 12:22:37 EDT 2016
+----------------------------
+
+
+Telescope Resolution
+    ability to see small angles
+        resolution angle is called α for some reason
+        it is equivalent to θ in the small angle formula
+        α = 2.06*10^6(λ/D)
+
+Wavelengths
+    -----------------------(λ+)---------------------------->
+    radio microwave infrared optical ultraviolet x-ray γ-ray
+    1950s 1960s     1980s            1970s       1990s 1990s
+    <----------------------(f-)-----------------------------
+
+Adaptive Optics
+    the earth's atmosphere blurs images
+    adaptive opics deform the mirror of the telescope to account for atmosphere
+        atmosphere distortions are detected by a laser
+
+Radio Astronomy
+    single disk
+        uses one large dish
+    interferometry
+        uses multiple dishes and combines the data
+
+
+Mon Oct  3 12:21:22 EDT 2016
+----------------------------
+
+
+Exam 3 - Monday, Oct 17
+Ch 5-7
+
+Ch 7 is not on syllabus, but we will cover part of it between ch 6 and 19
+
+
+Wavelengths
+    Radio and Optical astronomy can be done from the ground
+        the rest have to be done from space
+    Instrumental revolutions in Astronomy
+        1. Telescope - 1600s
+        2. Spectroscopy - late 1800s
+        3. space based EM spectrum - post 1950
+    UV (first in 1970s)
+        IUE (1970s), FUSE (1999)
+        used for spectroscopy
+            spectroscopy plots brightness as a function of freq or λ
+    Infrared (first in 1980s)
+        IRAS, spitzer, hershel, JWST
+        have to be kept cold, eventually run out
+            low temp prevents the telescope from picking up its own radiation
+
+
+Wed Oct  5 12:10:13 EDT 2016
+----------------------------
+
+
+Interaction of Electromagnetic Radiation with Matter
+    a hydrogen atom is basically a proton surrounded by an electron
+        electrons can be found at various "energy levels"
+        these determine distance from the nucleus
+        electron can only be at one of these levels, which have a specific
+            level of energy
+            ex: if hydrogen has e levels of 3,7,15 and 35, electrons can only
+                be at these levels
+                can not go below 3
+            transition between energy levels is discrete
+                macroscopic world is continuous, atomic is discrete
+        elctrons can move upward between levels if give the right amount of
+            energy via collision
+            this is called a quantum jump
+            if you give it more energy than required, it will not move
+            we can also accomplish this using photons
+                the electron will absorb the photon if the energy is exactly
+                    enough to cause a jump
+        elctrons can move downward between levels if give the right amount of
+            energy via collision in the opposite direction
+            can also happen by emitting photons
+                this causes the electron to emit light
+
+Different Types of Spectra
+    a spectrum is the distribution of the brightness of light as a function of
+        f or λ
+        spectrum of the sun can be observed using a prism
+    3 types of spectrum
+        1. continuous spectrum
+            e.g. thermal radiation
+                a blackbody is a perfect absorber and emitter
+                    a perfect blackbody doesn't exist
+                    hot dense gas is close
+        2. absorption line spectrum
+            e.g. colder gas
+                the electrons absorb some photones, creating gaps in the spectrum
+        3. emission line spectrum
+            e.g. colder gass
+                the electrons emit some photones, creating a limited spectrum
+
+
+Mon Oct 10 12:16:59 EDT 2016
+----------------------------
+
+
+Review
+    3 types of spectra
+        continuous
+            λmax = 0.0029/T
+                Wien's law
+                T is in kelvin, λ is in meters
+            F = σT⁴
+                σ is stefan bohzman constant
+                F is flux
+            L = (F)(Area)
+                so L = 4πR²(σT⁴)
+        absorption line
+        emission line
+
+Doppler Shift
+    Δλ/λ₀ = V/C
+        c is the speed of the wave, v is velocity
+    when an object is emmitting waves, the frequency is high as it moves
+        closer, low as it moves away
+    |   |  | | o||| | |
+              ->
+    waves pile up towards the direction the object is moving
+        this allows us to use waves to measure distance
+    objects moving toward you are "blue shifted", moving away are "red shifted"
+        this is because of the ROYGBIV system
+        R,O,Y = long, B,I,V = short
+        blue shift of other galaxies lead to the discovery of universe expansion
+
+
+
+

@@ -680,16 +680,16 @@ Circle Generators
         r = radius
         if y is iterated through, we just need to slove for x
 
-        (x-xC)^2 + (y-yC)^2 = r^2
-        x = +- (sqrt(r^2-(y-yC)^2)) + xC
+        (x-xC)² + (y-yC)² = r²
+        x = +- (sqrt(r²-(y-yC)²)) + xC
             we need both the positive and negative values to find both halves
 
         so:
             
-        xIn1 = + (sqrt((r-1)^2-(y-yC)^2)) + xC
-        xIn2 = - (sqrt((r-1)^2-(y-yC)^2)) + xC
-        xOut1= +- (sqrt(r^2-(y-yC)^2)) + xC
-        xOut2 = - (sqrt(r^2-(y-yC)^2)) + xC
+        xIn1 = + (sqrt((r-1)²-(y-yC)²)) + xC
+        xIn2 = - (sqrt((r-1)²-(y-yC)²)) + xC
+        xOut1= +- (sqrt(r²-(y-yC)²)) + xC
+        xOut2 = - (sqrt(r²-(y-yC)²)) + xC
 
         xIns are the inner points of the circle
         xOuts are the outer points
@@ -722,11 +722,11 @@ Another Description of Circle Generation Algorithm
         if there is no intersection with the inner boundary, fill between the
             outer boundaries (??)
     new xOuts
-        xOut1 = -sqrt(r^2-(y-yC+.5)^2) + xC
-        xOut2 =  sqrt(r^2-(y-yC+.5)^2) + xC
+        xOut1 = -sqrt(r²-(y-yC+.5)²) + xC
+        xOut2 =  sqrt(r²-(y-yC+.5)²) + xC
     new xIns
-        xIn1  = -sqrt((r-1)^2-(y-yC+.5)^2) + xC
-        xIn1  =  sqrt((r-1)^2-(y-yC+.5)^2) + xC
+        xIn1  = -sqrt((r-1)²-(y-yC+.5)²) + xC
+        xIn1  =  sqrt((r-1)²-(y-yC+.5)²) + xC
 
 Usefulness of Circle Generators
     circle algorithm can be adjusted to create
@@ -1365,10 +1365,10 @@ Perspective Projection
     the eye, line of site, and the point P(Xs,Ys) form another triangle (Z axis) 
         these triangles are similar
 
-                         ----|P(Xe,Ye,Ze)
-           P'(Xs,Ys) ----    |
-                ----|        |
-            ----    |S       |
+                         _.-`|P(Xe,Ye,Ze)
+           P'(Xs,Ys) _.-`    |
+                _.-`|        |
+            _.-`    |S       |
        eye A________|B_______|C
 
            |----D---|
@@ -1461,4 +1461,247 @@ format for homework:
     clip lines against a viewing area
     test bresenham first
 
+
+Wed Oct  5 07:59:43 EDT 2016
+----------------------------
+
+
+
+                         _.-`|P(Xe,Ye,Ze)
+           P'(Xs,Ys) _.-`    |
+                _.-`|        |
+            _.-`    |S       |
+       eye A________|B_______|C
+
+           |----D---|
+
+Monitor Distance
+    every monitor is designed to be viewed at a distance D
+        if we increase D, the size of objects on the monitor will increase to
+            map to the same image size for the distance
+        to the eye, there will be no difference
+
+3D Clipping
+    we form a pyramid between the eye and the viewing screen
+        four lines from the eye to the tangents at each corner of the screen
+    everything outside the pyramid is not visible
+
+
+Thu Oct  6 08:04:27 EDT 2016
+----------------------------
+
+
+3D Clipping
+    SEE FIG 1.1
+    a point is inside the viewing pyramid if:
+        -Ze <= (D/s)Xe <= Ze
+        and
+        -Ze <= (D/s)Ye <= Ze
+    if this is true for both points, a line is visible
+        apply the Cohen-Sutherland algorithm to viewport
+
+Clipping Coordinate System
+    [ Xc Yc Zc 1 ] = [ Xe Ye Ze 1 ][ N ]
+        where:
+                [ D/s 0   0   0 ]
+            N = [ 0   D/s 0   0 ]
+                [ 0   0   1   0 ]
+                [ 0   0   0   1 ]
+    equivalently:
+        Xc = Xe + D/s
+        Yc = Ye + D/s
+        Ze = Ze
+
+    conditions for clipping using the clipping coordinate system:
+        (-Zc <= Xc <= Zc) and (-Zc <= Yc <= Zc)
+
+    -------------- _
+    |            | |
+    |            | |
+    |            | 2Vsy
+    |            | |
+    |            | _
+    -------------- 
+    |----2Vsx----|
+
+    Xs = (Xc/Zc) * Vsx + Vcx
+    Ys = (Yc/Zc) * Vsy + Vcy
+
+Cohen-Sutherland Algorithm for 3D clipping
+    as before, each of the nine regions has a 4-bit code, Cx
+        (bit 1 is the least significant bit, i.e. ___x)
+        set bit 1 if Xc is to the left of the pyramid
+            Xc < -Zc
+        set bit 2 if Xc is to the right of the pyramid
+            Xc > Zc
+        set bit 3 if Xc is to the left of the pyramid
+            Yc < -Zc
+        set bit 4 if Xc is to the right of the pyramid
+            Yc > Zc
+    if:    C₀ OR  C₁ == 0000 the line is visible
+    elif:  C₀ AND C₁ != 0000 the line is invisible
+    else:  line is potentially viaible
+            compute the intersection of the line with the surface of the
+                pyramid (plane)
+            make two line segments, test each segment independently
+            if one of the segments is visible, you do not need to test the
+                other segment
+
+
+Tue Oct 11 08:09:18 EDT 2016
+----------------------------
+
+
+Recap Summary
+    1. convert image from WCS to ECS
+        [ Xe Ye Ze 1 ] = [ Xw Yw Zw 1 ] [V]
+            V is the viewing transformation
+    2. convert to the CCS
+        [ Xc Yc Zc 1 ] = [ Xe Ye Ze 1 ] [N]
+            a point is visible if: (-Zc <= Xc <= Zc) and (-Zc <= Yc <= Zc)
+    3. calculate Xs and Ys
+        Xs = (Xc/Zc) * Vsx + Vcx
+        Ys = (Yc/Zc) * Vsy + Vcy
+
+The Viewing Transformation
+    move the WCS to the center of the ECS
+    rotate and flip the WCS until WCS and ECS are superimposed on each other
+        we always assume that the Xe axis lies on the Z plane we are working with
+
+    steps to find V:
+        1. Translate
+
+    ex:
+        consider a cube defined in the WCS by the lines: 
+            AB, BC, CD, DA, EF, FG, GH, HE, AE, BF, CG, DH
+        the coordinates of these lines are:
+              | Xw | Yw | Zw
+            ------------
+            A | -1 |  1 | -1        A_________B
+            B |  1 |  1 | -1        /|       /|
+            C |  1 | -1 | -1      E/_|_____F/ |
+            D | -1 | -1 | -1       | |      | |
+            E | -1 |  1 |  1       | |______|_| 
+            F |  1 |  1 |  1       |/D      |/ C
+            G |  1 | -1 |  1       |________|
+            H | -1 | -1 |  1      H         G
+
+        we will observe this cube from a point (6,8,7.5) with the viewing axis
+            Ze pointed at the origin of the WCS
+        we assume that Xe axis lies on the Z = 7.5 plane
+            this is the general case, we always assume that the Xe axis lies on
+                the Z plane we are working with
+
+        step 1: Translate
+             [ 1   0   0    0 ]
+             [ 0   1   0    0 ]
+             [ 0   0   1    0 ]
+             [-6  -8  -7.5  1 ]
+             (-Xe -Ye -Ze)
+
+        step 2: Rotate
+            [ 1  0  0  0 ]
+            [ 0  0 -1  0 ]
+            [ 0  1  0  0 ]
+            [ 0  0  0  1 ]
+
+            this rotation matrix is a constant (never will be different)
+
+        step 3: Rotate about Y axis
+            [ -.8   0   .6   0 ]
+            [   0   1    0   0 ]
+            [ -.6   0  -.8   0 ]
+            [   0   0    0   1 ]
+
+            this comes from:
+                [ -cosθ    0   sinθ    0 ]
+                [     0    1      0    0 ]
+                [ -sinθ    0  -cosθ    0 ]
+                [     0    0      0    1 ]
+
+            periodic functions here are calculated as:
+                sinθ = x/(sqrt(x²+y²))
+                cosθ = y/(sqrt(x²+y²))
+                    we can do this because it is based on triangles
+        
+        step 4:
+            [ 1   0   0   0 ]
+            [ 0  .8  .6   0 ]
+            [ 0 -.6  .8   0 ]
+            [ 0   0   0   1 ]
+
+            it is a coincidence that these numbers are the same as in step 3
+            
+            [ 1     0     0    0 ]
+            [ 0  cosθ  sinθ    0 ]
+            [ 0 -sinθ  cosθ    0 ]
+            [ 0     0     0    1 ]
+
+
+            periodic functions here are calculated as:
+                sinθ =           z/sqrt(z²+(sqrt(x²+y²)²)
+                sinθ = sqrt(x²+y²)/sqrt(z²+(sqrt(x²+y²)²)
+        
+        step 5: flip the Z axis
+
+            [ 1  0  0  0 ]
+            [ 0  1  0  0 ]
+            [ 0  0 -1  0 ]
+            [ 0  0  0  1 ]
+
+            this matrix is constant
+
+        V  = T₁ * T₂ * T ₃ * T₄ * T₅
+        VN = T₁ * T₂ * T ₃ * T₄ * T₅ * N
+
+
+
+Wed Oct 12 08:04:51 EDT 2016
+----------------------------
+
+
+Viewing Transformation
+    [V] translates the WCS to ECS
+    
+    ex: (same cube from yesterday)
+        assume that your VP is 1024 px
+        then Vcx = Vcy = Vsy = Vsx = 1023/2
+        D = 60
+        S = 15
+            [ 4 0 0 0 ]
+        N = [ 0 4 0 0 ]
+            [ 0 0 1 0 ]
+            [ 0 0 0 1 ]
+
+            [ -3.2 -1.4 -.5   0 ]
+        VN =[  2.4 -1.9 -.6   0 ]
+            [    0  3.2 -.6   0 ]
+            [    0  0    12.5 1 ]
+
+        [ Xc Yc Zc 1 ] = [ Xw Yw Zw 1 ] * [VN]
+
+
+        visible if (-Zc <= Xc <= Zc) and (-Zc <= Yc <= Zc):
+            all of these are visible
+
+        Xs = (Xc/Zc) * Vsx + Vcx
+        Ys = (Yc/Zc) * Vsy + Vcy
+
+          | Xc   | Yc   | Zc   | Xs  | Ys
+          -------------------------------
+        A |  5.6 | -3.7 | 12.9 | 733 | 366
+        B |  -.8 | -6.6 | 12.0 | 477 | 231
+        C | -5.6 | -2.7 | 13.3 | 296 | 407
+        D |   .8 |   .2 | 14.2 | 540 | 517
+        E |  5.6 |  2.7 | 11.7 | 755 | 630
+        F |  -.8 |  -.2 | 10.8 | 474 | 504
+        G | -5.6 |  3.7 | 12.1 | 274 | 668
+        H |   .8 |  6.6 | 13.0 | 543 | 769
+
+Note on 3D clipping
+    3D clipping can be accomplished in the following way:
+        calculate the table above
+        do 2D clipping for Xs, Ys
+    this causes redundant computations
+        
 
