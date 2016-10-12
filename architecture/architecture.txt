@@ -254,18 +254,6 @@ Instruction Performance
     ET = (IC * CPI) / CR
 
 
-1.6
-
-The Power Wall
-
-
-1.8
-
-Amdahl's Law
-
-MIPS
-
-
 2.2
 
 Operations of Computer Hardware
@@ -379,11 +367,6 @@ Endianness
     Little Endian
         use the rightmost or "little end" byte as the word address
 
-
-2.4
-
-
-2.5
 
 Registers
     Variable | Number(s) | Use              | Preserved on Call
@@ -528,40 +511,6 @@ Nested Procedures
         jr   $ra            # return to caller
             
 
-The Stack
-
-
-Preserved and Non-Preserved Registers
-
-Global Pointer
-
-Frame Pointer
-
-The Heap
-
-Recursion
-
-
-2.9
-
-
-2.10
-
-C.1
-
-C.2
-
-C.3
-
-C.5
-
-C.7
-
-C.8
-
-C.9
-
-C.10
 
 Identity law:      A + 0 = A
                    A · 1 = A
@@ -593,22 +542,6 @@ Multiplexors
             signal from the decoder
         3. A single large OR gate that incorporates the outputs of the AND
             gates
-
-PLA's
-
-ROM
-
-PROM
-
-Don't Cares
-
-Arrays of Logic Elements ***
-
-C.4
-
-C.5
-
-1-Bit ALU
 
 
 4.3
@@ -724,8 +657,6 @@ Beq
         although the zero output always signals if the output is zero, we will
             only use it to implement the equal test of branches
 
-
-        PUT REQUIRED COMPONENTS FOR EACH COMMAND
 
 Jump
     operates by replacing the lower 28 bits of the PC with the lower 26 bits of
@@ -1220,7 +1151,6 @@ Steps Taken on Cache Miss
     4. Restart the instruction execution at the  first step, which will refetch
         the instruction, this time  finding it in the cache.
 
-!!! CLEAN UP !!!
 
 Handling Writes
     write-through:
@@ -1246,8 +1176,6 @@ Handling Writes
         is replaced
 
         MORE IN BOOK IF NEEDED 
-
-
 
 
 5.3
@@ -1288,18 +1216,6 @@ Virtual Memory
         VM "block" is called a page
         VM "miss" is called a page fault
     while programs are running, pages are being swapped in and out of memory to disk
-
-
-
-5.4
-
-5.5
-
-7.1
-
-7.2
-
-7.3
 
 
 ----------------------------
