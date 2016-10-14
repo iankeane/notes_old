@@ -1,0 +1,109 @@
+
+10.1
+
+Bivariate Analysis
+    the category of stats methods used when we have two vars
+        one of the two vars is the outcome var
+            this is called the response variable
+            the var on which comparisons are made
+        the other is a binary var that specifies the categories
+            this is the explanatory var
+            specifies the groups
+
+Dependent and Independent Samples
+    most comparisons of groups use ind samples
+        the observations in one sample are independent of those in the other sample
+        e.g. randomized experiments that randomly allocate subjects to two treatments
+        or when an obs. study separates subjects according to their value for an explanatory var
+    when two samples have the same subjects, they are dependant
+        dep. samples also result when data are matched pairs
+        they also occure when each subject is observed two times
+            so we have two samples from the same people
+
+Comparing Two Proportions
+    for cat. response vars, infrences compare groups in terms of their pop.
+        proportions in a particular category
+    p₁ = pop. proportion of group one
+    p₂ = pop. proportion of group two
+    we can compare the groups by (p₁-p₂)
+    this is estimated by (phat₁ - phat₂)
+
+SE for Comparing Two Proportions
+    (phat₁ - phat₂) has a standard deviation
+        this SE describes variability around the mean of the samp distr of the estimate
+
+C.I. for the Diff Between Two Population Proportions
+    a C.I. takes the estimate and adds/subs a margin of error based on the SE
+    the samp. dist. of (phat₁ - phat₂) is approximately normaly when the sample size is large
+        to get the margin of error, we multiply the SE by a z-score from the norm distr table
+            (phat₁ - phat₂) += z(SE)
+    we can be x% confident that the pop prop of x is between (interval) higher for p₁ than for p₂
+
+Interpreting a C.I. that Compares Proportions
+    check whether - falls in the C.I.
+        if so, it it is possible that phat₁ = phat₂, but not necessarily true
+    if all values in the C.I. for (phat₁ - phat₂) are positive, (p₁ - p₂) > 0, or p₁ > p₂
+    if all values in the C.I. for (phat₁ - phat₂) are negative, (p₁ - p₂) < 0, or p₁ < p₂
+        the interval shows how much larger/smalle p₁ might be
+    the magnitude of values in the C.I. tells you how large any true difference is
+        if the C.I. is near 0, the true diff may be relatively small
+
+Two-Sided Significance Test for Comparing Two Population Proportions
+    1. Assumptions:
+        a categorical response var for two groups
+        ind. random smples
+        n₁ and n₂ are large enough to have 5 succ/4 fails in each group if
+            using a two sided alternative
+    2. Hypothesis:
+        Null: H₀: p₁ = p₂ (or p₁-p₂ = 0)
+        Alt: Ha: p₁ != p₂ (or one sided Ha)
+    3. Test Statistic:
+        z = (phat₁ - phat₂)/se
+        se = sqrt(phat(1-phat)((1/n₁)+(1/n₂)))
+            where phat is the pooled estimate
+    4. P-value:
+        p-val = two-tail probabilty from the st. norm. dist. of values more
+            extreme than observed z test stat if H₀ is true
+    5. Conclusion:
+        smaller P-vals give stronger evidence against H₀
+        check against significance level
+
+One Sided Ha
+    the one-sided Ha:p₁ > p₂ predicts (phat₁-phat₂) > 0 and z >0
+        the p-val is then a right0tail probability
+
+10.2
+
+Comparing two means
+    we can compare two groups on a quant. resp. var by comparing their means
+    the SE of the samp distr of (xbar₁ - xbar₂) describes how well the
+        difference (xbar₁ - xbar₂) estimates the difference between the population means
+
+Interpreting a C.I. for a Difference of Means
+    check whether 0 falls in the interval
+        if it does, it is possible that μ₁ = μ₂
+    if interval > 0, infer μ₁ > μ₂
+    if interval < 0, infer μ₁ < μ₂
+
+Significance Tests Comparing Population Means
+    1. Assumptions:
+        a quant. resp. var for two groups
+        ind. random samples
+        approx. norm pop. dist for each group
+    2. Hypotheses:
+        H₀: μ₁ = μ₂
+        Ha: μ₁ != μ₂ (or one-sided Ha)
+    3. Test Statistic:
+        t = (xbar₁-xbar₂)/SE
+        SE = sqrt((s₁²/n₁)/(s₂²/n₂))
+    4. P-value:
+        pval = two tail probability from t dist of values even more extreme
+            than observed t stat, assuming H₀ is true with df
+    5. Conclusion:
+        Smaller -vals give stringer evidence against H₀
+
+
+
+TODO:
+    compile all summaries so far
+

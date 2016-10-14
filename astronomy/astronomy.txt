@@ -927,5 +927,24 @@ Doppler Shift
         blue shift of other galaxies lead to the discovery of universe expansion
 
 
+Wed Oct 12 12:22:02 EDT 2016
+----------------------------
 
 
+Formation of the Solar System
+    8 planets
+        4 inner planets, all within 1.6 AU of the sun
+        4 outer planets
+            5,10,20,30 AU
+    2 debris zones
+        asteroid belt (3-4 AU)
+        kuiper belt (30-50)
+            pluto is part of the kuiper belt
+            some objects in the kuiper belt are larger than pluto
+    1 distant zone of small zone
+        oort cloud
+            100 AU-100,000 Au
+    alpha centauri (nearest star) is 250,000 AU
+        so oort cloud extends halfway to the nearest star
+
+    
