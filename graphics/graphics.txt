@@ -1015,7 +1015,7 @@ Cohen-Sutherland Algorithm
         3. else:
             the line is potentially visible
             find the intersection of the line with a side of the viewing area
-                (extended side if necessary
+                (extended side if necessary)
             consider the line to be to have two segments
                 go through the tests considering each segment if necessary
                     (loop through the if statements again)
@@ -1047,7 +1047,7 @@ Cohen-Sutherland Algorithm
                 segment B:
                     __|__|__
                     __|__|xx
-                     | |
+                      |  |
                     0010 or 0010 = 0010 (if fail)
                     0010 and 0010 = 0010 (elif pass)
                     skip

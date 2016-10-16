@@ -100,8 +100,14 @@ Significance Tests Comparing Population Means
         pval = two tail probability from t dist of values even more extreme
             than observed t stat, assuming H₀ is true with df
     5. Conclusion:
-        Smaller -vals give stringer evidence against H₀
+        Smaller pvals give stringer evidence against H₀
 
+10.3
+
+
+Comparing Means, Assuming Equal Populatoin SD's
+    used when it is reasonable to expect the variability as well as the mean to be the same
+        requires the assumption σ₁ = σ₂
 
 
 TODO:
