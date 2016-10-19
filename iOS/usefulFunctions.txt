@@ -1,0 +1,4 @@
+becomeFirstResponder()
+resignFirstResponder()
+touchesBegan()
+
