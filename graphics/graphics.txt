@@ -1832,14 +1832,15 @@ Exam Questions
                 the introduction of the color lookup table does not change the
                     number of simultaneous colors that can be displayed
                 CLT
-            -----------
-       |    |
-       |    |
-      512   |  1152B
-       |    |
-       |    |
-            ------------
-                  w
+      ---   ------------
+       |    |          |
+       |    |          |
+      512   |  1152B   |
+       |    |          |
+       |    |          |
+      ---   ------------
+            |----------|
+                 w
 
                   w = 1152B * 8b / 512 = 18
                   2⁶ = 64
@@ -1852,3 +1853,78 @@ Exam Questions
         b) modulo operator in the display loop
 
 
+Wed Oct 19 07:58:25 EDT 2016
+----------------------------
+
+
+3D Rotation About an Axis Summary
+    one way is to line up the object around the axis
+        1. translate so that the axis passes through the origin of the coordinate system
+        2. rotate about the x axis so that the axis of rotation lies on the XZ plane
+        3. rotate about the y axis so that the y axis is lined up with the Z axis
+        4. apply the rotation
+        5. undo rotation about y axis
+        6. undo rotation about x axis
+        7. undo translate
+
+    we need to compute the angle of rotation required to get to these positions
+
+Direction-Cosine Method
+    
+    P₁(x₁,y₁,z₁)
+    |    x        ->
+    |   / \    V(P₁,P₂)
+    |  /    \ 
+    |_/______x  P₂(x₂,y₂,z₂)
+    Origin
+
+    P₁ and P₂ are vectors
+
+    V defined by [ x₂-x₁, y₂-y₁, z₂-z₁ ]
+
+    the direction cosine of V is:
+        a = x/d, b =y/d, c = z/d
+            when d = sqrt(x²+x²+x²)
+
+    if vectors have the same directions, the vectors are equal
+        this does not mean they lie in the same place
+        in order to fix a vector, we need to know one point on the vector
+
+    ex:
+        
+        P₁(2,4,8)
+        |    x        ->
+        |   / \    V(P₁,P₂)
+        |  /    \ 
+        |_/______x  P₂(6,16,4)
+        Origin
+
+        V = [ 4 12 -4 ]
+        d = sqrt(16 + 144 + 16) = 13.2
+
+        the direction cosine of V is [ 4/13.2 12/13.2 -4/13.2 ]
+
+3D Rotation About an Arbitrary Axis by a Given Angle
+    (x₁,y₁,z₁) lies on the axis of rotation
+
+    1. translate so that the axis passes through the origin of the coordinate system
+        we need one point in the vector that lies on the axis of rotation
+                [ 1     0   0  0 ]
+        T   =   [ 0     1   0  0 ]
+                [ 0     0   1  0 ]
+                [ -x₁ -y₁ -z₁  1 ]
+
+    2. rotate about the X axis so that the axis of rotation is in the XZ plane
+                [ 1    0    0   0 ]
+        Rx(α) =  [ 0  c/D  b/D   0 ]
+                [ 0 -b/D  c/D   0 ]
+                [ 0    0    0   1 ]
+
+    cos(α) = c/D, where D = sqrt(b²+c²)
+
+    3. rotate about the Y axis to bring the axis of roatation onto the Z axis
+    Ry(β)
+    4. rotate the object by θ degrees about the Z axis
+    5. undo step 3
+    6. undo step 2
+    7. undo step 1

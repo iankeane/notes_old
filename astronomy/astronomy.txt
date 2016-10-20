@@ -947,4 +947,61 @@ Formation of the Solar System
     alpha centauri (nearest star) is 250,000 AU
         so oort cloud extends halfway to the nearest star
 
-    
+
+Wed Oct 19 12:24:02 EDT 2016
+----------------------------
+
+
+Formation of the Universe
+    all stars form from clumps in cold molecular clouds
+        concentration of H, He, H₂, and other elements
+    the sun forms from a molecular cloud with an accretion disc
+        5 billion years ago
+        at this point the sun was still a protostar
+        as the protostar shrinks, it transfers angular momentum to the
+            accretion disk
+        without the accretion disk, the protostar would fly apart and never
+            become a star
+    planets form from materials in the accretion disk
+        start out as "protoplanetary disks"
+    after the protostar finishes shrinking and heating it cools
+        at this point solid particles start to form (dust)
+    elements with high boiling points are called refractory elements
+        metals, etc
+    elements with low boiling points are called volitiles
+        ices (frozen C0₂, H₂0, CH₄, NH₃)
+
+     HOT          COOL __,,__
+    __________________/______\___________________
+    `-------------------------------------------`
+                      \__  __/
+                         ``
+  refractory/    Metals
+     ices
+
+    objects form from the dust:
+        dust -> "dust bunnies" (several meters)
+            electrostatic processes
+            less than 1m years
+        "dust bunnies" -> planetesimal (few km)
+            accretion (sticking/glancing collision)
+            a few hundred million years
+        planetesimal -> planet (thousands of km)
+            planitesimals combine together to form planets
+            few million years
+            if this window is missed, the solar system will not form
+
+        accretion disk
+    sun       /
+    /        /
+5   4.6     4.0   
+|----|-------|
+         \
+      heavy bombardment
+
+    at this point the inner planets are made of refractiveelements
+        the gas giantas start to get bigger by pulling in ice
+        the increased mass from the ice allows them to pull in more gas
+            there wasn't enough gas left for the last two outer planets to become as
+                large as the first two
+        tremendous pressure causes the gas giants to shrink
