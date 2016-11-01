@@ -1909,22 +1909,420 @@ Direction-Cosine Method
 
     1. translate so that the axis passes through the origin of the coordinate system
         we need one point in the vector that lies on the axis of rotation
+        T =
                 [ 1     0   0  0 ]
-        T   =   [ 0     1   0  0 ]
+                [ 0     1   0  0 ]
                 [ 0     0   1  0 ]
                 [ -x₁ -y₁ -z₁  1 ]
 
     2. rotate about the X axis so that the axis of rotation is in the XZ plane
+        Rx(α) = 
                 [ 1    0    0   0 ]
-        Rx(α) =  [ 0  c/D  b/D   0 ]
+                [ 0  c/D  b/D   0 ]
                 [ 0 -b/D  c/D   0 ]
                 [ 0    0    0   1 ]
 
-    cos(α) = c/D, where D = sqrt(b²+c²)
+            cos(α) = c/D, where D = sqrt(b²+c²)
 
     3. rotate about the Y axis to bring the axis of roatation onto the Z axis
-    Ry(β)
+        Ry(β) =
+                [  D 0 a 0 ]
+                [  0 1 0 0 ]
+                [ -a 0 D 0 ]
+                [  0 0 0 1 ]
+    
+            where D = cosβ= sqrt(b²+c²) 
+                and sinβ = a
+
     4. rotate the object by θ degrees about the Z axis
+        Rz(θ) = 
+                [  cosθ  sinθ  0  0 ]
+                [ -sinθ  cosθ  0  0 ]
+                [     0  0     1  0 ]
+                [     0  0     0  1 ]
+
+            θ is given in the problem definition
+
     5. undo step 3
+        trigonometric identities used here:
+            cos(x) =  cos(-x)
+            sin(x) = -sin(-x)
+        
+        Ry(-β) =
+                [ D  0 -a  0 ]
+                [ 0  1  0  0 ]
+                [ a  0  D  0 ]
+                [ 0  0  0  1 ]
+
     6. undo step 2
+        Rx(-α) =
+                [ 1    0    0   0 ]
+                [ 0  c/D -b/D   0 ]
+                [ 0  b/D  c/D   0 ]
+                [ 0    0    0   1 ]
+
     7. undo step 1
+        T⁻¹ =
+                [ 1  0  0  0 ]
+                [ 0  1  0  0 ]
+                [ 0  0  1  0 ]
+                [ x₁ y₁ z₁ 1 ]
+
+    Concatenate:
+        R(θ) = T * Rx(α) * Ry(β) * Rz(θ) * Ry(-β) * Rx(-α) * T⁻¹
+
+
+Thu Oct 20 08:03:27 EDT 2016
+----------------------------
+
+
+Defining the Axis of Rotation
+    1. The coordinates of two points on the desired axis
+            x₂-x₁, y₂-y₁, z₂-z₁ = x, y, z
+            a,b,c = x/D, y/D, z/D where D = sqrt(x²+x²+x²)
+    2. We are given the direction cosine (a,b,c) and one point that lies on the axis
+
+
+Tue Oct 25 08:04:31 EDT 2016
+----------------------------
+
+
+Image Data Structures
+    1. Frame buffer representation of an image
+        grid of RGB intensity values
+    2. Run-length encoding
+        if you pick a pixel on either side of a screen, the probability is high
+            that they will have the same color
+        RL encoding exploits the horizontal coherence between adjacent pixels
+        lists the number of adjacent pixels
+            this data structure works very naturally with the hardware
+        ex:
+             _______________ 
+            |2|2|2|2|2|4|4|4|  -> 2 5 4 3      -> (2, 5), (4, 3) 
+            |1|1|2|2|2|2|1|1|  -> 1 2 2 4 1 2  -> (1, 2), (2, 4), (1, 2)
+            | | | | | | | | |  ...
+
+        -> (2, 5), (4, 3), (1, 2), (2, 4), (1, 2)
+    3. Quad Tree
+        tree where each node has four children
+        converts an image to boxes of the same picture
+            boxes get smaller until they are 1px in size
+        if the all pixels in the image are the same color:
+            return color
+        else:
+            divide int four quadrant
+            run recursively on four quadrants
+        ex:
+             _______________
+            |2|2|2|2|4|2|4|4|
+            |2|2|2|2|4|4|4|4|
+            |2|2|2|2|4|4|4|4|
+            |2|2|2|2|4|4|4|4|
+            |9|9|9|9|9|9|9|9|
+            |1|4|1|8|9|9|9|9|
+            |1|4|1|8|9|9|9|9|
+            |2|4|1|9|9|9|9|9|
+                    ___ 
+            order: |1|2|
+                   |3|4|
+
+             _______________
+            |       |_|_|   |
+            |       |_|_|___|
+            |       |   |   |
+            |_______|___|___|
+            |_|_|_|_|       |
+            |_|_|_|_|       |
+            |_|_|_|_|       |
+            |_|_|_|_|_______|
+
+            R,2,R,R,4,2,4,4,4,4,4,
+            R,R,9,9,1,4,R,9,9,1,8
+            R,1,4,2,4,R,1,8,1,9,9
+
+
+        Rebuilding the image from the string representation of the quad tree
+             _______________
+            |       |4|2| 4 |
+            |  2    |4|4|___|
+            |       | 4 | 4 |
+            |_______|___|___|
+            |9|9|9|9|       |
+            |1|4|1|8|  9    |
+            |1|4|1|8|       |
+            |2|4|1|9|_______|
+
+        
+        Tree Representation:
+                 _R__
+                / /\ \
+               2 /  \ 9
+             _R    R_____________
+            //\\   /     /  \    \
+            R_444  R_   R_   R_   R_
+           //\\   //\\ //\\ //\\ //\\
+          4244    9914 9918 1424 1819
+
+        
+        With R's replaced with averages of children:
+                 _5__
+                / /\ \
+               2 /  \ 9
+             _3.9  5.1____________
+            //\\   /     /    \   \
+           3.5 444 5.8  6.8  2.8  4.8
+           //\\   //\\ //\\ //\\ //\\
+           4244   9914 9918 1424 1819
+
+        This tree can be used to display the image at different resolutions
+            1x1 px:
+             ___
+            | 5 |
+            |   |
+
+            2x2 px:
+             _______
+            | 2 |3.5|
+            |5.1| 9 |
+
+            4x4 px:
+             _______________
+            |   2   |3.5| 4 |
+            |_______|_4_|_4_|
+            |5.8|6.8|   9   |
+            |2.8|4.8|       |
+
+
+        this is how resolution scaling is achieved
+
+
+Wed Oct 26 08:02:09 EDT 2016
+----------------------------
+
+
+Image Data Structures (contd)
+    quad trees require an image of 2ⁿ*2ⁿ resolution
+        these types of data structures are called 2ⁿ structures
+    the ordering of information in a quad tree can be used to rearrange an image
+    ex:
+         _______
+        |1|1|6|6|
+        |1|1|6|6|
+        |2|1|6|1|
+        |3|4|6|2|
+    
+    R_____
+   // \   \
+   16 R__  R__
+      //\\ //\\
+      2134 6162
+
+    3.3
+   //\\
+   1 6 5.5 3.8
+      //\\ //\\
+      2134 6162
+
+    1x1 px:
+        
+        3.3
+
+    2x2 px:
+        
+        1 6
+        3 4
+
+    4x4 px:
+
+        1    6
+
+       2 1  6 1
+       3 4  6 2
+
+    the quad tree data structure is a pyramidal data structure
+        we can implement this without using pointers and data structures
+        often we will just store the information in a pyramid
+
+                 etc             -------
+               256x256         -/_______\-
+               512x512       -/___________\-
+              1024x1024     /_______________\
+
+    images stored in a pyramidal structure are used heavily in computer vision
+        when trying to recognize an object in an image, a robot will start with
+            the lower resolutions
+        this enables focusing on a section of an image before examining the
+            whole image at high resolution
+        the summation of all the pixels in all the images of the pyramid above
+            a given image is lower than the number of pixels in that image
+            this means that we can do computations significantly faster using
+                this method
+        we can further improve this by looking for objects around the target
+            an example is looking for a pen on a desk
+                first we can look for the larger object (the desk)
+                this limits the range of focus
+
+
+    Homework:
+        google "image pyramid"
+
+
+Thu Oct 27 08:05:55 EDT 2016
+----------------------------
+
+Voxels
+    pixels with a third dimension
+        have a volume associated with them
+    world is considered to be a cube, and your image is embedded in that cube
+    we can use the same pyramidal structure by running the same algorithm
+        if all colors in the cube are not the same color, decompose into
+            smaller cubes and ask the same question for each cube
+        _____________             _____________
+       /            /|           /     /      /|
+      /            / |          /_____/______/ |
+     /            /  |         /     /      /| |
+    /____________/   |        /_____/______/ | |
+    |            |   |        |     |      | |/|
+    |            |   |  =>    |     |      | / |
+    |            |   /        |_____|______|/| /
+    |            |  /         |     |      | |/
+    |            | /          |     |      | /
+    |____________|/           |_____|______|/
+
+    this is an oct-tree data structure
+        each node has 8 children
+
+Mask/Filter/Kernel/..
+    same operation
+        "mask"   in computer graphics
+        "filter" in image processing
+        "kernel" in signal processing
+    ex:
+         _________
+        |2|1|0|1|8|
+        |1|1|2|6|2|
+        |2|3|4|1|1|
+        |1|2|4|1|8|
+
+    mask A is 3x3, represented as:
+         _____
+        |1|1|2|
+        |2|1|1|
+        |1|1|1|
+
+        1*2+1*1+2*0+2*1+1*1+1*2+1*2+1*3+1*4 = 17
+        1*1+1*0+2*1+2*1+1*2+1*6+1*3+1*4+1*1 = 21
+        ...
+         ______________
+        |  |  |  |  |  |
+        |  |17|21|..|  |
+        |  |..|..|..|  |
+        |  |  |  |  |  |
+
+        creates an image two rows and two colums smaller
+
+Expanding a Pyrimadally Stored Image
+    Zero-Order Hold Scheme:
+                      ___________
+                     |2|2|1|1|4|4|
+         _____       |2|2|1|1|4|4|
+        |2|1|4|      |6|6|1|1|4|4|
+        |6|1|4|  =>  |6|6|1|1|4|4|
+        |4|4|4|      |4|4|4|4|4|4|
+                     |4|4|4|4|4|4|
+
+        creates a boxing effect
+            moves up in size in perfect squares
+
+    First-Order Hold Scheme:
+                                                       _________ 
+         _____        _________        _________      |2|2|1|3|4|
+        |2|1|4|      |2| |1| |4|      |2|2|1|3|4|     |4|3|1|3|4|
+        |6|1|4|  =>  |6| |1| |4|  =>  |6|4|1|3|4| =>  |6|4|1|3|4|
+        |4|4|4|      |4| |4| |4|      |4|4|4|4|4|     |5|4|3|4|4|
+                                                      |4|4|4|4|4|
+
+        1. Stretch horizontally
+            place a pixel inbetween each pixel horizontally that is the average of
+                the two pixels around it
+        2. Stretch vertically
+            place a pixel between each pixel vertically that is the average of the
+                two pixels around it
+
+        this can be used to enhance digital information for computer
+            recognition tasks
+        creates a 'blurring' effect
+            if scaled up enough, eventually creates crosshatching effect
+    
+    if you subtract the first order expansion from the zero order expansion,
+        you end up with black areas where strong boundaries are
+        these boundaries end up being the most valuable information for navigation
+
+Algorithms as Masks
+    we can implement most of our operations as masks
+        GPU's are optimized for masks
+    Zero-Order Hold Scheme as a masks:
+                       _____________
+                      |0|0|0|0|0|0|0|
+        _____         |0|2|0|1|0|4|0|            ___
+       |2|1|4|        |0|0|0|0|0|0|0|           |1|1|
+       |6|1|4|  =>    |0|6|0|1|0|4|0|    MASK   |1|1|
+       |4|4|4|        |0|0|0|0|0|0|0|
+                      |0|4|0|4|0|4|0|
+                      |0|0|0|0|0|0|0|
+
+    First-Order Hold Scheme as a mask:
+                       _____________
+                      |0|0|0|0|0|0|0|
+        _____         |0|3|0|5|0|7|0|           __________
+       |3|5|7|        |0|0|0|0|0|0|0|          |.25|.5|.25|
+       |2|7|6|  =>    |0|2|0|7|0|6|0|    MASK  | .5| 1| .5|
+       |3|4|9|        |0|0|0|0|0|0|0|          |.25|.5|.25|
+                      |0|3|0|4|0|9|0|
+                      |0|0|0|0|0|0|0|
+
+Tue Nov  1 08:02:00 EDT 2016
+----------------------------
+
+Advanced Shading
+    attempts to simulate how shading occurs in real life
+        surface properties:
+            optical properties of surfaces
+                (shiny, dull, matte, transparent, refraction, etc)
+            position of surfaces
+            surface orientation with respect to light source(s)
+        light sources:
+            light-emitting sources
+            light-reflecting sources
+            three types of light:
+                point light sources:
+                    rays come from one point
+                distributed light sources:
+                    rays are emitted in parallel
+                ambient light
+
+Reflections
+    the light sources produce light reflections that are scattered in all directions
+        this scattered light is called the diffuse reflection
+        often results from the surface roughness or graininess
+            matte surfaces mainly causes diffuse reflectivity
+    shiny objects cause specular reflectivity
+        when we see an apple, we can see the whole apple due to diffuse reflectivity, 
+            but we see the shiny reflective spot due to  diffuse reflectivity
+    point light sources create bright spots called specular reflections
+
+Calculating Diffuse Reflection
+    if a surface is exposed only to ambient light, then the intensity of any
+        point on a surface can be calculated as follows:
+            I = k * Ia
+                Ia = intensity of the ambient light
+                k = coefficient of reflection
+                k is adjusteded by the person designing the graphic
+                    0 <= K <= 1
+        the reflectivity of a mirror would be close to 1
+        if the reflectivity is 0, all light is being absorbed
+    the intensity of any point on a surface that is exposed only to a point
+        light source can be calculated using Lambert's Cosine Law
+        at the same distance, a reflection will be brighter the closer the PLS
+            is to being perpendicular with the surface
+

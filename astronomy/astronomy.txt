@@ -1005,3 +1005,106 @@ Formation of the Universe
             there wasn't enough gas left for the last two outer planets to become as
                 large as the first two
         tremendous pressure causes the gas giants to shrink
+
+
+Fri Oct 21 12:22:44 EDT 2016
+----------------------------
+
+
+Methods for Finding Solar Systems
+    planets that orbit a non-sun star are called exoplanets
+        first exoplanets found in the late 80's
+        now several thousands have been found
+    1. Astrometric Method:
+        observe the "proper motion" of a star over decades
+            proper motion is a star's motion relative to other stars in the sky
+        if there is a jupiter sized planet, the line of proper motion will wobble
+            the sun wobles in place because of jupiter's mass
+        in practice this method has never worked
+    2. Doppler Shift Method:
+        analyze the spectrum of the star
+            if it is wobbling, it will red shift/blue shift with the motion
+    3. Transit Method:
+        most successful method
+            edge of the ecliptic plane of the system has to facing the observer
+                for this to work
+        the brightness of the star will dip periodically as a planet passes it
+    4. Microlensing:
+        the method has found about a dozen panets
+            this also requires that we observe the system edge-on
+        detects light that has been focused by the planet when it is directly
+            between us and the star
+        this works with smaller planets than the transit method
+    5. Direct Imaging:
+        this method doesn't seem to possible because of the dynamic range of cameras
+            the star is always much much brighter than a planet
+        sometimes interferometry can be used to cancel the light of the star to
+            see planets
+
+
+Wed Oct 26 12:21:10 EDT 2016
+----------------------------
+
+
+Atmospheres
+    primary
+        no terrestrial planets have a primary atmosphere
+            this only exists in the protoplanet phase
+            H, He gas
+        the earth had a primary atmosphere billions of years ago
+    secondary
+        currently earth's atmosphere is 77% N₂, 21% O₂, trace argon, H₂O, CO₂
+            the earth's original secondary atmosphere was not this
+            original theory was that this atmosphere came from the planet's
+                interior through outgassing volcanic events, etc
+            the reason the earth's atmosphere is different from other planets
+                is because CO₂ readily dissolves in water
+
+    current astmospheres:
+        Venus - 96% CO₂, 3% N₂, 90 atm
+        Mars  - 95% CO₂, 4% N₂, .0006 atm
+            these secondary atmospheres mostly came from outgassing
+
+Earth Timeline
+
+4.5 BYA
+\   4 BYA
+ \    \
+|-#----#---------------------------------------------------------------|
+  |----|
+    /
+ Intense
+Bombardment
+
+
+Intesnse Bombardment
+    during this time, the moon forms from giant impact
+    giant impact reduces the size of mercury
+    giant impact reverses venus' poles, reversing the planet's spin
+        venus is the only planet that revolves in reverse as it goes around the sun
+        uranus orbits the sun on its side (another giant impact)
+    whenever a planet is impacted in this way it melts
+    
+Earth's Magnetic Field
+    dipole field
+    created by currents in the earth's core
+
+    |liquid |fast |magnetic
+    |core   |rotation |field
+    
+    Mercury|Y|N|Y 
+    Venus| YNN
+    Earth|YYY
+    Mars| YYN
+    Moon|NNN
+
+
+Mon Oct 31 12:25:30 EDT 2016
+----------------------------
+
+Exam 4 moved to Nov 16
+Ch 19, 20, 21
+
+Tectonic Activity
+    planets transport heat from their interior to the outside
+
