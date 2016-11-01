@@ -1540,7 +1540,7 @@ Cohen-Sutherland Algorithm for 3D clipping
             Yc > Zc
     if:    C₀ OR  C₁ == 0000 the line is visible
     elif:  C₀ AND C₁ != 0000 the line is invisible
-    else:  line is potentially viaible
+    else:  line is potentially visible
             compute the intersection of the line with the surface of the
                 pyramid (plane)
             make two line segments, test each segment independently
@@ -2124,20 +2124,20 @@ Image Data Structures (contd)
       2134 6162
 
     1x1 px:
-        
-        3.3
+         ___
+        |3.3|
 
     2x2 px:
-        
-        1 6
-        3 4
+         ___
+        |1|6|
+        |3|4|
 
     4x4 px:
-
-        1    6
-
-       2 1  6 1
-       3 4  6 2
+       _______
+      | 1 | 6 |
+      |___|___|
+      |2|1|6|1|
+      |3|4|6|2|
 
     the quad tree data structure is a pyramidal data structure
         we can implement this without using pointers and data structures
@@ -2243,7 +2243,7 @@ Expanding a Pyrimadally Stored Image
                                                       |4|4|4|4|4|
 
         1. Stretch horizontally
-            place a pixel inbetween each pixel horizontally that is the average of
+            place a pixel between each pixel horizontally that is the average of
                 the two pixels around it
         2. Stretch vertically
             place a pixel between each pixel vertically that is the average of the
@@ -2317,7 +2317,7 @@ Calculating Diffuse Reflection
             I = k * Ia
                 Ia = intensity of the ambient light
                 k = coefficient of reflection
-                k is adjusteded by the person designing the graphic
+                k is adjusted by the person designing the graphic
                     0 <= K <= 1
         the reflectivity of a mirror would be close to 1
         if the reflectivity is 0, all light is being absorbed
