@@ -2326,3 +2326,77 @@ Calculating Diffuse Reflection
         at the same distance, a reflection will be brighter the closer the PLS
             is to being perpendicular with the surface
 
+
+Wed Nov  2 08:01:46 EDT 2016
+----------------------------
+
+
+Exam 2 will be on November 15
+Final Exam will be on Dec 13, 8:00am - 11:00am
+
+
+Steg Images
+    typical computer has a byte per color
+        this is excessive for human vision
+    every keyboard has between 128 and 256 distinct characters/control keys
+        for every keypress, a byte is used to represent that key
+        the binary representations can be found in the ASCII standard table
+    to find information in pixels: (using least significant bits)
+       R        G         B         R        G         B
+    0000000x|0000000x|00000000x  0000000x|0000000x|0000000x
+
+
+
+Thu Nov  3 08:18:22 EDT 2016
+----------------------------
+
+Calculating Reflectivity
+
+    Light UNV    
+       \   |   /
+      d \  |  /
+         \ |θ/
+    ______\|/______
+
+        UNV = unit normal vector
+        I = (K * Ip(cosθ))/d
+            the smaller the angle, the more light will be reflected
+            d = distance from the PLS to the point on the surface
+            Ip = the intensity of the PLS
+        adding in contribution from ambient light:
+            I = (K * Ia) + (K * Ip(cosθ))/d
+        if there are multiple light soreces:
+            I = (K * Ia₁) + (K * Ip₁ * cosθ)/d₂ + (K * Ip₂ * cosθ₂)/d₂ + ...
+                this is impossible to do in real time without approximation
+        for RGB intensity values:
+            Ir = (Kr * Iar) + (Kr * Ip₁r * cosθ₁)/d₁
+            Ig = ...
+            Ib = ...
+
+    ex:
+        Assuming a grey world:
+
+         PLS        PLS
+   I=802   \         / I=912
+   d=20     \      /   d=24
+             \   /
+        ___60°\/_45°__
+              A
+        
+        a) find the intensity of diffuse reflection at point A given that the
+            intensity of the ambient light is 212 and the coefficient of
+            reflection of the surface is 0.4
+
+            I = 0.4 * 212 + (0.4 * 802)/20 * cos30 + (9.4 * 912)/24 * cos45
+            I = 109
+        
+        b) assuming that we have a gray scale system with 8 bits and that the
+            maximum intensity of a point on a surace with reflectivity of 0.4
+            is 1000 units, find the intensity of the pixel that would represent
+            point A
+
+            109/1000 * 100 ~ 11% of the max
+
+            maximum intensity value on a computer = 255
+                the intensity of the pixel is 255 * .11 = 28
+

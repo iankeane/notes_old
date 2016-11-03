@@ -1,0 +1,200 @@
+14.1
+
+Analysis of Variance
+    methods in this chapter apply when a  quant resp var has a categorical x var
+    the ANOVA methods in this ch are designed for independent samples
+    One-Way ANOVA
+        single factor (single x var)
+    Two-Way ANOVA
+        multiple factors
+    ANOVA tables compare two types of variability
+        within group variability
+            difference within each sample
+        between group variability
+            variability between sample means
+    evidence against H₀ is stronger when:
+        the WGV is smaller
+        the BGV is larger
+        F = BGV/WGV = BG est. of σ²/WG est. of σ²
+            the MS column contains these two estimates
+            F = MSG/MSE
+
+One-Way Anova Comparing Several Means
+    H₀:μ₁=μ₂=...=μn
+    Ha:one of the means is different
+
+The Test Statistic for Comparing Means has the F Distribution
+    when H₀ is true, the F test stat has an F sampling dist
+        when H₀ is true, the F dist has a mean of ~ 1
+        when H₀ is false, the F test stat tends to be larger than 1
+            more so as the sample sizes increase
+        the larger the F stat, the stronger the evidence against H₀
+    the F distribution has two df values
+    for ANOVA with g groups, the total samp size for all groups is:
+        N = n₁ + n₂ + ... + ng
+    df₁ = g - 1
+    df₂ = N - g
+
+Assumptions and the Effects of Violating Them
+    assumptions for the ANOVA F test are:
+        1. pop dists of the x var for the g groups are normal
+        2. those distributions have the same σ
+        3. the data resulted from randomization
+
+    assumption 1 is never satisfied exactly in practice
+        moderate violations of normality are not serious
+        the F samp dist still provides a good approx to the actual samp dist of
+            the F test stat
+            this is especially true as the sample size increases
+    moderate violations of assumption 2 are not serious
+        when sample sizes are equal for identical groups, the F test still
+            works well even with severe violations
+        when sample sizes are not equal, the F test works well as long as the
+            largest standard deviation is no more than about twice the smallest group σ
+    you can use box/dot plots from the samp data dists to check for extreme
+        violations of normalcy
+    misleading results may occur if:
+        1. the dists are highly skewed and N is small
+        2. there are relatively large differences among the σ's of the g's and
+            the samp sizes are unequal
+
+Using One F test or Several T Tests to Compare Means
+    when there are several g's, why not use a t test instead of an F test to compare means?
+        doing a single test enables us to control the prob of a T1E
+            with a sig lev of .05 in an F test, the prob of wrongly rejecting
+                H₀ is fixed at .05
+            when we do separate t tests, T1E prob applies for each comparison
+    disadvantages of an F test:
+        with a small p-val, we can conclude that the pop means are not identical
+        the F test does not tell us which groups are different or how different they are
+
+10.2
+
+C.I.'s Comparing Pairs of Means
+    when a confidence interval does not contain 0, we can conclude that the means are diff
+        "fisher method"
+    t C.I.'s have the same assumptions as the ANOVA F test:
+        1. pop dists of the x var for the g groups are normal
+        2. those distributions have the same σ
+        3. the data resulted from randomization
+    inferences from t C.I.'s are also not highly dependant on assumption 1
+        especially when the sample sizes are large
+    when the σ's are significantly different, it is preferable to use the C.I.
+        formula that uses separate σ's for groups rather than a pooled s
+
+Controlling Overall Confidence with Many C.I.'s
+    with g groups, there are g(g-1)/2 pairs of groups to compare
+        when g = 10, if we use 95% C.I.'s, the error prob applies to each comparison
+            45(0.05) = 2.25 of the C.I.'s would not contain the true diff of means
+    for 95% C.I.'s, C.I. of 0.95 is the prob that any particular C.I. that we
+        plan to construct will contain the parameter
+        the prob that all the C.I.'s will contain the params is smaller than
+            the CI level for any particular interval
+        to avoid this, we use "multiple comparison methods"
+            "multiple comparison" methods compare pairs of means with a
+                confidence level that applies to the entire set of comparisons
+                rather than to each separate comparison
+
+Methods of Multiple Comparison
+    the simplest method is called the Bonferroni method
+    it uses a more stringent C.L. for each interval it uses this ensures that
+        the overall confidence level is acceptably high the desired overall error
+        prob is split into equal parts for each comparison
+            if we want .95 confidence for 5 tests:
+                0.05 / 5 = .01, 1 - .01 = .99
+                so we use .99 confidence for each interval
+    another method is the Tukey method
+        designed to have an overall C.L. very close to the desired value
+        C.I.'s are slightly narrower than Bonferroni intervals
+
+ANOVA and Regression
+    ANOVA is a special case of multiple regression
+        uses "indicator variables"
+            these take the value 0 or 1 and indicate group memebership
+    we can go up to three groups this way
+        (0,1), (1,0), (0,0)
+        if group three is not in 1 or two, it is in its own group
+        regression equation is:
+            μy = α + β₁x₁ + β₂x₂
+            replace x's with 1 or 0 as necessary
+
+Using Regression for the ANOVA Comparison of Means
+    for an F test of 3 groups, H₀:μ₁=μ₂=μ₃
+    if H₀ is true, then μ₁-μ₃ = 0 and μ₂-μ₃ = 0
+        this is because μ₁-μ₃ = β₁ and μ₂-μ₃ = β₂
+        therefore, H₀:μ₁=μ₂=μ₃ => H₀:β₁=β₂=0
+    everything before this is OWA
+
+Two-Way ANOVA
+    OWA is a bivariate (two-var) method
+        analyzes the relationship between the mean of a quant y var and
+            categorical x vars
+    TWA allows us to study the effect of one factor at a fixed level of a
+        second factor
+
+Inference about Effects in Two-Way ANOVA
+    in TWA, H₀ states that the pop means are the same in each category of one
+        factor at a fixed level of the other factor
+    assumptions are the same 
+    each group refers to a cell in the two-way classification of two factors
+    ANOVA still works well if pop dists are not normal with identical σ's
+    as in other ANOVA inferences, the quality of the samples is the most important
+    for TWA, F = MSF/MSE
+        MSF = mean square for a factor
+        only tests one factor
+    when H₀ is true, the F stat tends to hover around 1
+        when false, they are usually larger
+    the p-val is the right-tail probability above the observed F val
+        that is, the prob (assuming H₀ is true) of even more extreme results
+            than we observed in the sample
+
+Regression Model with Indicator Vars for Two-Way ANOVA
+    f = 1 for high fertilizer level, 0 for low
+    m = 1 for high manure level, 0 for low
+    the model is:
+        μy = α + β₁f + β₂m
+        to find the pop means for the four g's, we substitute the possible
+            combinations of indicator vars
+        the difference between high/low fert = β₁ for each manure level
+            that is, the β₁ of the indicator var f for fert level = the diff
+                between the means at its high and low levels, controlling for manure level
+        the H₀ for no fert effect is H₀:β₁ = 0
+    to conduct a 95% C.I.:
+        param est. +- T₀.₀₂₅(se)
+            df of the t-score is the df value for the MSE
+    this regression model assumes that the diff between means for the two
+        categories for one factor is the same in each category of the other factor
+
+Exploring Interaction Between Factors in Two-Way ANOVA
+    we can check for interaction by plotting both variables on a chart
+        no interaction is indicated by parallel lines
+        this happens because the diff between the estimated mean for both vars
+            is the same for each manure level
+
+Testing for Interaction
+    before conducting a TWA, it is customary to test a third H₀ stating that
+        there is no interaction between the factors in their effects on the response
+    F = MS for interaction / MS error
+    it is not meaningful to test the main effects hypotheses when there is interaction
+        a small p-val for the test of H₀:no interaction suggests the factor has
+            an effect, but the size of the effect varies according to the
+            category of the other factor
+        if this is the case, you should investigate by plotting
+        in practice, in TWA you should first test H₀:no interaction
+            if the evidence of interaction is not strong (P-value is large),
+            then test the main effects hypotheses or construct C.I.'s for those effects
+            if important evidence of interaction exists, plot and compare cell means
+
+Why Not Instead Perform Two Separate One-Way ANOVAs?
+    the TWA indicates whether there is interaction
+        if so, it is more informative to compare levels of one factor
+            separately at each level of the other factor
+            this enables us to investigate how the effect depends on that other factor
+    ex:
+        a OWA of mean pol. ideology by gender might show no gender
+            effect, whereas a TWA has shown that there is an effect
+                but it varies by race
+    another benefit of TWA is that the residual variability (which affects the
+    MSE and the denominator of F statistics) tends to decrease
+        when we use two factors, we tend to get better predictions (less variability)
+
