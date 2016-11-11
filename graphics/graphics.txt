@@ -865,7 +865,7 @@ Combining Transformations
         x' =  x * cos(theta) + y * sin(theta)
         y' = -x * sin(theta) + y * cos(theta)
 
-2D Basic Gemortric Transformations (Matrix)
+2D Basic Geometric Transformations (Matrix)
     Translation:
                            [ 1  0 0 ]
                  [x y 1] * [ 0  1 0 ] = [x' y' 1]
@@ -1146,7 +1146,7 @@ Area Filling (cont'd)
     for larger areas, we use polygons
     polygons include all geometric shapes as special cases
 
-Scanline Polygon Filling Algoritm (Y-X Algorithm)
+Scanline Polygon Filling Algorithm (Y-X Algorithm)
     for each edge of the polygon:
         1. compute all intersections of the edge with the scanlines
             build a list of x,y intersections
@@ -1164,7 +1164,7 @@ Singularity Problem of the Y-X Algorithm
     we can "fix" this by considering x to be slightly above the scanline by a tiny amount 
 
 Rule for Implementing Y-X Algorithm
-    if y is monotonically increasing or decreaseing as you walk up or down,
+    if y is monotonically increasing or decreasing as you walk up or down,
         count each intersection as one vertex
     if y changes direction as you follow a line, count the intersection where
         the line changes direction as two intersections
@@ -1226,7 +1226,7 @@ Sutherland-Hodgeman Algorithm
 Geometric Tables
     vertex table:
         contains a list of vertices
-            verticies are unordered and not necessarily part of the same polygon
+            vertices are unordered and not necessarily part of the same polygon
             vertices are indexed
     edge table:
         contains a list of edges
@@ -1258,10 +1258,10 @@ Geometric Tables
             lengths are equal in model but do not appear to be in display
     intensity queueing:
         objects closer to the POV are brighter
-    stereoscopic visualizatoin:
+    stereoscopic visualization:
         requires polarized glasses or goggles
         left and right view are from different angles
-    kenetic depth:
+    kinetic depth:
         relies on motion to imply depth
             uses parallax and opposite motion of rotating sides
     hidden line/surface remover:
@@ -1348,8 +1348,8 @@ Very Simple Case of Perspective Projection
             this is the "screen" in the virtual world (plane being projected on)
     the virtual screen is its own 2D coordinate system (Xs, Ys)
         every P(Xe,Ye,Ze) will have a projected point P(Xs,Ys)
-        we can form similar triangles from the orgin to P and from the origin
-            to projeceted P
+        we can form similar triangles from the origin to P and from the origin
+            to projected P
 
 
 Wed Sep 28 08:05:50 EDT 2016
@@ -1362,7 +1362,7 @@ Perspective Projection
         virtual "screen" is a square
         object of interest is already defined in terms of the ECS
     the eye, line of sight, and point P(Xe,Ye,Ze) form one triangle (Z axis)
-    the eye, line of site, and the point P(Xs,Ys) form another triangle (Z axis) 
+    the eye, line of sight, and the point P(Xs,Ys) form another triangle (Z axis) 
         these triangles are similar
 
                          _.-`|P(Xe,Ye,Ze)
@@ -1846,7 +1846,7 @@ Exam Questions
                   2⁶ = 64
                   64 grays
     5.
-        a) looking for short-persistant phosphor, need for constant refreshing,
+        a) looking for short-persistent phosphor, need for constant refreshing,
                 mentioning scan-conversion overhead, lines do not appear
                 perfectly straight, lower resolution, more hardware, complexity
                 is not dependent on the number of lines in the image
@@ -1924,7 +1924,7 @@ Direction-Cosine Method
 
             cos(α) = c/D, where D = sqrt(b²+c²)
 
-    3. rotate about the Y axis to bring the axis of roatation onto the Z axis
+    3. rotate about the Y axis to bring the axis of rotation onto the Z axis
         Ry(β) =
                 [  D 0 a 0 ]
                 [  0 1 0 0 ]
@@ -2219,7 +2219,7 @@ Mask/Filter/Kernel/..
         |  |..|..|..|  |
         |  |  |  |  |  |
 
-        creates an image two rows and two colums smaller
+        creates an image two rows and two columns smaller
 
 Expanding a Pyrimadally Stored Image
     Zero-Order Hold Scheme:
@@ -2365,7 +2365,7 @@ Calculating Reflectivity
             Ip = the intensity of the PLS
         adding in contribution from ambient light:
             I = (K * Ia) + (K * Ip(cosθ))/d
-        if there are multiple light soreces:
+        if there are multiple light sources:
             I = (K * Ia₁) + (K * Ip₁ * cosθ)/d₂ + (K * Ip₂ * cosθ₂)/d₂ + ...
                 this is impossible to do in real time without approximation
         for RGB intensity values:
@@ -2391,7 +2391,7 @@ Calculating Reflectivity
             I = 109
         
         b) assuming that we have a gray scale system with 8 bits and that the
-            maximum intensity of a point on a surace with reflectivity of 0.4
+            maximum intensity of a point on a surface with reflectivity of 0.4
             is 1000 units, find the intensity of the pixel that would represent
             point A
 
@@ -2399,4 +2399,115 @@ Calculating Reflectivity
 
             maximum intensity value on a computer = 255
                 the intensity of the pixel is 255 * .11 = 28
+
+
+Tue Nov  8 08:01:48 EST 2016
+----------------------------
+
+
+Exam Two Topics
+    Coordinate Systems (in 3D)
+        LHS, RHS, WCS, ECS
+    3D representations
+    Geometric Tables
+    Basic 3D Geometric Transformations
+        pivot at origin of coordinate system
+        one rotation around each fixed axis
+    Perspective Projection
+        equations for ECS and CCS
+        Xs, Ys equations
+    3D Clipping
+    Fractals
+        what does it mean if the fractal dimension is closer to 2 or 1?
+        applications of fractals
+        remember a fractal of order 0 is a straight line
+    Rotation about an arbitrary axis
+        how to define a rotation axis
+            two points or directionality (direction-cosine)
+    Image Data Structures
+        frame buffer
+        run length encoding
+        quad tree
+            how to extract NxN picture from quad tree
+        pyramids
+    Application of Pyramids
+    Advanced Shading
+    Steganography
+
+    bring a calculator
+
+Pixel Bias
+    pixels are biased as a far as their neighbors are concerned
+        this is because there is more distance diagonally between pixels than
+            vertically or horizontally
+                 _______________________
+                | sqrt(2) | 1 | sqrt(2) |
+                |      1  | x |      1  |
+                | sqrt(2) | 1 | sqrt(2) |
+        because of this, if we have a one-to-one mapped rotation operation, we
+            will stretch an image by sqrt(2) whenever we rotate it
+
+
+Wed Nov  9 08:02:06 EST 2016
+----------------------------
+
+
+Advanced Shading
+    every polygon lies perfectly on a plane
+        polygons do not intersect
+    we can find the distance between each vertex of a polygon, we can find the
+        distance to the point light source
+    for each polygon on a surface with a given reflection coefficient, we can
+        find the intensity value for the vertices and plug these values into
+        our advanced shading model
+        using simple interpolation, we can find the shade of all the points
+            between the vertices on the polygon boundaries
+        we can then use a filling algorithm to fill the polygon with intensity
+            values based on the borders
+
+Rotation Using Pixel Values
+    it is important to be able to rotate objects at the pixel values
+        access only to the "digitized information"
+        if you rotate an image pixel by pixel, you will end up with oddities
+            caused by rounding errors
+            a couple of pixels may map to a single pixel, etc.
+            you can also end up with missing pixels this way
+                "measles effect"
+            trying to solve this problem with a one-to-one mapping algorithm
+                will always result in image distortions
+    it is possible to accomplish better rotation using a series of smaller
+        rotations
+
+Strip-Code Data Structure
+    separates shapes into perfectly horizontal lines of the same color
+        so each strip has a thickness of one pixel
+        they can be defined with four numbers: x1, x2, y, and color
+    for each strip:
+        x' = x * cosθ + y * sinθ
+        y' = y * cosθ - x * sinθ
+        this results in updated end coordinates
+
+
+Thu Nov 10 08:06:10 EST 2016
+----------------------------
+
+
+Strip-Code Rotation
+    one issue with strip-code rotation is that after the rotation, you will
+        always have more strips than originally
+        the closer the rotation angle is to 90, the worse this effect is
+    to adjust for this, the algorithm merges adjacent strips of the same color
+
+Architectures for Graphical Computation
+    SISD
+        Single Instruction on Single Data
+        typical processor
+    SIMD
+        Single Instruction on Multiple Data
+        single control, multiple ALUs
+        typical GPU
+        capable of executing the same instruction in parallel
+    MIMD
+        multiple controls and ALUs, or networked computers
+        multiple SISD's
 
