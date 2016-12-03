@@ -2511,3 +2511,194 @@ Architectures for Graphical Computation
         multiple controls and ALUs, or networked computers
         multiple SISD's
 
+
+Wed Nov 16 08:02:57 EST 2016
+----------------------------
+
+
+Image Histograms
+    plot intensity values by number of pixels
+           |       __
+    # of   |  __  /  \__
+    pixels | /  \/      \
+           |/            \
+           ---------------------
+           0 1 2 3 ... 2^n-1
+           n = # of bits per pixel
+    
+    the area under the curve is the total number of pixels
+    a narrow, dominant peak indicates a low quality image
+        low contrast
+    multiple peaks may indicate multiple dominant objects in the image
+        smaller peaks may also indicate smaller objects
+            |  /\      /\
+            | /  \    /  \
+            |/    \/\/    \/\
+            ---------------------
+            one or two dominant objects, two small objects
+                "one or two" because the background may also provide a peak
+    examining a histogram may allow a person to detect sloppy use of steganography
+
+
+Thu Nov 17 08:05:18 EST 2016
+----------------------------
+
+
+Generating a Histogram
+    hist = [ 0, 0, ... ]
+    for i = 0 to numRows
+        for j = 0 to numCols
+            hist[image[i,j]] = hist[image[i,j]] + 1
+
+Detecting Low Contrast
+    detect a peak and check for the width
+        do this by comparing differences between pixel values
+        we can detect a peak with more confidence by creating a moving average
+            each index in a new average array would represent a cluster of
+                values from the hist array averaged together
+            cluster groups overlap
+
+Linear Contrast Enhancement
+    also called "histogram stretching"
+    we "stretch" the peak in the histogram, and zeroize the lower intensity px
+            |       /\                  |      / \
+            |      /  \            ->   |    /     \
+            |_____/    \_____           |__/         \_____
+            ---------------------       ---------------------
+    
+    if img[i,j] <= low
+        img[i,j] = 0
+    if low < img[i,j] < high
+        img[i,j] = ((image[i,j] - low)/(high - low)) * (2^n - 1)
+    if img[i,j] >= high
+        img[i,j] = 2^n - 1
+
+    this algorithm is optimized for modern cameras using table lookup
+        ex: low = 62  high = 65
+
+    Table
+    --------------
+    0     | 0     |
+    1     | 0     |
+    2     | 0     |
+    3     | 0     |
+     ...  | ...   |
+    62    | 0     |
+    63    | 85    |
+    64    | 170   |
+    65    | 2^n-1 |
+    66    | 2^n-1 |
+    67    | 2^n-1 |
+    ...   | ...   |
+    2^n-1 | 2^n-1 |
+
+    img[i,j] = Table[img[i,j]]
+    
+    contrast enhancement is only used for visual aesthetic purposes
+        this is because the enhanced image contains less information
+
+    Homework: google "image processing contrast enhancement"
+
+
+Tue Nov 29 08:07:07 EST 2016
+----------------------------
+
+
+Differentiation of Signals
+    ex: (intensity values on a scanline)
+
+        2 2 2 2 2 4 6 8 9 10 2 2 2 2
+
+                        __--````````
+        __________..--``
+
+        the curve represents some important boundary
+        mapping the changes in intensity values:
+        0 0 0 0 0 2 2 2 1 1 -8 0 0 0 0
+
+        new line graph:
+                  ______
+                 |      |__
+        _________|         |  ________
+                           | |
+                           | |
+                           | |
+                           |_|
+        (not to scale)
+        
+        this transformation is a differentiation operator
+            this new graph is the "first derivative"
+
+    in the analog space, the curves will be smoother
+    ex:
+
+        First Derivative
+                   __..--``````
+        _____..--``
+
+        Second Derivative
+                _.-``-._
+        _____.-`        `-._____
+
+        Third Derivative
+                _
+              _- -_
+        _____-     -_      ______
+                     -_  _-
+                       ``
+    in the third derivative, the place where the line crosses x=0 is a boundary
+
+Noise Reduction
+    take each value and average it with its four nearest neighbors
+        this cannot be applied to the margins of the picture
+    ex:
+         _______
+        |2|5|6|7|         ___
+        |1|2|1|1| ... -> |2|2| ...
+        |4|1|2|4|        ...
+        ...
+
+    f₂(x,y) = 1/5 SUM(f₁(i,j) for i,j in window size T
+        = 1/5(f₁(x,y) + f₁(x-1,y) + f₁(x+1,y) + f₁(x,y-1) + f₁(x,y+1))
+
+    the resulting image suffers from less noise
+        this creates a "blurring effect" that is not considered distortion
+
+    applied as a mask:
+         ___________
+        |  0|1/5|  0|
+        |1/5|1/5|1/5|
+        |  0|1/5|  0|
+
+    this is not a fair mask because all of the pixels have equal values
+        it also does not take corners into account
+    a more accurate mask would be:
+         _____
+        |C|B|C|
+        |B|A|B|
+        |C|B|C|
+
+        where A + 4B + 4C = 1
+            these values are derived from the fact that B is 1 unit from A and
+                C is √2 units from A
+
+    the fairness of the mask becomes less important as pixel density increases
+        because of this, the previous mask is not longer commonly used
+
+    today, it is more common to use this simple mask for noise reduction:
+         ___________
+        |1/9|1/9|1/9|
+        |1/9|1/9|1/9|
+        |1/9|1/9|1/9|
+
+Median Filtering
+    takes square groups of (for example) 9 pixels, sorts them, and places the
+        median in the center pixel
+    this operator is so important that there is a dedicated chip for it on most devices
+        even if an image is unrecognizable, it may look good after median filtering
+        this can work even if the majority of the pixels in an image are bad
+    audio signals in phones also go through smoothing, then median filtering
+
+Homework: google "median filtering"
+
+
