@@ -1,0 +1,68 @@
+15.1
+
+Nonparametric Statistical Methods
+    do not require the assumption of a norm dist
+    use soly ranking of the subjects on the y var
+
+Wilcoxon Test
+    useful in two cases:
+        1. when the data are ranks rather than quant measurements
+        2. when it's inappropriate to assume normality and the ordinary stat
+            method is not robust to violations of normality
+    ties often occur when we rank observations
+        if this happens, we average the ranks in assigning them to subjects
+
+Comparing Two Groups by Ranking
+    we can summarize an outcome by finding the mean rank for each group and
+        taking their difference
+    if two treatments have identical effects, all outcomes are equally likely
+        using the possible outcomes we can construct a samp dist for the
+            difference between mean ranks
+    if the response variable is quantative, we convert the observations to ranks
+
+Wilcoxon Rank Sum Statistic
+    the W test can equivalently use the sum or mean of the ranks in just one of
+        the samples as the t stat
+        this is because the ranks in one sample determine the ranks in the
+            other sample
+
+Large Sample P-Vals Us a Norm Samp Dist
+    uses a z stat witha p-val based on a norm dist approx of the samp dist
+        this is because the diff between the sample mean ranks (or the sum of
+            ranks for one sample) has an approx normal samp dist
+        z = (diff btw samp mean ranks)/se
+        se comes from software
+
+Nonparametric Estimation Comparing Two Groups
+    nonparam estimation tests also do not require norm pop dists
+        it does require pop dists for the two groups to have the same shape
+    when the response is quant we can compare a measure of center for the two groups
+        Ch 10 did this for mean
+    nonparam methods are often used when the y dist may be skewed
+        then it may be more informative to estimate each group by median
+    software estimates the difference between pop medians by:
+        for every pair of subjects (one from each group), take diff of y vars
+        the point estimate is the median of all those diffs
+
+Proportion of Better Responses for a Group
+
+
+15.2
+
+Kruskal-Wallis Test
+    compares mean ranks of several groups
+        uses an ANOVA F test
+    assumptions:
+        ind rand samples
+        identical pop dists for the y var
+    test determines the ranks for the entire sample and finds the samp mean
+        rank for each group
+    the Kruskal-Wallis test does not assum normal pop dists, so it is safer to
+        use with samples when not much info is available about their dist shapes
+    it's also useful when the data are ranks and we don't have quant values
+
+Comparing Matched Pairs: The Sign Test
+
+Ranking Matched Pairs: The Wilcoxon Signed-Ranks Test
+
+Advantages and Limitations of Nonparametric Statistics
