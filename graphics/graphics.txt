@@ -576,14 +576,14 @@ Line Scan Conversion
         use the endpoints to find the angle of the line with the raster grid
         make a triangle with edge sizes of 1 and w
             1 is the vertical side if we do vertical digitization first
-        w = 1/tan(theta) = cot(theta)
-        first intersection point is x0 + cot(theta), y0 + 1
-        next intersections: x0 + n(cot(theta)), y0 + n
+        w = 1/tan(θ) = cot(θ)
+        first intersection point is x0 + cot(θ), y0 + 1
+        next intersections: x0 + n(cot(θ)), y0 + n
     for each scanline:
-        initialX = x0 + (i*cot(theta))
-        finalX   = initialX + cot(theta)
+        initialX = x0 + (i*cot(θ))
+        finalX   = initialX + cot(θ)
         y-value  = y0 + i (only need one, y is one pixel)
-        line(solid, Round(x0 + (i * cot(theta)), y-value, Round(finalX), y-value
+        line(solid, Round(x0 + (i * cot(θ)), y-value, Round(finalX), y-value
     this is a very slow solution
         trig functions, round, floating point space all create time issues
     it is still used because there is no dependence between scanlines
@@ -657,10 +657,10 @@ Antialiasing
 Calculating the Area of a Pixel
     case1: the line intersects the top and bottom of the pixel:
         find the x intercepts of the pixel
-            x = x0 + (i + 1)(cot(theta))
-            x = x0 + i(cot(theta)
+            x = x0 + (i + 1)(cot(θ))
+            x = x0 + i(cot(θ)
         find the midpoint of those intercepts
-            x = x0 + (i + 0.5)cot(theta)
+            x = x0 + (i + 0.5)cot(θ)
         use the triangle formed by the midpoints to form the polygon formed by
             the intersection into a rectangle
         find the area of the intersection from this information
@@ -826,8 +826,8 @@ Basic 2D Geometric Transformations (of lines)
         the origin of this transformation is at (0, 0)
 
     3. Rotation (around the origin of the coordinate system) (clockwise)
-        x' =  x * cos(theta) + y * sin(theta)
-        y' = -x * sin(theta) + y * cos(theta)
+        x' =  x * cos(θ) + y * sin(θ)
+        y' = -x * sin(θ) + y * cos(θ)
 
         we do not worry so much about expensive operations so much for these algorithms
             this is because they are applied to each graphics primitive, not
@@ -862,8 +862,8 @@ Combining Transformations
         x' = x + Tx
         y' = y + Ty
 
-        x' =  x * cos(theta) + y * sin(theta)
-        y' = -x * sin(theta) + y * cos(theta)
+        x' =  x * cos(θ) + y * sin(θ)
+        y' = -x * sin(θ) + y * cos(θ)
 
 2D Basic Geometric Transformations (Matrix)
     Translation:
@@ -878,9 +878,9 @@ Combining Transformations
                            [ 0  0 1 ]
 
     Rotate:
-                           [cos(theta) -sin(theta) 0]
-                 [x y 1] * [sin(theta)  cos(theta) 0]
-                           [0           0          1]
+                           [cos(θ) -sin(θ) 0]
+                 [x y 1] * [sin(θ)  cos(θ) 0]
+                           [0       0      1]
 
     ex:
         translate (10, 20) by (5, 10)
