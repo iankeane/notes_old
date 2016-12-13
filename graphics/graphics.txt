@@ -13,7 +13,7 @@ Office Hours
 Textbook
     Computer Graphics with OpenGL (Hearn, Baker, Carithers)
 
-Graphics vs Image Processsing
+Graphics vs Image Processing
     significant overlap
         signal processing is similar
         these three subjects fall under the category of "imaging science"
@@ -21,7 +21,7 @@ Graphics vs Image Processsing
         input is some sort of description
             describes the image to be drawn
         output is an artificially created image
-    typical impage processing package:
+    typical image processing package:
         input is a picture
         output is a description (of a picture)
     so, a graphics package and IP package are the inverse of each other
@@ -81,13 +81,13 @@ Tue Aug 16 08:02:10 EDT 2016
 ----------------------------
 
 Processor Performance
-    there is over a hundred miles of path in an average processor
+    there are over a hundred miles of path in an average processor
     smaller processors are faster and use less energy
         this is due to reduced distance
         processor shrinking can be done through photographic technology
 
 Parallel Processing
-    adding processors to increas performance can circumvent the issue of
+    adding processors to increase performance can circumvent the issue of
         overheating in denser processors
     each neuron in the brain is a processor
         as humans age, they use neurons
@@ -99,38 +99,38 @@ Parallel Processing
             evolution does not allow this because each neuron would need n
                 connections, where n is the number of total connections
             this would make the brain the size of a house
-        we have the same opimization issues with parallel processors
+        we have the same optimization issues with parallel processors
 
 CRT Technology
     electron beam shoots through a series of plates before being projected onto
         the glass screen
         first pair of plates are the focusing plates (very small aperture)
         second pair are horizontal deflection plates
-        third pare are vertical deflection plates
+        third pair are vertical deflection plates
     the beam hits a layer of chemical behind the screen
         this causes the point to emit light
-    two types of chemical
-        short-persistent phosphor
+    two types of chemical:
+        1. short-persistent phosphor
             very short emission
             all animation systems must be short persistent
-        long-persistent phosphor
+        2. 2. long-persistent phosphor
             has to be specifically deactivated
             to erase a full screen of LPP, even with today's technology, takes
                 half a second
     all modern laptops are short-persistent
-    screen is made up of pixels
-        the entire array of pixels is called the raster
-        in this example, each pixel can be black white or grey
+        screen is made up of pixels
+            the entire array of pixels is called the raster
+            in this example, each pixel can be black white or grey
 
 Graphics Display Options
     Random Scan Display Device
         naturally a line drawing display device
-        refres system
+        refresh system
             to draw a square, the beam of light moves in a square to activate the
                 phosphor in the shape of a square
     RSDD's can be huge without increasing processing power too much
 
-Levels of Grapical Primitives:
+Levels of Graphical Primitives:
     point
     line
         (a line can be one pixel big)
@@ -150,7 +150,7 @@ Random Scan Display Devices
         the line definitions are stored in the display buffer
             lines here are stored as start and end coordinates
             four numbers in each row, associated with each line
-                (x,y),(x,y)
+                (x, y), (x, y)
     display controller/processor:
         takes line definitions from the display buffer and converts them into
             instructions (at the speed of the refresh rate)
@@ -172,7 +172,7 @@ Random Scan Display Devices
 Direct View Storage Tubes
     also a line drawing system
     conceptually CRT based
-        long-persistant display
+        long-persistent display
     display buffer:
         similar to RSDD's
     display controller:
@@ -195,9 +195,9 @@ Thu Aug 18 07:59:45 EDT 2016
 
 Raster Scan Display Devices
     pixel resolution is technically the number of pixels total on a raster
-        usually is represented as rows x cols
+        usually is represented as rows * cols
     frame buffer:
-        1:1 correspondance to the screen's pixels
+        1:1 correspondence to the screen's pixels
     display processor:
         determines the intensity of each pixel
 
@@ -211,7 +211,7 @@ Interlacing
     technique for refreshing the screen
         refresh all even number lines, then jump to beginning and refresh odds
         at any pass, displays the image at its half resolution
-    reduces required power for display processsor
+    reduces required power for display processor
         the human eye CAN detect the difference, though
             usually only when compared side by side
 
@@ -227,9 +227,9 @@ Color Mixtures
     works completely different from paint mixtures
         "additive mixture" vs "subtractive mixtures"
     | Green | Yellow | Red     |
-    ----------------------------
+    |-------|--------|---------|
     | Cyan  | White  | Magenta |
-    ----------------------------
+    |-------|--------|---------|
             | Blue   |
     we cannot get true black because if the values were truly perfectly
         uncharged, it would take too long to change from black
@@ -250,12 +250,12 @@ Color Calculations
     bits/pixel = x
     bits/color = y
     # of color options = 2^x
-    # of true grays = 2^y
+    # of true grays    = 2^y
 
 Uses for Millions of Pixels
     2^24 color options in most displays
     changes in pixels can be exaggerated to analyze things like:
-        heartrate
+        heart rate
         sound waves
     medical imaging experts are advocating for more than 2^24 colors
 
@@ -299,7 +299,7 @@ Color Lookup Tables
     ex:
         6 b/pixel in frame buffer
         2^6 entries in the CLT
-        64 colors "pallete"
+        64 colors "palette"
             each of these 64 can represent one of 2^n possible colors, where n
                 is the number of bits in each row of the CLT
     pros:
@@ -325,7 +325,7 @@ Example Question:
     a) how many colors can be displayed simultaneously?
         we have to find the number of bits/pixel
             98304B / ((256*256)pix / 8b)) = 12 bits per pixel
-            number of possible pixels = 2^12 = 4096
+            number of possible colors = 2^12 = 4096
     
     b) using CLT size 13824B, how many colors can be displayed simultaneously?
         answer is still 2^12
@@ -333,7 +333,7 @@ Example Question:
     c) using CLT size 13824B, what is the number of color options?
         we need to find the width of the CLT in bits
 
-        Area = 13824B * 8b
+        Area   = 13824B * 8b
         length = 2^12 = 4096b (from before)
         
         (13824B * 8b)/(4096b) = 27
@@ -342,12 +342,12 @@ Example Question:
     d) how many distinct shades of grey?
         2^(27/3) = 2^9
 
-Dividing Color Possibilites
-    in examples so far, the number of possibles has always been divisible by 3
+Dividing Color Possibilities
+    in examples so far, the number of possibilities has always been divisible by 3
         if not, sacrifice bits dedicated to blue
         ex:
             14 = 5 shades red 5 shades green 4 shades blue
-    this can come up when using multiresolution systems
+    this can come up when using multi-resolution systems
         allow the user to change the number of bits per pixel
 
 
@@ -366,8 +366,8 @@ Line Drawing Algorithms (Line Scan-Conversion Algorithm)
 
 Basic Line-Drawing Algorithm
     y = mx + c
-    delta(x) = x1-x0
-    dleta(y) = y1-y0
+    delta(x) = x1 - x0
+    delta(y) = y1 - y0
         delta(var) = difference in the (var) direction
     assumption: delta(x) > delta(y)
         because of this constraint, we only need to activate 1px per column
@@ -385,8 +385,8 @@ Basic Line-Drawing Algorithm
         for (i=0; i<= (delta(x) - 1); i++){
             x = x0 + i;
             y = m * i + y0;
-            y = trunc(y);       // same as floor?
-            image[x,y] = white  // line is white, image is frame buffer image
+            y = trunc(y);
+            img[x, y] = white  // line is white, image is frame buffer image
         }
     
     pseudocode walkthrough example:
@@ -412,10 +412,10 @@ Basic Line-Drawing Algorithm
             y = floor(.5 * 2 + y0) = floor(1) = 1
         
     note:
-        this only works using dlta(x) > delta(y)
+        this only works using delta(x) > delta(y)
             we need special cases for perfectly vertical and horizontal lines
     issues:
-        Trunc is an expensive operation
+        trunc is an expensive operation
         multiplication is more expensive than division
         floats should be avoided as well
 
@@ -428,12 +428,12 @@ Simple Digital Analyzer (DDA)
         yinc = delta(y)/delta(x)
         x = x0
         y = y0
-        image[x,y] = w              // w is white
+        img[x, y] = w              // w is white
 
         for ( k = 0; k <= (delta(x)-1); k++){
             x = x+1
             y = y+yinc
-            image[x,round(y)] = w   // we can use round or trunc
+            img[x, round(y)] = w   // we can use round or trunc
         }
 
     walkthrough:
@@ -446,15 +446,14 @@ Simple Digital Analyzer (DDA)
         k = 0:
             x = 0+1 = 1
             y = 0+.5 = .5
-            image[x,round(y)] = w   // we can use round or trunc
-            image[1,1] = w
-
+            img[x, round(y)] = w   // we can use round or trunc
+            img[1, 1] = w
 
         k = 1:
             x = 1+1 = 2
             y = .5+.5 = 1
-            image[x,round(y)] = w   // we can use round or trunc
-            image[2,1] = w
+            img[x, round(y)] = w   // we can use round or trunc
+            img[2, 1] = w
 
 
     using round vs trunc:
@@ -488,7 +487,7 @@ Bresenham's Algorithm
         x = x0
     
     Loop:
-        image[x,y] = w
+        img[x, y] = w
         
         if E < 0:
             E = E + inc1
@@ -579,11 +578,11 @@ Line Scan Conversion
             1 is the vertical side if we do vertical digitization first
         w = 1/tan(theta) = cot(theta)
         first intersection point is x0 + cot(theta), y0 + 1
-        next intersections: x0 + n(cot(theta)), y0+n
+        next intersections: x0 + n(cot(theta)), y0 + n
     for each scanline:
         initialX = x0 + (i*cot(theta))
-        finalX = initialX + cot(theta)
-        y-value = y0 + i (only need one, y is one pixel)
+        finalX   = initialX + cot(theta)
+        y-value  = y0 + i (only need one, y is one pixel)
         line(solid, Round(x0 + (i * cot(theta)), y-value, Round(finalX), y-value
     this is a very slow solution
         trig functions, round, floating point space all create time issues
@@ -607,9 +606,9 @@ Polyline
     used to draw polygons where all the lines are connected to each other
         (can be drawn without picking up pen)
     polyline(n, list)
-        n = # of lines
+        n    = # of lines
         list = list of y coordinates
-            looks like [(0,10),(0,0),(10,0),(10,10),(0,10),(5,15),(10,10)]
+            looks like [(0,10), (0,0), (10,0), (10,10), (0,10), (5,15), (10,10)]
     polyline was used for plotters
         there isn't really a technical reason for this function to still exist
 
@@ -617,25 +616,25 @@ Translating 2D to RAM
     2D values do not exist in ram
         everything value one dimensional
     Row major order:
-        (x0, y0), (x1,y0) ... (xn, y0), (x1, y0) ...
+        (x0, y0), (x1, y0) ... (xn, y0), (x1, y0) ...
     to access these values, we need to use an array mapping function
-        value in RAM of (x,y) is (base address) + (numrows)(x) + y
+        value in RAM of (x, y) is (base address) + (numrows)(x) + y
 
 Pixel Functions
-    putPixel(c,x,y)
+    putPixel(c, x, y)
         c = color
-    image[x,y] = c
+    img[x, y] = c
 
     pseudocode:
-        address(x,y) = address(0,0) + y * Width + x
+        address(x, y) = address(0, 0) + y * Width + x
         activate pixel
     this is expensive and happens for every pixel
         each dimension of an array adds another multiplication
     
 
     if deltaX > deltaY, there are two options:
-        address(x + 1,y) = address(x,y) + 1
-        address(x + 1, y + 1) = address(x,y) + width + 1
+        address(x + 1, y    ) = address(x, y) + 1
+        address(x + 1, y + 1) = address(x, y) + width + 1
     this is the optimized version of putpixel, used in certain algorithms
 
 
@@ -662,8 +661,8 @@ Calculating the Area of a Pixel
             x = x0 + i(cot(theta)
         find the midpoint of those intercepts
             x = x0 + (i + 0.5)cot(theta)
-        use the triangle formed by the midpoints to form the polyon formed by the
-            intersection into a rectangle
+        use the triangle formed by the midpoints to form the polygon formed by
+            the intersection into a rectangle
         find the area of the intersection from this information
 
 Circle Generators
@@ -677,8 +676,8 @@ Circle Generators
         assume that the thickness is 1px
         xC = center x value
         yC = center y value
-        r = radius
-        if y is iterated through, we just need to slove for x
+        r  = radius
+        if y is iterated through, we just need to solve for x
 
         (x-xC)² + (y-yC)² = r²
         x = +- (sqrt(r²-(y-yC)²)) + xC
@@ -686,12 +685,12 @@ Circle Generators
 
         so:
             
-        xIn1 = + (sqrt((r-1)²-(y-yC)²)) + xC
-        xIn2 = - (sqrt((r-1)²-(y-yC)²)) + xC
-        xOut1= +- (sqrt(r²-(y-yC)²)) + xC
-        xOut2 = - (sqrt(r²-(y-yC)²)) + xC
+        xIn1  =  (sqrt((r-1)²-(y-yC)²)) + xC
+        xIn2  = -(sqrt((r-1)²-(y-yC)²)) + xC
+        xOut1 =  (sqrt(r²    -(y-yC)²)) + xC
+        xOut2 = -(sqrt(r²    -(y-yC)²)) + xC
 
-        xIns are the inner points of the circle
+        xIns  are the inner points of the circle
         xOuts are the outer points
 
 
@@ -706,7 +705,7 @@ Issues with Circle Generators
         humans are very good at recognizing when a circle isn't perfect
     fixing symmetry
         if a circle is at (xC, yC) and symmetry is broken, we can fix it by moving
-            the center to (xC,yC-.5)
+            the center to (xC, yC-.5)
         we alternatively could have moved the circle up by .5
     expenses:
         square root is a very expensive algorithm
@@ -721,10 +720,10 @@ Another Description of Circle Generation Algorithm
         fill in between the intersections, rounding to the nearest integer value
         if there is no intersection with the inner boundary, fill between the
             outer boundaries (??)
-    new xOuts
+    new xOuts:
         xOut1 = -sqrt(r²-(y-yC+.5)²) + xC
         xOut2 =  sqrt(r²-(y-yC+.5)²) + xC
-    new xIns
+    new xIns:
         xIn1  = -sqrt((r-1)²-(y-yC+.5)²) + xC
         xIn1  =  sqrt((r-1)²-(y-yC+.5)²) + xC
 
@@ -737,35 +736,36 @@ Usefulness of Circle Generators
 
 Bresenham's Circle Generator
     often, when a problem is well defined in the floating point space, you can
-        use the integer space by multiply by a power of ten equal to your error tolerance
+        use the integer space by multiplying by a power of ten equal to your
+            error tolerance
         multiplying by 10^x before a loop, then dividing back after a loop is common
         this is not possible with this algorithm, but still relevant
     instead of this, Bresenham takes advantage of the circle's symmetry
         we don't need to calculate the entire circle
-    from (x,y) on a circle with center (0,0):
+    from (x, y) on a circle with center (0, 0):
         to cut the complexity in 1/2:
-            (x,y),(-x,y)
+            (x,y), (-x,y)
         1/4:
-            (x,y),(-x,y),(x,-y),(-x,-y)
+            (x,y), (-x,y), (x,-y), (-x,-y)
         1/8:
-            (x,y),(-x,y),(x,-y),(-x,-y)
-            (y,x),(-y,x),(y,-x),(-y,-x)
+            (x,y), (-x,y), (x,-y), (-x,-y)
+            (y,x), (-y,x), (y,-x), (-y,-x)
     we can not go further than this due to line inaccuracy in the digital space
         only straight or perfectly diagonal lines are accurate
-    from (x,y) on a circle with center(xC,yC):
-        (x+xC,y+yC),(-x+xC,y+yC),(x+xC,-y+yC),(-x+xC,-y+yC)
-        (y+xC,x+yC),(-y+xC,x+yC),(y+xC,-x+yC),(-y+xC,-x+yC)
+    from (x, y) on a circle with center(xC,yC):
+        (x+xC,y+yC), (-x+xC,y+yC), (x+xC,-y+yC), (-x+xC,-y+yC)
+        (y+xC,x+yC), (-y+xC,x+yC), (y+xC,-x+yC), (-y+xC,-x+yC)
 
     pseudocode:
         plotCirclePoints():
-            setPixel( x+xC, y+yC, color)
-            setPixel(-x+xC, y+yC, color)
-            setPixel( x+xC,-y+yC, color)
-            setPixel(-x+xC,-y+yC, color)
-            setPixel( y+xC, x+yC, color)
-            setPixel(-y+xC, x+yC, color)
-            setPixel( y+xC,-x+yC, color)
-            setPixel(-y+xC,-x+yC, color)
+            setPixel( x+xC,  y+yC,  color)
+            setPixel(-x+xC,  y+yC,  color)
+            setPixel( x+xC, -y+yC,  color)
+            setPixel(-x+xC, -y+yC,  color)
+            setPixel( y+xC,  x+yC,  color)
+            setPixel(-y+xC,  x+yC,  color)
+            setPixel( y+xC, -x+yC,  color)
+            setPixel(-y+xC, -x+yC,  color)
 
         // this function is defined locally to the calling function
 
@@ -776,12 +776,12 @@ Bresenham's Circle Generator
         if x < y:
             plotCirclePoints()
             if p < 0:
-                p=p+(4x)+6
-                x=x+1
+                p = p+(4x)+6
+                x = x+1
                 return to beginning of loop
             else:
-                p=p+4(x-y)+10
-                y=y-1
+                p = p+4(x-y)+10
+                y = y-1
         else:
             if x == y:
                 plotCirclePoints()
@@ -808,8 +808,8 @@ Scan Conversion
 
 Basic 2D Geometric Transformations (of lines)
     1. Translation
-        (x,y)   = the point to be translated
-        (x',y') = translated point
+        (x, y)   = the point to be translated
+        (x', y') = translated point
         Tx      = displacement in the x direction
         Ty      = displacement in the y direction
 
@@ -823,7 +823,7 @@ Basic 2D Geometric Transformations (of lines)
         x' = x * Sx
         y' = y * Sy
 
-        the origin of this transformation is at (0,0)
+        the origin of this transformation is at (0, 0)
 
     3. Rotation (around the origin of the coordinate system) (clockwise)
         x' =  x * cos(theta) + y * sin(theta)
@@ -849,7 +849,7 @@ Thu Sep  8 08:05:55 EDT 2016
 
 
 Rotating About a Specified Point
-    1. translate by (-xC,-yC)
+    1. translate by (-xC,- yC)
     2. rotate by theta
     3. translate by (xC, yC)
     this strategy is not optimal, because we have to walk over all the lines 3 times
@@ -893,7 +893,7 @@ Combining Transformations
 
 Rotating About a Specified Point (Matrix)
     ex:
-        rotate the triangle (1,1),(2,3),(3,1) by 45 deg about (2,2)
+        rotate the triangle (1,1), (2,3), (3,1) by 45 deg about (2,2)
             (translation to origin matrix) * (rotation matrix) * (translation back matrix)
             [ 1  0 0 ]   [.7 -.7 0 ]   [ 1 0 0 ]   [ .7 -.7  0 ]
             [ 0  1 0 ] * [.7  .7 0 ] * [ 0 1 0 ] = [ .7  .7  0 ]
@@ -902,7 +902,7 @@ Rotating About a Specified Point (Matrix)
             multiplication must go right to left
 
         now we can multiply the final matrix by the points in the original
-            picture in the form [x y 1] to get the transformaiton
+            picture in the form [x y 1] to get the transformation
 
 Homework: practice matrix multiplication
 
@@ -918,7 +918,7 @@ For midterm, we can have a one page, one side, handwritten formula sheet
 Finding Transformation Matrices
     ex:
         find the transformation matrix which does the following:
-            translate the image by (10,4)
+            translate the image by (10, 4)
             scale the image by (7,2) about (2,2)
             rotate image by 90 degrees about (3,3)
         
@@ -986,7 +986,7 @@ Line Clipping Algorithms
                 outside of the window
 
 Cohen-Sutherland Algorithm
-    divides the imaging area into 9 distict regions:
+    divides the imaging area into 9 distinct regions:
         extends the viewport by one viewport size in all directions
             _|_|_
             _|_|_
@@ -1028,35 +1028,35 @@ Cohen-Sutherland Algorithm
             _|x|_
              | |
             0000 or 0000 = 0000 (if pass)
-            draw
+                draw
         completely invisible:
             x|_|_
             _|_|_
             x| |
-            1001 or 1101 = 1101 (if fail)
+            1001 or  1101 = 1101 (if fail)
             1001 and 0101 = 0001 (elif pass)
-            skip
+                skip
         partially visible:
             __|__|__
             __|x_|x_
               |  |
-            0000 or 0010 = 0010 (if fail)
+            0000 or  0010 = 0010 (if fail)
             0000 and 0010 = 0000 (elif fail)
-            divide into segment A and segment B
-            repeat tests
+                divide into segment A and segment B
+                repeat tests
                 segment B:
                     __|__|__
                     __|__|xx
                       |  |
-                    0010 or 0010 = 0010 (if fail)
+                    0010 or  0010 = 0010 (if fail)
                     0010 and 0010 = 0010 (elif pass)
-                    skip
+                        skip
                 segment A:
                     __|__|__
                     __|xx|__
                       |  |
                     0000 or 0000 = 0000 (if pass)
-                    display
+                        display
         potentially visible (not visible):
         x|x|_
         x|_|_
@@ -1069,15 +1069,15 @@ Cohen-Sutherland Algorithm
             x|_|_
              | |
             0001 and 0001 = 0001 (if fail)
-            skip
+                skip
 
             segment B:
             x|x|_
             _|_|_
              | |
             1000 and 1001 = (if fail)
-            1000 or 1001 = 1000 (elif pass)
-            skip (trivial case)
+            1000 or  1001 = 1000 (elif pass)
+                skip (trivial case)
 
         potentially visible (visible):
         _|x|_
@@ -1149,12 +1149,12 @@ Area Filling (cont'd)
 Scanline Polygon Filling Algorithm (Y-X Algorithm)
     for each edge of the polygon:
         1. compute all intersections of the edge with the scanlines
-            build a list of x,y intersections
+            build a list of x, y intersections
         2. sort the list so that intersections for each scanline are grouped
             together, and x values increase
         3. remove the elements from the list in pairs
-            [(xa, ya)(xb,yb)] ...
-            only plot the pixels between [(xa, ya)(xb,yb)] 
+            [(xa, ya)(xb, yb)] ...
+            only plot the pixels between [(xa, ya)(xb, yb)] 
                 ya = yb and xa <= xb always during this step
 
 Singularity Problem of the Y-X Algorithm
@@ -1186,10 +1186,10 @@ Boundary Fill Algorithm (flood fill)
     starts from an arbitrary point, fills a polygon recursively
         nearest neighbor algorithm
 
-    floodFill(x,y,fillColor,boundaryColor):
-        if (image[x,y] != boundaryColor) and (image[x,y] != fillColor):
-            image[x,y] = fillColor
-            floodFill(x+-1,y+-1,fillColor,boundaryColor)
+    floodFill(x, y, fillColor, boundaryColor):
+        if (img[x, y] != boundaryColor) and (img[x, y] != fillColor):
+            img[x, y] = fillColor
+            floodFill(x+-1,  y+-1, fillColor, boundaryColor)
         else
             return
 
@@ -1245,7 +1245,7 @@ Geometric Tables
 
 3D Visualization
     parallel projection:
-        a cube looks like a sphere
+        a cube looks like a square
         often used by engineers
         does not adjust for perspective
             (ignores z values)
@@ -1290,7 +1290,7 @@ Coordinate Systems
     we need a plane to project onto that is between the "eye" and the object
 
 3D Geometric Transformations (Basic)
-    in 3D, a line has two points at (x,y,z)
+    in 3D, a line has two points at (x, y, z)
     basic translations around origin:
 
     1. Translation:
@@ -1342,12 +1342,12 @@ Very Simple Case of Perspective Projection
     Assumptions:
         the object is defined in the ECS
             as long as we can compute [V] this is not an issue
-        the viewpoint is fixed at [0,0,0]
+        the viewpoint is fixed at [0, 0, 0]
             this is always true in the ECS anyway
         the Ze axis intersects the center of the "screen"
             this is the "screen" in the virtual world (plane being projected on)
     the virtual screen is its own 2D coordinate system (Xs, Ys)
-        every P(Xe,Ye,Ze) will have a projected point P(Xs,Ys)
+        every P(Xe, Ye, Ze) will have a projected point P(Xs, Ys)
         we can form similar triangles from the origin to P and from the origin
             to projected P
 
@@ -1361,12 +1361,12 @@ Perspective Projection
         line of gaze passes through the center of the virtual "screen"
         virtual "screen" is a square
         object of interest is already defined in terms of the ECS
-    the eye, line of sight, and point P(Xe,Ye,Ze) form one triangle (Z axis)
-    the eye, line of sight, and the point P(Xs,Ys) form another triangle (Z axis) 
+    the eye, line of sight, and point P(Xe, Ye, Ze) form one triangle (Z axis)
+    the eye, line of sight, and the point P(Xs, Ys) form another triangle (Z axis) 
         these triangles are similar
 
-                         _.-`|P(Xe,Ye,Ze)
-           P'(Xs,Ys) _.-`    |
+                         _.-`|P(Xe, Ye, Ze)
+           P'(Xs, Ys)_.-`    |
                 _.-`|        |
             _.-`    |S       |
        eye A________|B_______|C
@@ -1375,7 +1375,7 @@ Perspective Projection
 
     S = length(B, P') = half the length of the screen
 
-    Ys/D = Ye/Ze => Ys= (D * Ye)/Ze
+    Ys/D = Ye/Ze => Ys = (D * Ye)/Ze
     Similarly, considering the XeZe plane:
 
     Xs/D = Xe/Ze
@@ -1391,8 +1391,8 @@ Perspective Projection
         well, so we adjust the equation to the virtual screen
         so Xs = ((D * Xe)/(S * Ze)) * Vsx + Vcx
            Ys = ((D * Ye)/(S * Ze)) * Vsy + Vcy
-                (Vcx,Vcy) = the center of the virtual screen
-                Vsx, Vsy = 1/2 * the size of the screen
+                (Vcx, Vcy) = the center of the virtual screen
+                (Vsx, Vsy) = 1/2 * the size of the screen
     these two equations return pixel values on your virtual screen
 
 
@@ -1409,7 +1409,7 @@ Exam Topics:
         Random Scan Display Devices
         DVST
         Raster Scan
-    Grayscale, color, color, color lookup table
+    Grayscale, color, color lookup table
     line scan-conversion algorithm
         simple line drawing algorithm
         DDA (simple)
@@ -1420,7 +1420,7 @@ Exam Topics:
     antialiasing
     circle generators (circle scan-conversion)
         simple circle generation (from equation of circle)
-        bresenham's circle generator
+        Bresenham's circle generator
             why not divide the circle generation further?
     2D Geometric Transformation
         translate
@@ -1459,7 +1459,7 @@ format for homework:
         (read from a file, say how many lines read)
 
     clip lines against a viewing area
-    test bresenham first
+    test Bresenham first
 
 
 Wed Oct  5 07:59:43 EDT 2016
@@ -1467,8 +1467,8 @@ Wed Oct  5 07:59:43 EDT 2016
 
 
 
-                         _.-`|P(Xe,Ye,Ze)
-           P'(Xs,Ys) _.-`    |
+                         _.-`|P(Xe, Ye, Ze)
+           P'(Xs, Ys)_.-`    |
                 _.-`|        |
             _.-`    |S       |
        eye A________|B_______|C
@@ -1586,7 +1586,7 @@ The Viewing Transformation
             G |  1 | -1 |  1       |________|
             H | -1 | -1 |  1      H         G
 
-        we will observe this cube from a point (6,8,7.5) with the viewing axis
+        we will observe this cube from a point (6, 8, 7.5) with the viewing axis
             Ze pointed at the origin of the WCS
         we assume that Xe axis lies on the Z = 7.5 plane
             this is the general case, we always assume that the Xe axis lies on
@@ -1674,10 +1674,10 @@ Viewing Transformation
             [ 0 0 1 0 ]
             [ 0 0 0 1 ]
 
-            [ -3.2 -1.4 -.5   0 ]
-        VN =[  2.4 -1.9 -.6   0 ]
-            [    0  3.2 -.6   0 ]
-            [    0  0    12.5 1 ]
+             [ -3.2 -1.4 -.5   0 ]
+        VN = [  2.4 -1.9 -.6   0 ]
+             [    0  3.2 -.6   0 ]
+             [    0  0    12.5 1 ]
 
         [ Xc Yc Zc 1 ] = [ Xw Yw Zw 1 ] * [VN]
 
@@ -1709,7 +1709,6 @@ Note on 3D clipping
 Thu Oct 13 08:04:00 EDT 2016
 ----------------------------
 
-
 Homework: search for applications of fractals
 
 Fractals
@@ -1733,7 +1732,7 @@ Simple Fractal
     order 2:
              __/\__      __/\__
              \    /      \    /
-       ______/    \______/    \______ 
+       __/\__/    \__/\__/    \__/\__ 
 
     ...
 
@@ -1800,7 +1799,7 @@ Exam Questions
                 require floating point math)
         b) we move the center of the circle down or up a pixel during
                 calculations
-        c) bresenham's algorithm: 
+        c) Bresenham's algorithm: 
                 maps the problem to the integer space
                 has no multiplication except by powers of two
     2.
@@ -1842,7 +1841,7 @@ Exam Questions
             |----------|
                  w
 
-                  w = 1152B * 8b / 512 = 18
+                  w  = 1152B * 8b / 512 = 18
                   2⁶ = 64
                   64 grays
     5.
@@ -1871,11 +1870,11 @@ Wed Oct 19 07:58:25 EDT 2016
 
 Direction-Cosine Method
     
-    P₁(x₁,y₁,z₁)
-    |    x        ->
-    |   / \    V(P₁,P₂)
+    P₁(x₁, y₁, z₁)
+    |    x        -->
+    |   / \    V(P₁, P₂)
     |  /    \ 
-    |_/______x  P₂(x₂,y₂,z₂)
+    |_/______x  P₂(x₂, y₂, z₂)
     Origin
 
     P₁ and P₂ are vectors
@@ -1883,8 +1882,8 @@ Direction-Cosine Method
     V defined by [ x₂-x₁, y₂-y₁, z₂-z₁ ]
 
     the direction cosine of V is:
-        a = x/d, b =y/d, c = z/d
-            when d = sqrt(x²+x²+x²)
+        a = x/d, b = y/d, c = z/d
+            when d = sqrt(x²+y²+z²)
 
     if vectors have the same directions, the vectors are equal
         this does not mean they lie in the same place
@@ -1892,11 +1891,11 @@ Direction-Cosine Method
 
     ex:
         
-        P₁(2,4,8)
-        |    x        ->
-        |   / \    V(P₁,P₂)
+        P₁(2, 4, 8)
+        |    x        -->
+        |   / \    V(P₁, P₂)
         |  /    \ 
-        |_/______x  P₂(6,16,4)
+        |_/______x  P₂(6, 16, 4)
         Origin
 
         V = [ 4 12 -4 ]
@@ -1905,7 +1904,7 @@ Direction-Cosine Method
         the direction cosine of V is [ 4/13.2 12/13.2 -4/13.2 ]
 
 3D Rotation About an Arbitrary Axis by a Given Angle
-    (x₁,y₁,z₁) lies on the axis of rotation
+    (x₁, y₁, z₁) lies on the axis of rotation
 
     1. translate so that the axis passes through the origin of the coordinate system
         we need one point in the vector that lies on the axis of rotation
@@ -1979,8 +1978,8 @@ Thu Oct 20 08:03:27 EDT 2016
 Defining the Axis of Rotation
     1. The coordinates of two points on the desired axis
             x₂-x₁, y₂-y₁, z₂-z₁ = x, y, z
-            a,b,c = x/D, y/D, z/D where D = sqrt(x²+x²+x²)
-    2. We are given the direction cosine (a,b,c) and one point that lies on the axis
+            a, b, c = x/D, y/D, z/D where D = sqrt(x²+y²+z²)
+    2. We are given the direction cosine (a, b, c) and one point that lies on the axis
 
 
 Tue Oct 25 08:04:31 EDT 2016
@@ -2359,14 +2358,14 @@ Calculating Reflectivity
     ______\|/______
 
         UNV = unit normal vector
-        I = (K * Ip(cosθ))/d
+        I   = (K * Ip(cosθ))/d
             the smaller the angle, the more light will be reflected
-            d = distance from the PLS to the point on the surface
+            d  = distance from the PLS to the point on the surface
             Ip = the intensity of the PLS
         adding in contribution from ambient light:
             I = (K * Ia) + (K * Ip(cosθ))/d
         if there are multiple light sources:
-            I = (K * Ia₁) + (K * Ip₁ * cosθ)/d₂ + (K * Ip₂ * cosθ₂)/d₂ + ...
+            I = (K * Ia₁) + (K * Ip₁ * cosθ)/d₁ + (K * Ip₂ * cosθ₂)/d₂ + ...
                 this is impossible to do in real time without approximation
         for RGB intensity values:
             Ir = (Kr * Iar) + (Kr * Ip₁r * cosθ₁)/d₁
@@ -2546,9 +2545,9 @@ Thu Nov 17 08:05:18 EST 2016
 
 Generating a Histogram
     hist = [ 0, 0, ... ]
-    for i = 0 to numRows
-        for j = 0 to numCols
-            hist[image[i,j]] = hist[image[i,j]] + 1
+    for i = 0 to numRows:
+        for j = 0 to numCols:
+            hist[img[i, j]] = hist[img[i, j]] + 1
 
 Detecting Low Contrast
     detect a peak and check for the width
@@ -2569,7 +2568,7 @@ Linear Contrast Enhancement
     if img[i,j] <= low
         img[i,j] = 0
     if low < img[i,j] < high
-        img[i,j] = ((image[i,j] - low)/(high - low)) * (2^n - 1)
+        img[i,j] = ((img[i,j] - low)/(high - low)) * (2^n - 1)
     if img[i,j] >= high
         img[i,j] = 2^n - 1
 
@@ -2658,8 +2657,8 @@ Noise Reduction
         |4|1|2|4|        ...
         ...
 
-    f₂(x,y) = 1/5 SUM(f₁(i,j) for i,j in window size T
-        = 1/5(f₁(x,y) + f₁(x-1,y) + f₁(x+1,y) + f₁(x,y-1) + f₁(x,y+1))
+    f₂(x, y) = 1/5 SUM(f₁(i, j) for i, j in window size T
+            = 1/5(f₁(x, y) + f₁(x-1, y) + f₁(x+1, y) + f₁(x, y-1) + f₁(x, y+1))
 
     the resulting image suffers from less noise
         this creates a "blurring effect" that is not considered distortion
